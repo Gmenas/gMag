@@ -1,8 +1,8 @@
 const config = require('./config');
 
 Promise.resolve()
-    .then(() => require('./db').init())
-    .then((db) => require('./data').init(db, config.connectionStr))
+    .then(() => require('./db').init(config.connectionStr))
+    .then((db) => require('./data').init(db))
     .then((data) => require('./app').init(data))
     .then((app) => {
         app.listen(config.port,
