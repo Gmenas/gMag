@@ -1,20 +1,6 @@
 extends _head
-block body
-    nav.navbar.navbar-fixed-top.navbar-default
-        .container
-            .navbar-header
-                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
-                    span.icon-bar
-                    span.icon-bar
-                    span.icon-bar
-                a.navbar-brand(href='#') gMag
-            #navbar.collapse.navbar-collapse
-                ul.nav.navbar-nav.navbar-right
-                    li
-                        a(href='#about') Sign in
-                    li
-                        a(href='#about') Register
-    #search-container.container
+block content
+    #search-container.container.margin-bot
         .row
             .col-sm-12
                 .input-group
@@ -22,7 +8,7 @@ block body
                     span.input-group-addon
                         button(type='submit')
                             span.glyphicon.glyphicon-search
-    .container
+    #content-container.container
         .row
             #sidebar.col-xs-12.col-sm-3
                 .list-group
@@ -37,23 +23,21 @@ block body
                     a.list-group-item(href='#') Category 9
             .col-xs-12.col-sm-9
                 .jumbotron.text-center
-                    h1 Welcome to <b>gMag</b>!
+                    h1.margin-bot-lg Welcome to <b>gMag</b>!
+                    .row
+                        .container
+                            a.col-sm-4.col-sm-offset-1.btn.btn-primary.btn-lg(href='/browse') Browse products
+                            a.col-sm-4.col-sm-offset-2.btn.btn-primary.btn-lg(href='#') Sell something
                 .row
                     .col-xs-6.col-lg-4
                         h2 Recent Item 1
                         p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est molestiae, illo quod accusamus, perferendis asperiores numquam, aliquam nobis repudiandae iusto accusantium ducimus ipsum facere, iste eius dolor magni officia beatae.
-                        p
-                            a.btn.btn-default(href='#', role='button') View details »
+                        a.btn.btn-default(href='#', role='button') View details
                     .col-xs-6.col-lg-4
                         h2 Recent Item 2
                         p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum numquam vitae ullam consequatur sint quibusdam perferendis laudantium. Repellendus id sint ratione ducimus, recusandae doloribus laudantium? Laudantium, delectus praesentium fugit iure.
-                        p
-                            a.btn.btn-default(href='#', role='button') View details »
+                        a.btn.btn-default(href='#', role='button') View details
                     .col-xs-6.col-lg-4
                         h2 Recent Item 3
                         p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus earum iste dolor, optio accusamus, sint voluptatem doloribus. Vel aliquid nam velit, nobis repudiandae nesciunt dolore ducimus. Excepturi, vero omnis sunt.
-                        p
-                            a.btn.btn-default(href='#', role='button') View details »
-        hr
-        footer
-            p
+                        a.btn.btn-default(href='#', role='button') View details

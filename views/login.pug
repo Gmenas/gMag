@@ -1,0 +1,19 @@
+extends _head
+block content
+    .container
+        .row
+            .col-sm-6.col-sm-offset-3
+                form.form-signin.text-center(method='POST')
+                    h2.form-signin-heading.margin-bot Sign in
+                    input#inputUsername.form-control.margin-bot(
+                        type='text',
+                        placeholder='Username',
+                        required='',
+                        autofocus=''
+                    )
+                    input#inputPassword.form-control.margin-bot(
+                        type='password',
+                        placeholder='Password',
+                        required=''
+                    )
+                    button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
