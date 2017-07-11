@@ -1,4 +1,4 @@
 const port = 80;
-const connectionStr = '';
+const connectionStr = 'mongodb://localhost/gmag';
 
-module.exports = { port };
+module.exports = { port, connectionStr };

@@ -1,6 +1,9 @@
 const attachTo = (app) => {
     app.get('/', (req, res) => {
-        return res.render('home');
+        const context = {
+            title: 'Home',
+        };
+        return res.render('home', context);
     });
 };
 
