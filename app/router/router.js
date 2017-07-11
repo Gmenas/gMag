@@ -9,6 +9,11 @@ const attachTo = (app) => {
         return res.render('browse', context);
     });
 
+    app.get('/sell', (req, res) => {
+        const context = { title: 'Sell' };
+        return res.render('sell', context);
+    });
+
     app.get('/details/:id/', (req, res) => {
         const context = {
             title: `Details for ${req.params.id}`,

@@ -1,0 +1,23 @@
+extends _head
+block content
+    .container
+        .row
+            .col-sm-6.col-sm-offset-3
+                form.form-signin.text-center(method='POST')
+                    h2.form-signin-heading.margin-bot Sell something
+                    input.form-control.margin-bot(
+                        type='text',
+                        placeholder='Title',
+                        required='',
+                        autofocus=''
+                    )
+                    textarea.form-control.margin-bot(
+                        placeholder='Description',
+                        rows="10",
+                        style='resize: none'
+                    )
+                    .row.margin-none
+                        h4.col-xs-8.text-left.padding-none Upload photo
+                        label.col-xs-4.btn.btn-default.margin-bot.text Browse
+                            input(type='file', hidden='')
+                    button.btn.btn-lg.btn-primary.btn-block(type='submit') Publish

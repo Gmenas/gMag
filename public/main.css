@@ -11,7 +11,16 @@ body {
 footer {
   padding: 30px 0;
 }
+[hidden] {
+  display: none !important;
+}
 
+.padding-none {
+  padding: 0;
+}
+.margin-none {
+  margin: 0;
+}
 .margin-bot-sm {
   margin-bottom: 10px;
 }
@@ -26,7 +35,6 @@ footer {
   width: 90%;
 }
 .card > .card-title {
-  margin: 0;
   padding: 0 5px;
 }
 /*.card > h3 {
