@@ -1,3 +1,4 @@
+/* global */
 html,
 body {
   overflow-x: hidden;
@@ -8,13 +9,11 @@ html {
 body {
   padding-top: 70px;
 }
-footer {
-  padding: 30px 0;
-}
-[hidden] {
-  display: none !important;
-}
 
+/* bootstrap extensions */
+.hidden {
+  display: none;
+}
 .padding-none {
   padding: 0;
 }
@@ -24,28 +23,14 @@ footer {
 .margin-bot-sm {
   margin-bottom: 10px;
 }
-.margin-bot {
+.margin-bot-md {
   margin-bottom: 20px;
 }
 .margin-bot-lg {
   margin-bottom: 45px;
 }
 
-.card > img {
-  width: 90%;
-}
-.card > .card-title {
-  padding: 0 5px;
-}
-/*.card > h3 {
-  margin: 5px 0;
-  margin-left: 5%;
-}*/
-.card > p {
-  width: 90%;
-  margin: auto auto;
-}
-
+/* custom styles */
 #search-container .input-group-addon {
   background: white;
 }
@@ -55,4 +40,15 @@ footer {
 #search-container button {
   border: 0;
   background: white;
+}
+
+.card > img {
+  width: 90%;
+}
+.card > .card-title {
+  padding: 0 5px;
+}
+.card > p {
+  width: 90%;
+  margin: auto;
 }

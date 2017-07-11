@@ -1,6 +1,6 @@
 extends _head
 block content
-    #search-container.container.margin-bot
+    #search-container.container.margin-bot-md
         .row
             .col-sm-12
                 .input-group
@@ -10,27 +10,23 @@ block content
                             span.glyphicon.glyphicon-search
     #content-container.container
         .row
-            #sidebar.col-xs-12.col-sm-3
+            .col-sm-12.col-sm-3
                 .list-group
-                    a.list-group-item(href='#') Category 1
-                    a.list-group-item(href='#') Category 2
-                    a.list-group-item(href='#') Category 3
-                    a.list-group-item(href='#') Category 4
-                    a.list-group-item(href='#') Category 5
-                    a.list-group-item(href='#') Category 6
-                    a.list-group-item(href='#') Category 7
-                    a.list-group-item(href='#') Category 8
-                    a.list-group-item(href='#') Category 9
-            .col-xs-12.col-sm-9
+                    each i in [1, 2, 3, 4, 5, 6, 7, 8, 9]
+                        a.list-group-item(href='/browse') Category #{i}
+            .col-sm-12.col-sm-9
                 .jumbotron.text-center
                     h1.margin-bot-lg Welcome to <b>gMag</b>!
                     .row
                         .container
-                            a.col-sm-4.col-sm-offset-1.btn.btn-primary.btn-lg(href='/browse') Browse products
-                            a.col-sm-4.col-sm-offset-2.btn.btn-primary.btn-lg(href='/sell') Sell something
+                            a.col-xs-12.col-sm-5.col-sm-offset-0.margin-bot-md.btn.btn-primary.btn-lg(href='/browse')
+                                | Browse products
+                            a.col-xs-12.col-sm-5.col-sm-offset-2.margin-bot-md.btn.btn-primary.btn-lg(href='/sell')
+                                | Sell something
                 .row
                     each i in [1, 2, 3]
                         .col-xs-6.col-lg-4
-                            h2 Recent Item #{i}
-                            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est molestiae, illo quod accusamus, perferendis asperiores numquam, aliquam nobis repudiandae iusto accusantium ducimus ipsum facere, iste eius dolor magni officia beatae.
-                            a.btn.btn-default(href='/details/' + i, role='button') View details
+                            img(src='/example.svg', style='width: 100%')
+                            a(href='/details/' + i)
+                                h3 Recent Item #{i}
+                            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est molestiae, illo quod accusamus, perferendis asperiores numquam, aliquam nobis repudiandae.
