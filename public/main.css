@@ -11,3 +11,17 @@ body {
 footer {
   padding: 30px 0;
 }
+
+#search-container {
+  margin-bottom: 20px;
+}
+#search-container .input-group-addon {
+  background: white;
+}
+#search-container .form-control {
+  border-color: #ccc;
+}
+#search-container button {
+  border: 0;
+  background: white;
+}
