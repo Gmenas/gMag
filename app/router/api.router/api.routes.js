@@ -1,19 +1,7 @@
-const init = (app) => {
-    app.get('/api/items/:category', (req, res) => {
-        res.send([
-            {
-                title: 'iPhone 10',
-                description: 'saksak',
-                price: 1000,
-                category: 'electronics',
-            },
-            {
-                title: 'BMW',
-                description: 'saksak',
-                price: 10000,
-                category: 'cars',
-            },
-        ]);
+const init = (app, data) => {
+    app.get('/api/products/:category', (req, res) => {
+        // all products in this category in json format
+        return res.send();
     });
 };
 

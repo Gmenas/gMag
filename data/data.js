@@ -4,9 +4,7 @@ const init = (db) => {
     class Category {
         constructor(title) {
             this.title = title;
-        }
-        get url() {
-            return this.title
+            this.url = title
                 .toLowerCase()
                 .replace(/\s/g, '-');
         }
