@@ -1,26 +1,9 @@
-const init = (db) => {
-    // testing data
-    // will move in db later
-    class Category {
-        constructor(title) {
-            this.title = title;
-            this.url = title
-                .toLowerCase()
-                .replace(/\s/g, '-');
-        }
-    }
-    const categories = [
-        'Laptops',
-        'Phones and Tables',
-        'Cameras',
-        'TVs',
-        'Fashion',
-        'Books',
-        'Sport',
-    ].map((x) => new Category(x));
+const CategoryData = require('./category.data');
+const initialData = require('./initial.data');
 
+const init = (db) => {
     return Promise.resolve({
-        categories: categories,
+        categories: new CategoryData(db),
     });
 };
 

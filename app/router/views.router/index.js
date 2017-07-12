@@ -1,1 +1,1 @@
-module.exports = require('./view.router');
+module.exports = require('./views.router');
