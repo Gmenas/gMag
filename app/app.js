@@ -10,7 +10,7 @@ const init = (data) => {
     app.use('/libs', express.static('node_modules'));
     app.use(bodyParser.json());
 
-    require('./router').attachTo(app);
+    require('./router').init(app, data);
 
     return Promise.resolve(app);
 };

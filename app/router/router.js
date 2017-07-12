@@ -1,36 +1,14 @@
-const attachTo = (app) => {
-    app.get('/', (req, res) => {
-        const context = { title: 'Home' };
-        return res.render('home', context);
-    });
+/* globals __dirname */
+const fs = require('fs');
+const path = require('path');
 
-    app.get('/browse', (req, res) => {
-        const context = { title: 'Browse products' };
-        return res.render('browse', context);
-    });
-
-    app.get('/sell', (req, res) => {
-        const context = { title: 'Sell' };
-        return res.render('sell', context);
-    });
-
-    app.get('/details/:id/', (req, res) => {
-        const context = {
-            title: `Details for ${req.params.id}`,
-            id: req.params.id,
-        };
-        return res.render('details', context);
-    });
-
-    app.get('/login', (req, res) => {
-        const context = { title: 'Login' };
-        return res.render('login', context);
-    });
-
-    app.get('/register', (req, res) => {
-        const context = { title: 'Register' };
-        return res.render('register', context);
-    });
+const init = (app, data) => {
+    fs.readdirSync(__dirname)
+        .filter((file) => file.includes('.router'))
+        .forEach((file) => {
+            const modulePath = path.join(__dirname, file);
+            require(modulePath).init(app, data);
+        });
 
     app.use((req, res) => {
         const context = {
@@ -41,4 +19,4 @@ const attachTo = (app) => {
     });
 };
 
-module.exports = { attachTo };
+module.exports = { init };

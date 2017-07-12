@@ -1,14 +1,15 @@
 extends _head
 block content
     .container
-        h1.text-center.margin-bot-lg *Some filters here*
+        h1.text-center #{category.title}
+        h3.text-center.margin-bot-lg *Some filters here*
         .text-muted
             .row
                 each i in [1, 2, 3, 4, 5, 6, 7, 8, 9]
                     .card.col-xs-12.col-sm-6.col-md-4.text-center.margin-bot-md
-                        img(src='example.svg', alt='Card image cap')
+                        img(src='/example.svg', alt='Card image cap')
                         .card-title.row.margin-none
                             h3.col-xs-9.text-left
-                                a(href='/details/' + i) Product #{i}
+                                a(href='/details/' + i) #{category.title} #{i}
                             h3.col-xs-3.text-right $#{i * 100}
                         p.text-justify Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi ex quaerat officia, nihil et quia tempora ducimus nam eveniet, accusamus fuga.

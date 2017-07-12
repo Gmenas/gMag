@@ -1,0 +1,16 @@
+extends _head
+block content
+    .container
+        .row
+            .col-xs-12.text-center
+                    each c in categories
+                        .row
+                            h1.col-xs-12
+                                a.list-group-item(href='/browse/' + c.url) #{c.title}
+                        each r in [1, 2, 3]
+                            .col-xs-6.col-lg-4.text-muted
+                                img(src='/example.svg', style='width: 100%')
+                                a(href='/details/' + r)
+                                    h3 Recent - #{c.title} #{r}
+                                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est molestiae, illo quod accusamus, perferendis asperiores numquam, aliquam nobis repudiandae.
+                                .margin-bot-lg
