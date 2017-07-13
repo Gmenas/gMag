@@ -7,20 +7,10 @@ class Product {
             /^.{5,500}$/.test(model.description) &&
             typeof model.price === 'number' &&
             model.price > 0 &&
-            typeof model.category === 'string';
+            typeof model.category === 'object';
     }
 
-    static toViewModel(model) {
-        return {
-            id: model._id,
-            title: model.title,
-            description: model.description,
-            price: model.price,
-            category: model.category,
-        };
-    }
-
-    static compareTo(model) {
+    static equals(model) {
         return { title: model.title };
     }
 }

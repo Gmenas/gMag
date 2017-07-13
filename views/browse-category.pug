@@ -1,0 +1,14 @@
+extends _head
+block content
+    .container
+        h1.text-center.margin-bot-lg #{category.title}
+        .text-muted
+            .row
+                each p in products
+                    .card.col-xs-12.col-sm-6.col-md-4.text-center.margin-bot-md
+                        img(src='/example.svg', alt='Card image cap')
+                        .card-title.row.margin-none
+                            h3.col-xs-9.text-left
+                                a(href='/details/' + p._id) #{p.title}
+                            h3.col-xs-3.text-right $#{p.price}
+                        p.text-justify #{p.description}

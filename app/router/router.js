@@ -13,7 +13,7 @@ const init = (app, data) => {
     app.use((req, res) => {
         const context = {
             title: 'Not found',
-            errorMsg: `Page <b>${req.url.slice(1)} not found.`,
+            errorMsg: `Page '${req.url.slice(1)}' not found.`,
         };
         return res.render('error', context);
     });

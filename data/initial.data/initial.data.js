@@ -8,7 +8,7 @@ const init = (data) => {
 
     Object.keys(initialData).forEach((collection) => {
         initialData[collection].forEach((i) => {
-            data[collection].create(i);
+            data[collection].create(i).catch(() => {});
         });
     });
 

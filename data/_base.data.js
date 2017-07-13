@@ -8,48 +8,55 @@ class BaseData {
 
     create(model) {
         if (!this._modelClass.isValid(model)) {
-            return Promise.reject(`Invalid ${this._modelClass.name}.`);
+            return Promise.reject(
+                `Invalid ${this._modelClass.name}.`
+            );
+        }
+
+        if (this._modelClass.toDbModel) {
+            model = this._modelClass.toDbModel(model);
         }
 
         return this._collection
-            .findOne(this._modelClass.compareTo(model))
+            .findOne(this._modelClass.equals(model))
             .then((exists) => {
                 if (exists) {
-                    return this._modelClass.toViewModel(exists);
+                    return Promise.reject(
+                        `${this._modelClass.name} already exists.`
+                    );
                 }
 
                 return this._collection.insert(model)
                     .then((insertInfo) => {
                         const inserted = insertInfo.ops[0];
-                        return this._modelClass.toViewModel(inserted);
+                        return Promise.resolve(inserted);
                     });
             });
     }
 
-    find(filter, sort) {
+    get(filter, sort, limit) {
         filter = filter || {};
         sort = sort || {};
+        limit = limit || 0;
 
-        const models = this._collection
+        const result = this._collection
             .find(filter)
             .sort(sort)
-            .toArray()
-            .then((dbItems) => {
-                return dbItems.map((item) =>
-                    this._modelClass.toViewModel(item));
-            });
-        return models;
+            .limit(limit)
+            .toArray();
+
+        return result;
     }
 
-    findById(id) {
+    getById(id) {
         if (typeof id !== 'string' || !ObjectId.isValid(id)) {
-            return Promise.reject('Invalid id.');
+            return Promise.reject(`Invalid ${this._modelClass.name} id.`);
         }
 
-        return this._collection.findOne({ _id: new ObjectId(id) })
-            .then((dbItem) => {
-                return this._modelClass.toViewModel(dbItem);
-            });
+        const result = this._collection
+            .findOne({ _id: new ObjectId(id) });
+
+        return Promise.resolve(result);
     }
 }
 

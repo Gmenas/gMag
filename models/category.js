@@ -5,9 +5,8 @@ class Category {
             /^.{3,25}$/.test(model.title);
     }
 
-    static toViewModel(model) {
+    static toDbModel(model) {
         return {
-            id: model._id,
             title: model.title,
             url: model.title
                 .toLowerCase()
@@ -15,7 +14,7 @@ class Category {
         };
     }
 
-    static compareTo(model) {
+    static equals(model) {
         return { title: model.title };
     }
 }

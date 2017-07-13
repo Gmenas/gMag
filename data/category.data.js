@@ -8,11 +8,18 @@ class CategoryData extends BaseData {
         super(db, Category, 'categories');
     }
 
-    addProductToCategory(categoryId, productId) {
-        this._collection.update(
-            { _id: new ObjectId(categoryId) },
-            { $push: { products: productId } }
-        );
+    getAll() {
+        return this.get({}, { _id: 1 });
+    }
+
+    getByUrl(url) {
+        return this.get({ url: url })
+            .then((result) => {
+                if (result.length === 0) {
+                    return Promise.reject('Category does not exist.');
+                }
+                return Promise.resolve(result[0]);
+            });
     }
 }
 

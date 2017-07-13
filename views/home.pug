@@ -24,9 +24,9 @@ block content
                             a.col-xs-12.col-sm-5.col-sm-offset-2.margin-bot-md.btn.btn-primary.btn-lg(href='/sell')
                                 | Sell something
                 .row
-                    each i in [1, 2, 3]
+                    each p in recent
                         .col-xs-6.col-lg-4
                             img(src='/example.svg', style='width: 100%')
-                            a(href='/details/' + i)
-                                h3 Recent Item #{i}
-                            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est molestiae, illo quod accusamus, perferendis asperiores numquam, aliquam nobis repudiandae.
+                            a(href='/details/' + p._id)
+                                h3 #{p.title}
+                            p #{p.description}

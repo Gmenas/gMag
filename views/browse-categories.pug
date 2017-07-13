@@ -7,10 +7,10 @@ block content
                         .row
                             h1.col-xs-12
                                 a.list-group-item(href='/browse/' + c.url) #{c.title}
-                        each r in [1, 2, 3]
+                        each p in c.products
                             .col-xs-6.col-lg-4.text-muted
                                 img(src='/example.svg', style='width: 100%')
-                                a(href='/details/' + r)
-                                    h3 Recent - #{c.title} #{r}
-                                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est molestiae, illo quod accusamus, perferendis asperiores numquam, aliquam nobis repudiandae.
+                                a(href='/details/' + p._id)
+                                    h3 #{p.title}
+                                p #{p.description}
                                 .margin-bot-lg
