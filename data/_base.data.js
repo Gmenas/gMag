@@ -42,8 +42,8 @@ class BaseData {
     }
 
     findById(id) {
-        if (typeof id !== 'string') {
-            throw new Error('Invalid id.');
+        if (typeof id !== 'string' || !ObjectId.isValid(id)) {
+            return Promise.reject('Invalid id.');
         }
 
         return this._collection.findOne({ _id: new ObjectId(id) })

@@ -16,9 +16,12 @@ const init = (app, data) => {
         data.categories.find({ title: product.category })
             .then((results) => {
                 if (results.length === 0) {
-                    throw new Error('Category does not exist');
+                    return Promise.reject(
+                        `Category "${product.category}" does not exist.`
+                    );
                 }
                 categoryId = results[0].id;
+                return categoryId;
             })
             .then(() => {
                 return data.products.create(product);
@@ -29,6 +32,13 @@ const init = (app, data) => {
             .then(() => {
                 data.categories.addProductToCategory(categoryId, productId);
                 res.redirect(`/details/${productId}`);
+            })
+            .catch((msg) => {
+                const context = {
+                    title: 'Error',
+                    errorMsg: msg,
+                };
+                return res.render('error', context);
             });
     });
 };

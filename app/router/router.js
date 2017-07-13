@@ -13,9 +13,9 @@ const init = (app, data) => {
     app.use((req, res) => {
         const context = {
             title: 'Not found',
-            url: req.url.slice(1),
+            errorMsg: `Page <b>${req.url.slice(1)} not found.`,
         };
-        return res.render('not-found', context);
+        return res.render('error', context);
     });
 };
 

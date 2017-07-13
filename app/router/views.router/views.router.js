@@ -24,11 +24,12 @@ const init = (app, data) => {
     app.get('/browse/:category', (req, res) => {
         data.categories.find({}, { _id: 1 })
             .then((categories) => {
+                const category = categories.find((x) => {
+                    return x.url === req.params.category;
+                });
                 const context = {
-                    title: 'Browse products',
-                    category: categories.find(
-                        (x) => x.url === req.params.category
-                    ),
+                    title: `Browse ${category.title}`,
+                    category: category,
                 };
                 return res.render('category-browse', context);
             });
@@ -53,6 +54,13 @@ const init = (app, data) => {
                     product: product,
                 };
                 return res.render('details', context);
+            })
+            .catch((msg) => {
+                const context = {
+                    title: 'Error',
+                    errorMsg: msg,
+                };
+                return res.render('error', context);
             });
     });
 
