@@ -4,7 +4,32 @@ const init = (app, data) => {
     });
 
     app.post('/api/products/add', (req, res) => {
+        const product = {
+            title: req.body.title,
+            description: req.body.description,
+            price: Number(req.body.price),
+            category: req.body.category,
+        };
 
+        let categoryId;
+        let productId;
+        data.categories.find({ title: product.category })
+            .then((results) => {
+                if (results.length === 0) {
+                    throw new Error('Category does not exist');
+                }
+                categoryId = results[0].id;
+            })
+            .then(() => {
+                return data.products.create(product);
+            })
+            .then((productModel) => {
+                productId = productModel.id;
+            })
+            .then(() => {
+                data.categories.addProductToCategory(categoryId, productId);
+                res.redirect(`/details/${productId}`);
+            });
     });
 };
 

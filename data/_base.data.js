@@ -26,7 +26,6 @@ class BaseData {
             });
     }
 
-
     find(filter, sort) {
         filter = filter || {};
         sort = sort || {};
@@ -47,8 +46,7 @@ class BaseData {
             throw new Error('Invalid id.');
         }
 
-        // eslint-disable-next-line new-cap
-        return this._collection.findOne({ _id: ObjectId(id) })
+        return this._collection.findOne({ _id: new ObjectId(id) })
             .then((dbItem) => {
                 return this._modelClass.toViewModel(dbItem);
             });

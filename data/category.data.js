@@ -10,8 +10,7 @@ class CategoryData extends BaseData {
 
     addProductToCategory(categoryId, productId) {
         this._collection.update(
-            // eslint-disable-next-line new-cap
-            { _id: ObjectId(categoryId) },
+            { _id: new ObjectId(categoryId) },
             { $push: { products: productId } }
         );
     }

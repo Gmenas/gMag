@@ -35,16 +35,25 @@ const init = (app, data) => {
     });
 
     app.get('/sell', (req, res) => {
-        const context = { title: 'Sell' };
-        return res.render('sell', context);
+        data.categories.find({}, { _id: 1 })
+            .then((categories) => {
+                const context = {
+                    title: 'Sell',
+                    categories: categories,
+                };
+                return res.render('sell', context);
+            });
     });
 
-    app.get('/details/:id/', (req, res) => {
-        const context = {
-            title: `Details for ${req.params.id}`,
-            id: req.params.id,
-        };
-        return res.render('details', context);
+    app.get('/details/:id', (req, res) => {
+        data.products.findById(req.params.id)
+            .then((product) => {
+                const context = {
+                    title: `Details for ${product.title}`,
+                    product: product,
+                };
+                return res.render('details', context);
+            });
     });
 
     app.get('/login', (req, res) => {
