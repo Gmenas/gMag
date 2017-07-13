@@ -1,6 +1,6 @@
 const init = (app, data) => {
     app.get('/', (req, res) => {
-        data.categories.find()
+        data.categories.find({}, { _id: 1 })
             .then((categories) => {
                 const context = {
                     title: 'Home',
@@ -11,7 +11,7 @@ const init = (app, data) => {
     });
 
     app.get('/browse', (req, res) => {
-        data.categories.find()
+        data.categories.find({}, { _id: 1 })
             .then((categories) => {
                 const context = {
                     title: 'Categories',
@@ -22,7 +22,7 @@ const init = (app, data) => {
     });
 
     app.get('/browse/:category', (req, res) => {
-        data.categories.find()
+        data.categories.find({}, { _id: 1 })
             .then((categories) => {
                 const context = {
                     title: 'Browse products',

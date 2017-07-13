@@ -1,3 +1,5 @@
+const ObjectId = require('mongodb').ObjectID;
+
 class BaseData {
     constructor(db, modelClass, collectionName) {
         this._modelClass = modelClass;
@@ -6,31 +8,50 @@ class BaseData {
 
     create(model) {
         if (!this._modelClass.isValid(model)) {
-            return Promise.reject('Invalid model.');
+            return Promise.reject(`Invalid ${this._modelClass.name}.`);
         }
 
-        const viewModel = this._collection.insert(model)
-            .then((insertInfo) => {
-                const inserted = insertInfo.ops[0];
-                return this._modelClass.toViewModel(inserted);
+        return this._collection
+            .findOne(this._modelClass.compareTo(model))
+            .then((exists) => {
+                if (exists) {
+                    return this._modelClass.toViewModel(exists);
+                }
+
+                return this._collection.insert(model)
+                    .then((insertInfo) => {
+                        const inserted = insertInfo.ops[0];
+                        return this._modelClass.toViewModel(inserted);
+                    });
             });
-        return viewModel;
     }
 
-    find(filter, options) {
-        filter = filter || {};
-        options = options || {};
-        const dbResult = this._collection
-            .find(filter, options)
-            .sort({ _id: 1 })
-            .toArray();
 
-        const all = dbResult
-            .then((models) => {
-                return models.map((model) =>
-                    this._modelClass.toViewModel(model));
+    find(filter, sort) {
+        filter = filter || {};
+        sort = sort || {};
+
+        const models = this._collection
+            .find(filter)
+            .sort(sort)
+            .toArray()
+            .then((dbItems) => {
+                return dbItems.map((item) =>
+                    this._modelClass.toViewModel(item));
             });
-        return all;
+        return models;
+    }
+
+    findById(id) {
+        if (typeof id !== 'string') {
+            throw new Error('Invalid id.');
+        }
+
+        // eslint-disable-next-line new-cap
+        return this._collection.findOne({ _id: ObjectId(id) })
+            .then((dbItem) => {
+                return this._modelClass.toViewModel(dbItem);
+            });
     }
 }
 

@@ -1,3 +1,5 @@
+const ObjectId = require('mongodb').ObjectID;
+
 const BaseData = require('./_base.data');
 const Category = require('../models/category');
 
@@ -6,15 +8,12 @@ class CategoryData extends BaseData {
         super(db, Category, 'categories');
     }
 
-    create(model) {
-        this._collection
-            .findOne({ title: model.title })
-            .then((exists) => {
-                if (exists) {
-                    return Promise.resolve(exists);
-                }
-                return super.create(model);
-            });
+    addProductToCategory(categoryId, productId) {
+        this._collection.update(
+            // eslint-disable-next-line new-cap
+            { _id: ObjectId(categoryId) },
+            { $push: { products: productId } }
+        );
     }
 }
 

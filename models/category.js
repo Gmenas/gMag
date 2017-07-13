@@ -1,4 +1,10 @@
 class Category {
+    static isValid(model) {
+        return !!model &&
+            typeof model.title === 'string' &&
+            /^.{3,25}$/.test(model.title);
+    }
+
     static toViewModel(model) {
         return {
             id: model._id,
@@ -9,10 +15,8 @@ class Category {
         };
     }
 
-    static isValid(model) {
-        return !!model &&
-            typeof model.title === 'string' &&
-            /^.{3,25}$/.test(model.title);
+    static compareTo(model) {
+        return { title: model.title };
     }
 }
 
