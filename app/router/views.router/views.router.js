@@ -2,15 +2,17 @@ const utils = require('./../../utils');
 
 const init = (app, data) => {
     app.get('/', (req, res) => {
+        const isAuth = req.session.valid;
         Promise.all([
-            data.categories.getAll(),
-            data.products.getRecent(3),
-        ])
+                data.categories.getAll(),
+                data.products.getRecent(3),
+            ])
             .then(([categories, products]) => {
                 const context = {
                     title: 'Home',
                     categories: categories,
                     recent: products,
+                    isAutenticated: isAuth,
                 };
                 return res.render('home', context);
             });

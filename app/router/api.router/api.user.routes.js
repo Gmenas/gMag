@@ -1,6 +1,25 @@
 const passport = require('passport');
 const utils = require('./../../utils');
 const init = (app, data) => {
+    app.post('/login', (req, res, next) => {
+        passport.authenticate('local', (err, user, info) => {
+            if (err) {
+                return next(err);
+            }
+
+            if (!user) {
+                return res.redirect('/login');
+            }
+            return req.logIn(user, (error) => {
+                if (error) {
+                    return next(error);
+                }
+
+                req.session.valid = true;
+                return res.redirect('/');
+            });
+        })(req, res, next);
+    });
     app.post('/register', (req, res, next) => {
         data.users.create(req.body).then(() => {
             req.body = {
