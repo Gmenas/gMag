@@ -1,54 +1,118 @@
 /* global */
+
 html,
 body {
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
+
 html {
-  overflow-y: scroll;
+    overflow-y: scroll;
 }
+
 body {
-  padding-top: 70px;
+    padding-top: 70px;
 }
+
 
 /* bootstrap extensions */
+
 .hidden {
-  display: none;
+    display: none;
 }
+
 .padding-none {
-  padding: 0;
+    padding: 0;
 }
+
 .margin-none {
-  margin: 0;
+    margin: 0;
 }
+
 .margin-bot-sm {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
+
 .margin-bot-md {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
+
 .margin-bot-lg {
-  margin-bottom: 45px;
+    margin-bottom: 45px;
 }
+
 
 /* custom styles */
+
 #search-container .input-group-addon {
-  background: white;
-}
-#search-container .form-control {
-  border-color: #ccc;
-}
-#search-container button {
-  border: 0;
-  background: white;
+    background: white;
 }
 
-.card > img {
-  width: 90%;
+#search-container .form-control {
+    border-color: #ccc;
 }
-.card > .card-title {
-  padding: 0 5px;
+
+#search-container button {
+    border: 0;
+    background: white;
 }
-.card > p {
-  width: 90%;
-  margin: auto;
+
+.card>img {
+    width: 90%;
+}
+
+.card>.card-title {
+    padding: 0 5px;
+}
+
+.card>p {
+    width: 90%;
+    margin: auto;
+}
+
+input[type='range'],
+input[type='range']::-webkit-slider-runnable-track,
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: none;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+    width: 200px;
+    height: 1px;
+    background: #003D7C;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    position: relative;
+    height: 15px;
+    width: 15px;
+    margin-top: -7px;
+    background: #fff;
+    border: 1px solid #003D7C;
+    border-radius: 25px;
+    z-index: 1;
+}
+
+.rangeslider {
+    position: relative;
+    height: 60px;
+    width: 320px;
+    display: inline-block;
+    margin-top: -5px;
+}
+
+.rangeslider input {
+    position: absolute;
+}
+
+.rangeslider span {
+    position: absolute;
+    margin-top: 30px;
+    left: 0;
+}
+
+.rangeslider .right {
+    position: relative;
+    float: right;
+    margin-right: -5px;
 }
