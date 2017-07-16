@@ -7,6 +7,7 @@ const passportConfig = (app, data) => {
             done(null, user.user_name);
         }
     });
+
     passport.deserializeUser((username, done) => {
         data.users.findByUserName(username)
             .then((user) => {
