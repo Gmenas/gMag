@@ -1,22 +1,26 @@
 extends _head
 block content
+    script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js')
     .container
         .row
             .col-sm-6.col-sm-offset-3
-                form.form-signin.text-center(method='POST')
+                form#contact_form.form-signin.text-center(method='POST')
                     h2.form-signin-heading.margin-bot-md Register
                     input#inputUsername.form-control.margin-bot-md(
+                        name='user_name',
                         type='text',
                         placeholder='Username',
                         required='',
                         autofocus=''
                     )
                     input#inputEmail.form-control.margin-bot-md(
+                        name='email',
                         type='email',
                         placeholder='E-mail',
                         required=''
                     )
                     input#inputPassword.form-control.margin-bot-md(
+                        name='user_password',
                         type='password',
                         placeholder='Password',
                         required=''
