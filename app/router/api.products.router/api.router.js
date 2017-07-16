@@ -16,7 +16,7 @@ const init = (app, data) => {
                 return Promise.resolve(data.products.create(product));
             })
             .then((p) => {
-                res.redirect(`/details/${p._id}`);
+                res.redirect(`/product/${p._id}`);
             })
             .catch((msg) => utils.displayError(msg, res));
     });

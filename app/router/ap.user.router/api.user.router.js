@@ -1,5 +1,6 @@
 const passport = require('passport');
 const utils = require('./../../utils');
+
 const init = (app, data) => {
     app.post('/login', (req, res, next) => {
         passport.authenticate('local', (err, user, info) => {
@@ -20,6 +21,7 @@ const init = (app, data) => {
             });
         })(req, res, next);
     });
+
     app.post('/register', (req, res, next) => {
         data.users.create(req.body).then(() => {
             req.body = {
@@ -45,6 +47,7 @@ const init = (app, data) => {
             })(req, res, next);
         }).catch((msg) => utils.displayError(msg, res));
     });
+
     app.get('/logout', (req, res) => {
         req.logout();
         req.session.valid = null;
