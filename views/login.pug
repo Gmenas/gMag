@@ -6,12 +6,14 @@ block content
                 form.form-signin.text-center(method='POST')
                     h2.form-signin-heading.margin-bot-md Sign in
                     input#inputUsername.form-control.margin-bot-md(
+                        name='username',
                         type='text',
                         placeholder='Username',
                         required='',
                         autofocus=''
                     )
                     input#inputPassword.form-control.margin-bot-md(
+                        name='password',
                         type='password',
                         placeholder='Password',
                         required=''

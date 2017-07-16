@@ -39,7 +39,7 @@ class User {
         if (error.length !== 0) {
             let allError = '';
             error.forEach((er) => {
-                allError += `\n\r ! Error:
+                allError += ` ! Error:
                  ${er.message}`;
             });
             return allError;

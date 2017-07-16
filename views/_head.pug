@@ -8,6 +8,7 @@ html(lang='en')
         link(href='/main.css', rel='stylesheet')
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
         script(src='/libs/bootstrap/dist/js/bootstrap.min.js')
+        script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js')
     body
         nav.navbar.navbar-fixed-top.navbar-default
             .container
@@ -25,8 +26,16 @@ html(lang='en')
                     a.navbar-brand(href='/') gMag
                 #navbar.collapse.navbar-collapse
                     ul.nav.navbar-nav.navbar-right
-                        li
-                            a(href='/login') Login
-                        li
-                            a(href='/register') Register
+                        if !isAutenticated
+                            li
+                                a(href='/register')
+                                    | Register User 
+                                    span.sr-only (current)
+                            li#log-in
+                                a(href='/login')
+                                    span.glyphicon.glyphicon-log-in(aria-hidden='true')
+                        else
+                            li#log-out
+                                a(href='/logout')
+                                    span.glyphicon.glyphicon-log-out(aria-hidden='true')
         block content
