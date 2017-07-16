@@ -1,24 +1,32 @@
 extends _head
 block content
-    script(src="https://code.jquery.com/jquery-3.2.1.js")
-    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")
     .container
-        h1.text-center.margin-bot-lg #{category.title}
-        form(action="/browse" method='POST',style='margin-left:20px;width: 97%; padding-top: 1%;')
-                input(type='text', name='search', placeholder='Search', style='width:320px;background:transparent;')
-                br
-                input(type='radio', name='title', value='Title')
-                | Title 
-                br
-                input(type='radio', name='description', value='Description')
-                | Description
-                br
-                div.rangeslider
-                    input.min(name='range_1', type='range', min='1', max='100', value='10')
-                    input.max(name='range_1', type='range', min='1', max='100', value='100000',style="position:relative")
-                    span.range_min.light.left(style='margin-top:10px') 10 €
-                    span.range_max.light.right(style='margin-top:10px') 100000 €     
-                input(type='submit', value='Filter',style='width:320px;margin-left:70px')  
+        h1.text-center.margin-bot-md #{category.title}
+        form(action="/browse" method='POST')
+                #search-container.container.margin-bot-md
+                    .row.margin-bot-md
+                        .col-sm-12
+                            .input-group
+                                input.text-center.form-control(type='text', placeholder='Search')
+                                span.input-group-addon
+                                    button(type='submit')
+                                        span.glyphicon.glyphicon-search
+                    .row.margin-bot-md
+                        .col-xs-1.col-xs-offset-2
+                            b $ 10
+                        .col-xs-6
+                            input#price-range(
+                                type='text',
+                                value='',
+                                data-provide='slider'
+                                data-slider-min='10',
+                                data-slider-max='1000',
+                                data-slider-step='10',
+                                data-slider-value='[10,1000]'
+                                style='width: 100%'
+                            )
+                        .col-xs-1
+                            b $ 1000
         .text-muted
             .row
                 each p in products
@@ -26,6 +34,9 @@ block content
                         img(src='/example.svg', alt='Card image cap')
                         .card-title.row.margin-none
                             h3.col-xs-9.text-left
-                                a(href='/details/' + p._id) #{p.title}
+                                a(href='/product/' + p._id) #{p.title}
                             h3.col-xs-3.text-right $#{p.price}
                         p.text-justify #{p.description}
+        script
+            | // test slider plugin
+            | $('#price-range').on('change', x => console.log(x.value.newValue))

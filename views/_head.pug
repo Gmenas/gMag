@@ -2,12 +2,14 @@ html(lang='en')
     head
         meta(charset='utf-8')
         meta(name='viewport', content='width=device-width, initial-scale=1')
-        link(rel='icon', href='/favicon.ico')
         title gMag - #{title}
-        link(href='/libs/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
-        link(href='/main.css', rel='stylesheet')
-        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
-        script(src='/libs/bootstrap/dist/js/bootstrap.min.js')
+        link(rel='icon', href='/favicon.ico')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/css/bootstrap-slider.min.css')
+        link(rel='stylesheet', href='/main.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/bootstrap-slider.min.js')
     body
         nav.navbar.navbar-fixed-top.navbar-default
             .container
@@ -28,15 +30,14 @@ html(lang='en')
                         if !isAutenticated
                             li
                                 a(href='/register')
-                                    | Register 
-                                    span.sr-only (current)
+                                    | Register &nbsp;
                             li#log-in
                                 a(href='/login')
-                                    | Login 
+                                    | Login &nbsp;
                                     span.glyphicon.glyphicon-log-in(aria-hidden='true')
                         else
                             li#log-out
                                 a(href='/logout')
-                                    | Logout 
+                                    | Logout &nbsp;
                                     span.glyphicon.glyphicon-log-out(aria-hidden='true')
         block content
