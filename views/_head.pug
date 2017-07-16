@@ -29,13 +29,15 @@ html(lang='en')
                         if !isAutenticated
                             li
                                 a(href='/register')
-                                    | Register User 
+                                    | Register 
                                     span.sr-only (current)
                             li#log-in
                                 a(href='/login')
+                                    | Login 
                                     span.glyphicon.glyphicon-log-in(aria-hidden='true')
                         else
                             li#log-out
                                 a(href='/logout')
+                                    | Logout 
                                     span.glyphicon.glyphicon-log-out(aria-hidden='true')
         block content

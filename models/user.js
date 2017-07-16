@@ -33,14 +33,13 @@ class User {
         if (user_password.length < 8) {
             error.push({
                 field: 'password',
-                message: 'Invalid password, must be at least 8 symbol',
+                message: ' PASSWORD: must be at least 8 symbol',
             });
         }
         if (error.length !== 0) {
             let allError = '';
             error.forEach((er) => {
-                allError += ` ! Error:
-                 ${er.message}`;
+                allError += ` ${er.message} `;
             });
             return allError;
         }
@@ -52,7 +51,7 @@ class User {
         if (field.length < min || !regex.test(field)) {
             error.push({
                 field: name,
-                message: `Invalid must be at least 4 symbol 
+                message: ` USERNAME: must be at least 4 symbol 
                 and consist only [a-zA-Z0-9_\.]`,
             });
         }
@@ -63,7 +62,7 @@ class User {
         if (!regexEmail.test(field)) {
             error.push({
                 field: 'email',
-                message: 'Invalid email must be format: [email@abv.bg]',
+                message: ' EMAIL: must be format: [email@abv.bg]',
             });
         }
     }

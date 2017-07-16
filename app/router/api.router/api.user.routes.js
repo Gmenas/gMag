@@ -8,7 +8,7 @@ const init = (app, data) => {
             }
 
             if (!user) {
-                return res.redirect('/login');
+                return utils.displayError('Invalid name or password!', res);
             }
             return req.logIn(user, (error) => {
                 if (error) {

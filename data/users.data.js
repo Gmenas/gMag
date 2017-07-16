@@ -7,6 +7,11 @@ const app = express();
 
 app.use(cookieParser());
 
+app.get('/', function(req, res) {
+    res.cookie('myFirstCookie', 'looks Good', { maxAge: 5000 });
+    res.end('wow');
+});
+
 class Users extends BaseData {
     constructor(db) {
         super(db, User, 'users');
@@ -27,6 +32,10 @@ class Users extends BaseData {
                 }
                 return user;
             });
+    }
+
+    _isModelValid(model) {
+        return User.validate(model);
     }
 
     create(model) {
