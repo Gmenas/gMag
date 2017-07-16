@@ -45,6 +45,11 @@ const init = (app, data) => {
             })(req, res, next);
         }).catch((msg) => utils.displayError(msg, res));
     });
+    app.get('/logout', (req, res) => {
+        req.logout();
+        req.session.valid = null;
+        res.status(200).redirect('/');
+    });
 };
 
 module.exports = { init };
