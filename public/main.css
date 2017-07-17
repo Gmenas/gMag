@@ -40,15 +40,15 @@ body {
 
 
 /* custom styles */
-#search-container .input-group-addon {
+#search .input-group-addon {
     background: white;
 }
 
-#search-container .form-control {
+#search .form-control {
     border-color: #ccc;
 }
 
-#search-container button {
+#search button {
     border: 0;
     background: white;
 }

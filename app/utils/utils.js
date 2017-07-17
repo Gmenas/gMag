@@ -1,9 +1,9 @@
-const displayError = (msg, res) => {
+const showErrorPage = (msg, res) => {
     const context = {
         title: 'Error',
         errorMsg: msg,
     };
-    return res.render('error', context);
+    return res.render('Error', context);
 };
 
-module.exports = { displayError };
+module.exports = { showErrorPage };

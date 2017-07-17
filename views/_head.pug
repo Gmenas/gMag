@@ -27,17 +27,21 @@ html(lang='en')
                     a.navbar-brand(href='/') gMag
                 #navbar.collapse.navbar-collapse
                     ul.nav.navbar-nav.navbar-right
-                        if !isAutenticated
+                        if !user
                             li
                                 a(href='/register')
                                     | Register &nbsp;
-                            li#log-in
+                            li
                                 a(href='/login')
                                     | Login &nbsp;
                                     span.glyphicon.glyphicon-log-in(aria-hidden='true')
                         else
-                            li#log-out
+                            li
+                                a(href='/') #{user.username}
+                            li
                                 a(href='/logout')
                                     | Logout &nbsp;
                                     span.glyphicon.glyphicon-log-out(aria-hidden='true')
-        block content
+    include _mixins
+    +flash(flash)
+    block content

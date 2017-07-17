@@ -1,0 +1,21 @@
+mixin flash(flash)
+    .container
+        if flash
+            if flash.error
+                each i in flash.error
+                    +_alert('danger', i)
+            if flash.success
+                each i in flash.success
+                    +_alert('success', i)
+            if flash.info
+                each i in flash.info
+                    +_alert('info', i)
+
+mixin _alert(type, message)
+    div(class='alert alert-' + type)
+        | #{message}
+        a.close(
+            href='#',
+            data-dismiss='alert',
+            aria-label='close'
+        ) &times;

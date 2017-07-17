@@ -7,10 +7,9 @@ class BaseData {
     }
 
     create(model) {
-        if (!this._modelClass.isValid(model)) {
-            return Promise.reject(
-                `Invalid ${this._modelClass.name}.`
-            );
+        const errors = this._modelClass.validate(model);
+        if (errors.length !== 0) {
+            return Promise.reject(errors);
         }
 
         if (this._modelClass.toDbModel) {

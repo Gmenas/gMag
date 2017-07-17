@@ -18,7 +18,10 @@ const init = (app, data) => {
             .then((p) => {
                 res.redirect(`/product/${p._id}`);
             })
-            .catch((msg) => utils.displayError(msg, res));
+            .catch((errors) => {
+                req.flash('error', errors);
+                res.redirect('/sell');
+            });
     });
 };
 

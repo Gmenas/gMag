@@ -1,4 +1,5 @@
-const port = 80;
-const connectionStr = 'mongodb://localhost/gmag';
-
-module.exports = { port, connectionStr };
+module.exports = {
+    port: 80,
+    connectionStr: 'mongodb://localhost/gmag',
+    sessionSecret: 'magic spoon',
+};

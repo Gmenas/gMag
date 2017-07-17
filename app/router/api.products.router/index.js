@@ -1,1 +1,1 @@
-module.exports = require('./api.router');
+module.exports = require('./api.products.router');

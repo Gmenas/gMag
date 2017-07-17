@@ -3,26 +3,29 @@ block content
     .container
         h1.text-center.margin-bot-md #{category.title}
         form(action="/browse" method='POST')
-                #search-container.container.margin-bot-md
+                .container.margin-bot-md
                     .row.margin-bot-md
                         .col-sm-12
-                            .input-group
-                                input.text-center.form-control(type='text', placeholder='Search')
+                            #search.input-group
+                                input.text-center.form-control(
+                                    type='text',
+                                    placeholder='Search'
+                                )
                                 span.input-group-addon
                                     button(type='submit')
                                         span.glyphicon.glyphicon-search
                     .row.margin-bot-md
                         .col-xs-1.col-xs-offset-2
-                            b $ 10
+                            b $ 0
                         .col-xs-6
                             input#price-range(
                                 type='text',
                                 value='',
                                 data-provide='slider'
-                                data-slider-min='10',
+                                data-slider-min='0',
                                 data-slider-max='1000',
-                                data-slider-step='10',
-                                data-slider-value='[10,1000]'
+                                data-slider-step='25',
+                                data-slider-value='[0,1000]'
                                 style='width: 100%'
                             )
                         .col-xs-1

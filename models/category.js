@@ -1,8 +1,22 @@
 class Category {
-    static isValid(model) {
-        return !!model &&
-            typeof model.title === 'string' &&
-            /^.{3,25}$/.test(model.title);
+    static validate(category) {
+        const errors = [];
+
+        if (!this._isValidType(category)) {
+            errors.push('Invalid category type.');
+            return errors;
+        }
+
+        if (!/^.{3,25}$/.test(category.title)) {
+            errors.push('Title must be between 3 and 25 characters.');
+        }
+
+        return errors;
+    }
+
+    static _isValidType(category) {
+        return !!category &&
+            typeof category.title === 'string';
     }
 
     static toDbModel(model) {

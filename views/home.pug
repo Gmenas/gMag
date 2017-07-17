@@ -1,14 +1,17 @@
 extends _head
 block content
-    #search-container.container.margin-bot-md
-        .row
+    .container
+        .row.margin-bot-md
             .col-sm-12
-                .input-group
-                    input.text-center.form-control(type='text', placeholder='Search')
+                #search.input-group
+                    input.text-center.form-control(
+                        type='text',
+                        placeholder='Search'
+                    )
                     span.input-group-addon
                         button(type='submit')
                             span.glyphicon.glyphicon-search
-    #content-container.container
+    .container
         .row
             .col-sm-12.col-sm-3
                 .list-group

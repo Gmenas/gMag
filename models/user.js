@@ -1,71 +1,54 @@
 const CryptoJS = require('crypto-js');
 
 class User {
-    static getDataBaseModel(model) {
-        const {
-            email,
-            user_name,
-            user_password,
-        } = model;
+    static validate(user) {
+        const errors = [];
 
+        if (!this._isValidType(user)) {
+            errors.push('Invalid user type.');
+            return errors;
+        }
+
+        if (!/^[a-zA-Z0-9_\.]{4,25}$/.test(user.username)) {
+            errors.push(
+                'Username must be between 4 and 25 characters ' +
+                'and consist of [a-zA-Z0-9_\.]'
+            );
+        }
+
+        if (!/.+@.+\..+/.test(user.email)) {
+            errors.push('Email must be valid.');
+        }
+
+        if (!/^.{8,40}$/.test(user.password)) {
+            errors.push(
+                'Password must be between 8 and 40 characters.'
+            );
+        }
+
+        return errors;
+    }
+
+    static _isValidType(user) {
+        return !!user &&
+            typeof user.username === 'string' &&
+            typeof user.email === 'string' &&
+            typeof user.password === 'string';
+    }
+
+    static toDbModel(user) {
         // eslint-disable-next-line new-cap
-        const passwordHash = CryptoJS.SHA256(user_password).toString();
+        const passwordHash = CryptoJS.SHA256(user.password).toString();
 
         return {
-            email: email,
-            user_name: user_name,
-            user_password: passwordHash,
+            username: user.username,
+            email: user.email,
+            password: passwordHash,
         };
     }
 
-    static validate(user) {
-        const {
-            email,
-            user_name,
-            user_password,
-        } = user;
-
-        const error = [];
-
-        this._validateStringField('user name', 4, /^[a-zA-Z0-9_\.]+$/,
-            user_name, error);
-        this._validateEmail(email, error);
-
-        if (user_password.length < 8) {
-            error.push({
-                field: 'password',
-                message: ' PASSWORD: must be at least 8 symbol',
-            });
-        }
-        if (error.length !== 0) {
-            let allError = '';
-            error.forEach((er) => {
-                allError += ` ${er.message} `;
-            });
-            return allError;
-        }
-
-        return 'no';
-    }
-
-    static _validateStringField(name, min, regex, field, error) {
-        if (field.length < min || !regex.test(field)) {
-            error.push({
-                field: name,
-                message: 'USERNAME: must be at least 4 symbols' +
-                'and consist of only latin letters, numbers, _ .',
-            });
-        }
-    }
-
-    static _validateEmail(field, error) {
-        const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (!regexEmail.test(field)) {
-            error.push({
-                field: 'email',
-                message: ' EMAIL: must be in the format: [email@abv.bg]',
-            });
-        }
+    static equals(user) {
+        return { username: user.username };
     }
 }
 

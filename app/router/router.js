@@ -2,6 +2,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const utils = require('./../utils');
+
 const init = (app, data) => {
     fs.readdirSync(__dirname)
         .filter((file) => file.includes('.router'))
@@ -11,11 +13,10 @@ const init = (app, data) => {
         });
 
     app.use((req, res) => {
-        const context = {
-            title: 'Not found',
-            errorMsg: `Page '${req.url.slice(1)}' not found.`,
-        };
-        return res.render('error', context);
+        utils.showErrorPage(
+            `Page '${req.url.slice(1)}' not found.`,
+            res
+        );
     });
 };
 
