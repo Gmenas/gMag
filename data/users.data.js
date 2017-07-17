@@ -24,6 +24,7 @@ class Users extends BaseData {
     }
 
     findUserByCredentials(username, password) {
+        // eslint-disable-next-line new-cap
         const passwordHash = CryptoJS.SHA256(password).toString();
         return this.findByUserName(username)
             .then((user) => {
@@ -57,4 +58,5 @@ class Users extends BaseData {
             });
     }
 }
+
 module.exports = Users;

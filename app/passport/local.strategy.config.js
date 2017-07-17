@@ -17,4 +17,5 @@ const strategyConfig = (passport, data) => {
 
     passport.use(strategy);
 };
+
 module.exports = strategyConfig;

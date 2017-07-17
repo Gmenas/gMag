@@ -1,5 +1,3 @@
-const ObjectId = require('mongodb').ObjectID;
-
 const BaseData = require('./_base.data');
 const Category = require('../models/category');
 

@@ -8,6 +8,7 @@ class User {
             user_password,
         } = model;
 
+        // eslint-disable-next-line new-cap
         const passwordHash = CryptoJS.SHA256(user_password).toString();
 
         return {
@@ -51,8 +52,8 @@ class User {
         if (field.length < min || !regex.test(field)) {
             error.push({
                 field: name,
-                message: ` USERNAME: must be at least 4 symbol 
-                and consist only [a-zA-Z0-9_\.]`,
+                message: 'USERNAME: must be at least 4 symbols' +
+                'and consist of only latin letters, numbers, _ .',
             });
         }
     }
@@ -62,9 +63,10 @@ class User {
         if (!regexEmail.test(field)) {
             error.push({
                 field: 'email',
-                message: ' EMAIL: must be format: [email@abv.bg]',
+                message: ' EMAIL: must be in the format: [email@abv.bg]',
             });
         }
     }
 }
+
 module.exports = User;
