@@ -48,13 +48,18 @@ const init = (app, data) => {
                 if (!user) {
                     return Promise.reject('User does not exist');
                 }
-                const context = {
-                    title: user.username,
-                    user: req.user,
-                    flash: req.flash(),
-                    userProfile: user,
-                };
-                return res.render('user', context);
+                return data
+                    .products.getBySellerId(user._id)
+                    .then((products) => {
+                        const context = {
+                            title: user.username,
+                            user: req.user,
+                            flash: req.flash(),
+                            userProfile: user,
+                            userProducts: products,
+                        };
+                        return res.render('user', context);
+                    });
             })
             .catch((err) => {
                 return res.renderError(err);

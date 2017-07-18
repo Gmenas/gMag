@@ -7,16 +7,20 @@ class Product {
             return errors;
         }
 
-        if (!/^.{3,25}$/.test(product.title)) {
-            errors.push('Title must be between 3 and 25 characters.');
+        if (!/^.{3,50}$/.test(product.title)) {
+            errors.push('Title must be between 3 and 50 characters.');
         }
 
-        if (!/^.{5,500}$/.test(product.description)) {
-            errors.push('Description must be between 5 and 500 characters.');
+        if (!/^.{5,1000}$/.test(product.description)) {
+            errors.push('Description must be between 5 and 1000 characters.');
         }
 
         if (product.price <= 0) {
             errors.push('Price must be positive.');
+        }
+
+        if (product.price > 10000) {
+            errors.push('We don\'t sell such expensive products.');
         }
 
         return errors;

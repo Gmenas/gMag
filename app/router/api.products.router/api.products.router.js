@@ -1,7 +1,9 @@
 const init = (app, data) => {
     app.post('/api/products/add', (req, res) => {
         if (!req.user) {
-            return res.renderError('You must be logged in.');
+            return res.renderError(
+                'You must be logged in to add a product.'
+            );
         }
 
         const product = {

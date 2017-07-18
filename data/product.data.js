@@ -14,6 +14,11 @@ class ProductData extends BaseData {
         count = count || 0;
         return this.get({ categoryId: id }, { _id: -1 }, count);
     }
+
+    getBySellerId(id, count) {
+        count = count || 0;
+        return this.get({ sellerId: id }, { _id: -1 }, count);
+    }
 }
 
 module.exports = ProductData;

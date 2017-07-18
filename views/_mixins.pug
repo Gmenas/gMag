@@ -1,3 +1,13 @@
+mixin productsList(products)
+    each p in products
+        .card.col-xs-12.col-sm-6.col-md-4.text-center.margin-bot-md.text-muted
+            img(src='/example.svg', alt='Card image cap')
+            .card-title.row.margin-none
+                h3.col-xs-9.text-left
+                    a(href='/product/' + p._id) #{p.title}
+                h3.col-xs-3.text-right $#{p.price}
+            p.text-justify #{p.description}
+
 mixin flash(flash)
     if flash
         if flash.error
