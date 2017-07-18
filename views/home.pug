@@ -25,9 +25,4 @@ block content
                         a.btn.btn-primary.btn-lg.col-xs-12.col-md-5.col-md-offset-2(href='/sell')
                             | Sell something
             .row
-                each p in recent
-                    .col-xs-12.col-sm-6.col-lg-4
-                        img(src='/example.svg', style='width: 100%')
-                        a(href='/product/' + p._id)
-                            h3 #{p.title}
-                        p #{p.description}
+                +productsList(recent)

@@ -16,7 +16,7 @@ class Product {
         }
 
         if (product.price <= 0) {
-            errors.push('Price must be positive.');
+            errors.push('Price must be more than zero.');
         }
 
         if (product.price > 10000) {

@@ -9,7 +9,7 @@ const init = (app, data) => {
         const product = {
             title: req.body.title,
             description: req.body.description,
-            price: Number(req.body.price),
+            price: Number(Number(req.body.price).toFixed(2)),
             categoryUrl: req.body.categoryUrl,
             sellerId: req.user._id,
         };
