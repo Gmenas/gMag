@@ -10,7 +10,7 @@ const init = (app, data) => {
         (req, res) => controllers.browseCategories(req, res, data)
     );
 
-    app.get('/browse/:category',
+    app.get('/browse/:categoryUrl',
         (req, res) => controllers.browseCategory(req, res, data)
     );
 
@@ -39,6 +39,26 @@ const init = (app, data) => {
             flash: req.flash(),
         };
         return res.render('register', context);
+    });
+
+    app.get('/user/:username', (req, res) => {
+        data
+            .users.getByUsername(req.params.username)
+            .then((user) => {
+                if (!user) {
+                    return Promise.reject('User does not exist');
+                }
+                const context = {
+                    title: user.username,
+                    user: req.user,
+                    flash: req.flash(),
+                    userProfile: user,
+                };
+                return res.render('user', context);
+            })
+            .catch((err) => {
+                return res.renderError(err);
+            });
     });
 };
 

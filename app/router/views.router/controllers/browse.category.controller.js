@@ -1,8 +1,6 @@
-const utils = require('./../../../utils');
-
 const init = (req, res, data) => {
     data
-        .categories.getByUrl(req.params.category)
+        .categories.getByUrl(req.params.categoryUrl)
         .then((category) => {
             const categoryId = category._id;
             data
@@ -20,7 +18,7 @@ const init = (req, res, data) => {
                     return res.render('browse-category', context);
                 });
         })
-        .catch((msg) => utils.showErrorPage(msg, res));
+        .catch((msg) => res.renderError(msg));
 };
 
 module.exports = { init };

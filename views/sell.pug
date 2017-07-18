@@ -1,41 +1,39 @@
 extends _head
 block content
-    .container
-        .row
-            .col-sm-6.col-sm-offset-3
-                form.form-signin.text-center(method='POST', action='/api/products/add')
-                    h2.form-signin-heading.margin-bot-md Sell something
-                    input.form-control.margin-bot-md(
-                        name='title',
-                        type='text',
-                        placeholder='Title',
-                        required='',
-                        autofocus=''
+    .row
+        .col-sm-6.col-sm-offset-3
+            form.form-signin.text-center(method='POST', action='/api/products/add')
+                h2.form-signin-heading.margin-bot-md Sell something
+                input.form-control.margin-bot-md(
+                    name='title',
+                    type='text',
+                    placeholder='Title',
+                    required='',
+                    autofocus=''
+                )
+                textarea.form-control.margin-bot-md(
+                    name='description',
+                    placeholder='Description',
+                    required=''
+                    rows="10",
+                    style='resize: none'
+                )
+                select.form-control.margin-bot-md(
+                    name='categoryUrl'
+                    required=''
+                )
+                    each c in categories
+                        option(value=c.url) #{c.title}
+                input.form-control.margin-bot-md(
+                    name='price',
+                    type='text'
+                    placeholder='Price $',
+                    required=''
+                )
+                .row.margin-none.margin-bot-md
+                    h4.col-xs-7.text-left.padding-none Upload photo
+                    input.col-xs-5(
+                        name='file',
+                        type='file'
                     )
-                    textarea.form-control.margin-bot-md(
-                        name='description',
-                        placeholder='Description',
-                        required=''
-                        rows="10",
-                        style='resize: none'
-                    )
-                    select.form-control.margin-bot-md(
-                        name='category'
-                        required=''
-                    )
-                        each c in categories
-                            option(value=c.url) #{c.title}
-                    input.form-control.margin-bot-md(
-                        name='price',
-                        type='text'
-                        placeholder='Price $',
-                        required=''
-                    )
-                    .row.margin-none
-                        h4.col-xs-8.text-left.padding-none Upload photo
-                        label.col-xs-4.btn.btn-default.margin-bot-md.text Browse
-                            input.hidden(
-                                name='file',
-                                type='file'
-                            )
-                    button.btn.btn-lg.btn-primary.btn-block(type='submit') Publish
+                button.btn.btn-lg.btn-primary.btn-block(type='submit') Publish

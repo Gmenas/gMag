@@ -1,3 +1,4 @@
+include _mixins
 html(lang='en')
     head
         meta(charset='utf-8')
@@ -42,6 +43,6 @@ html(lang='en')
                                 a(href='/logout')
                                     | Logout &nbsp;
                                     span.glyphicon.glyphicon-log-out(aria-hidden='true')
-    include _mixins
-    +flash(flash)
-    block content
+    .container
+        +flash(flash)
+        block content

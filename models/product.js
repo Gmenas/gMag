@@ -27,7 +27,18 @@ class Product {
             typeof product.title === 'string' &&
             typeof product.description === 'string' &&
             typeof product.price === 'number' &&
-            typeof product.category === 'object';
+            typeof product.categoryId === 'object' &&
+            typeof product.sellerId === 'object';
+    }
+
+    static toDbModel(product) {
+        return {
+            title: product.title,
+            description: product.description,
+            price: product.price,
+            categoryId: product.categoryId,
+            sellerId: product.sellerId,
+        };
     }
 
     static equals(product) {

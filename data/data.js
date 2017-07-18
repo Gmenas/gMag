@@ -1,6 +1,6 @@
 const CategoryData = require('./category.data');
 const ProductData = require('./product.data');
-const UserData = require('./users.data');
+const UserData = require('./user.data');
 const SessionData = require('./session.data');
 
 const init = (db) => {

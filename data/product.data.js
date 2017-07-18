@@ -12,7 +12,7 @@ class ProductData extends BaseData {
 
     getByCategoryId(id, count) {
         count = count || 0;
-        return this.get({ category: id }, { _id: -1 }, count);
+        return this.get({ categoryId: id }, { _id: -1 }, count);
     }
 }
 
