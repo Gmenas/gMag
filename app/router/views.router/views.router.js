@@ -1,25 +1,27 @@
+const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 const controllers = require('./controllers').init();
 
 const init = (app, data) => {
-    app.get('/', (req, res) => {
-        return controllers.home(req, res, data);
-    });
+    app.get('/',
+        (req, res) => controllers.home(req, res, data)
+    );
 
-    app.get('/browse', (req, res) => {
-        return controllers.browseCategories(req, res, data);
-    });
+    app.get('/browse',
+        (req, res) => controllers.browseCategories(req, res, data)
+    );
 
-    app.get('/browse/:category', (req, res) => {
-        return controllers.browseCategory(req, res, data);
-    });
+    app.get('/browse/:category',
+        (req, res) => controllers.browseCategory(req, res, data)
+    );
 
-    app.get('/sell', (req, res) => {
-        return controllers.sell(req, res, data);
-    });
+    app.get('/sell',
+        ensureLoggedIn('/login'),
+        (req, res) => controllers.sell(req, res, data)
+    );
 
-    app.get('/product/:id', (req, res) => {
-        return controllers.product(req, res, data);
-    });
+    app.get('/product/:id',
+        (req, res) => controllers.product(req, res, data)
+    );
 
     app.get('/login', (req, res) => {
         const context = {

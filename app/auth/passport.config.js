@@ -22,6 +22,7 @@ const init = (app, data, sessionSecret) => {
     app.use(cookieParser());
     app.use(session({
         name: 'session',
+        store: data.session.getMongoStore(session),
         secret: sessionSecret,
         resave: false,
         saveUninitialized: false,
