@@ -2,12 +2,13 @@ extends _head
 block content
     .container
         h1.text-center.margin-bot-md #{category.title}
-        form(action="/browse" method='POST')
+        form(action="/browse/"+category.title method='POST')
                 .container.margin-bot-md
                     .row.margin-bot-md
                         .col-sm-12
                             #search.input-group
                                 input.text-center.form-control(
+                                    name='searchText'
                                     type='text',
                                     placeholder='Search'
                                 )
@@ -18,7 +19,9 @@ block content
                         .col-xs-1.col-xs-offset-2
                             b $ 0
                         .col-xs-6
+                            label(for = "priceRange")
                             input#price-range(
+                                name='priceRange',
                                 type='text',
                                 value='',
                                 data-provide='slider'
