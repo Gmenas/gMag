@@ -2,7 +2,7 @@ const utils = require('./../../../utils');
 
 const init = (req, res, data) => {
     data
-        .categories.getByUrl(req.params.category)
+        .categories.getByUrl(req.params.category.toLowerCase())
         .then((category) => {
             const categoryId = category._id;
             data

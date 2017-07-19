@@ -19,11 +19,11 @@ class ProductData extends BaseData {
         pricerange = pricerange.split(',').map(Number);
         const min = pricerange[0];
         const max = pricerange[1];
-        console.log('a', pricerange, `${searchText}`)
         return this.get({
             $or: [
                 { price: { $gt: min, $lt: max } },
                 { category: id },
+
                 { title: { $regex: `${searchText}`, $options: '.*' } },
                 { description: { $regex: `${searchText}`, $options: '.*' } },
             ],
