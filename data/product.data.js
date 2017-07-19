@@ -10,9 +10,24 @@ class ProductData extends BaseData {
         return this.get({}, { _id: -1 }, count);
     }
 
-    getByCategoryId(id, count) {
+    getByCategoryId(id, searchText, pricerange, count) {
         count = count || 0;
-        return this.get({ category: id }, { _id: -1 }, count);
+        searchText = searchText || '.*';
+        if (!pricerange) {
+            pricerange = '0,1000';
+        }
+        pricerange = pricerange.split(',').map(Number);
+        const min = pricerange[0];
+        const max = pricerange[1];
+        console.log('a', pricerange, `${searchText}`)
+        return this.get({
+            $or: [
+                { price: { $gt: min, $lt: max } },
+                { category: id },
+                { title: { $regex: `${searchText}`, $options: '.*' } },
+                { description: { $regex: `${searchText}`, $options: '.*' } },
+            ],
+        }, { _id: -1 }, count);
     }
 }
 
