@@ -48,7 +48,7 @@ class BaseData {
     }
 
     getById(id) {
-        if (typeof id !== 'string' || !ObjectId.isValid(id)) {
+        if (!ObjectId.isValid(id)) {
             return Promise.reject(`Invalid ${this._modelClass.name} id.`);
         }
 

@@ -1,16 +1,9 @@
 extends _head
 block content
-    .container
-        .row
-            .col-xs-12.text-center
-                    each c in categories
-                        .row
-                            h1.col-xs-12
-                                a.list-group-item(href='/browse/' + c.url) #{c.title}
-                        each p in c.products
-                            .col-xs-6.col-lg-4.text-muted.text-left
-                                img(src='/example.svg', style='width: 100%')
-                                a(href='/product/' + p._id)
-                                    h3 #{p.title}
-                                p #{p.description}
-                                .margin-bot-lg
+    .row
+        .col-xs-12.text-center
+                each c in categories
+                    .row
+                        h1.col-xs-12
+                            a.list-group-item(href='/browse/' + c.url) #{c.title}
+                    +productsList(c.products)

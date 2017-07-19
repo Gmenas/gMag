@@ -7,8 +7,8 @@ class Category {
             return errors;
         }
 
-        if (!/^.{3,25}$/.test(category.title)) {
-            errors.push('Title must be between 3 and 25 characters.');
+        if (!/^.{1,25}$/.test(category.title)) {
+            errors.push('Title must be between 1 and 25 characters.');
         }
 
         return errors;
@@ -29,7 +29,7 @@ class Category {
     }
 
     static equals(model) {
-        return { title: model.title };
+        return { title: new RegExp(model.title, 'i') };
     }
 }
 

@@ -1,0 +1,8 @@
+extends _head
+block content
+    .row.text-center.margin-bot-md
+        h1 #{userProfile.username}
+    .row.text-center.margin-bot-md
+        h2 Products by <b>#{userProfile.username}</b>
+    .row
+        +productsList(userProducts)

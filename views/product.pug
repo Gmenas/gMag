@@ -1,10 +1,13 @@
 extends _head
 block content
-    .container
-        .row
-            .col-md-8.col-xs-12.col-sm-12.col-md-offset-2
-                img(src="/example.svg", style='width: 100%')
-                .row
-                    h1.col-xs-9.text-left #{product.title}
-                    h1.col-xs-3.text-right.text-muted $#{product.price}
-                h4.text-justify #{product.description}
+    .row
+        .col-md-8.col-md-offset-2.col-xs-12.col-sm-12
+            img(src="/example.svg", style='width: 100%')
+            .row
+                h1.col-xs-9.text-left #{product.title}
+                h1.col-xs-3.text-right.text-muted $#{product.price}
+            h3.text-left
+                | Seller:&nbsp;
+                a(href='/user/' + product.seller.username)
+                    | #{product.seller.username}
+            h4.text-justify #{product.description}

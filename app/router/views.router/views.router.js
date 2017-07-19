@@ -10,7 +10,7 @@ const init = (app, data) => {
         (req, res) => controllers.browseCategories(req, res, data)
     );
 
-    app.get('/browse/:category',
+    app.get('/browse/:categoryUrl',
         (req, res) => controllers.browseCategory(req, res, data)
     );
 
@@ -40,7 +40,32 @@ const init = (app, data) => {
         };
         return res.render('register', context);
     });
-    app.post('/browse/:category', (req, res) => {
+
+    app.get('/user/:username', (req, res) => {
+        data
+            .users.getByUsername(req.params.username)
+            .then((user) => {
+                if (!user) {
+                    return Promise.reject('User does not exist');
+                }
+                return data
+                    .products.getBySellerId(user._id)
+                    .then((products) => {
+                        const context = {
+                            title: user.username,
+                            user: req.user,
+                            flash: req.flash(),
+                            userProfile: user,
+                            userProducts: products,
+                        };
+                        return res.render('user', context);
+                    });
+            })
+            .catch((err) => {
+                return res.renderError(err);
+            });
+    });
+    app.post('/browse/:categoryUrl', (req, res) => {
         controllers.browseCategory(req, res, data);
     });
 };

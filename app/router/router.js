@@ -2,9 +2,19 @@
 const fs = require('fs');
 const path = require('path');
 
-const utils = require('./../utils');
-
 const init = (app, data) => {
+    app.use((req, res, next) => {
+        res.renderError = (msg) => {
+            const context = {
+                title: 'Error',
+                user: req.user,
+                errorMsg: msg,
+            };
+            return res.render('Error', context);
+        };
+        next();
+    });
+
     fs.readdirSync(__dirname)
         .filter((file) => file.includes('.router'))
         .forEach((file) => {
@@ -12,10 +22,10 @@ const init = (app, data) => {
             require(modulePath).init(app, data);
         });
 
+
     app.use((req, res) => {
-        utils.showErrorPage(
-            `Page '${req.url.slice(1)}' not found.`,
-            res
+        res.renderError(
+            `Page '${req.url.slice(1)}' not found.`
         );
     });
 };

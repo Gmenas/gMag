@@ -1,35 +1,28 @@
 extends _head
 block content
-    .container
-        .row.margin-bot-md
-            .col-sm-12
-                #search.input-group
-                    input.text-center.form-control(
-                        type='text',
-                        placeholder='Search'
-                    )
-                    span.input-group-addon
-                        button(type='submit')
-                            span.glyphicon.glyphicon-search
-    .container
-        .row
-            .col-sm-12.col-sm-3
-                .list-group
-                    each c in categories
-                        a.list-group-item(href='/browse/' + c.url) #{c.title}
-            .col-sm-12.col-sm-9
-                .jumbotron.text-center
-                    h1.margin-bot-lg Welcome to <b>gMag</b>!
-                    .row
-                        .container
-                            a.col-xs-12.col-sm-5.col-sm-offset-0.margin-bot-md.btn.btn-primary.btn-lg(href='/browse')
-                                | Browse all categories
-                            a.col-xs-12.col-sm-5.col-sm-offset-2.margin-bot-md.btn.btn-primary.btn-lg(href='/sell')
-                                | Sell something
+    .row.margin-bot-md
+        .col-sm-12
+            #search.input-group
+                input.text-center.form-control(
+                    type='text',
+                    placeholder='Search'
+                )
+                span.input-group-addon
+                    button(type='submit')
+                        span.glyphicon.glyphicon-search
+    .row
+        .col-sm-12.col-sm-3
+            .list-group
+                each c in categories
+                    a.list-group-item(href='/browse/' + c.url) #{c.title}
+        .col-sm-12.col-sm-9
+            .jumbotron.text-center
+                h1.margin-bot-lg Welcome to <b>gMag</b>!
                 .row
-                    each p in recent
-                        .col-xs-6.col-lg-4
-                            img(src='/example.svg', style='width: 100%')
-                            a(href='/product/' + p._id)
-                                h3 #{p.title}
-                            p #{p.description}
+                    .container
+                        a.btn.btn-primary.btn-lg.col-xs-12.col-md-5.margin-bot-md(href='/browse')
+                            | Browse all categories
+                        a.btn.btn-primary.btn-lg.col-xs-12.col-md-5.col-md-offset-2(href='/sell')
+                            | Sell something
+            .row
+                +productsList(recent)

@@ -48,7 +48,7 @@ class User {
     }
 
     static equals(user) {
-        return { username: user.username };
+        return { username: new RegExp(user.username, 'i') };
     }
 }
 

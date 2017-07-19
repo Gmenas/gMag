@@ -1,15 +1,24 @@
+mixin productsList(products)
+    each p in products
+        .card.col-xs-12.col-sm-6.col-md-4.text-center.margin-bot-md.text-muted
+            img(src='/example.svg', alt='Product image')
+            .row.margin-none
+                h3.col-xs-9.text-left.padding-none
+                    a(href='/product/' + p._id) #{p.title}
+                h3.col-xs-3.text-right.padding-none $#{p.price}
+            p(st).text-justify #{p.description}
+
 mixin flash(flash)
-    .container
-        if flash
-            if flash.error
-                each i in flash.error
-                    +_alert('danger', i)
-            if flash.success
-                each i in flash.success
-                    +_alert('success', i)
-            if flash.info
-                each i in flash.info
-                    +_alert('info', i)
+    if flash
+        if flash.error
+            each i in flash.error
+                +_alert('danger', i)
+        if flash.success
+            each i in flash.success
+                +_alert('success', i)
+        if flash.info
+            each i in flash.info
+                +_alert('info', i)
 
 mixin _alert(type, message)
     div(class='alert alert-' + type)

@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 
-const passportConfig = require('./auth/passport.config');
+const authConfig = require('./auth');
 const router = require('./router');
 
 const init = (data, sessionSecret) => {
@@ -17,7 +17,8 @@ const init = (data, sessionSecret) => {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(flash());
 
-    passportConfig.init(app, data, sessionSecret);
+    authConfig.init(app, data, sessionSecret);
+
     router.init(app, data);
 
     return Promise.resolve(app);
