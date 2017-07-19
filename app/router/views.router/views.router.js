@@ -40,6 +40,9 @@ const init = (app, data) => {
         };
         return res.render('register', context);
     });
+    app.post('/browse/:category', (req, res) => {
+        controllers.browseCategory(req, res, data);
+    });
 };
 
 module.exports = { init };

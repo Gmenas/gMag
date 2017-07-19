@@ -10,7 +10,7 @@ const init = (app, data) => {
         };
 
         data
-            .categories.getByUrl( product.category )
+            .categories.getByUrl(product.category)
             .then((category) => {
                 product.category = category._id;
                 return Promise.resolve(data.products.create(product));

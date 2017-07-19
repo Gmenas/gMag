@@ -7,7 +7,8 @@ const init = (req, res, data) => {
             const categoryId = category._id;
             data
                 .products
-                .getByCategoryId(categoryId)
+                .getByCategoryId(categoryId, req.body.searchText,
+                    req.body.priceRange)
                 .then((products) => {
                     const context = {
                         title: `Browse ${category.title}`,
