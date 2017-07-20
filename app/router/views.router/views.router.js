@@ -10,9 +10,17 @@ const init = (app, data) => {
         (req, res) => controllers.browseCategories(req, res, data)
     );
 
+    app.post('/browse',
+        (req, res) => controllers.browseCategories(req, res, data)
+    );
+
     app.get('/browse/:categoryUrl',
         (req, res) => controllers.browseCategory(req, res, data)
     );
+
+    app.post('/browse/:categoryUrl', (req, res) => {
+        controllers.browseCategory(req, res, data);
+    });
 
     app.get('/sell',
         ensureLoggedIn('/login'),
@@ -64,9 +72,6 @@ const init = (app, data) => {
             .catch((err) => {
                 return res.renderError(err);
             });
-    });
-    app.post('/browse/:categoryUrl', (req, res) => {
-        controllers.browseCategory(req, res, data);
     });
 };
 

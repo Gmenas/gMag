@@ -13,6 +13,9 @@ class ProductData extends BaseData {
     getByCategoryId(id, filterSearch, count) {
         count = count || 0;
         const searchText = filterSearch.searchText || '.*';
+        if (searchText !== '.*') {
+            count = 0;
+        }
         let priceRange = filterSearch.priceRange;
         if (!priceRange) {
             priceRange = '0,1000';

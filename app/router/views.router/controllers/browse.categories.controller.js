@@ -1,11 +1,14 @@
 const init = (req, res, data) => {
+    const filterSearch = {
+        searchText: req.body.searchText,
+    };
     const categoriesWithProducts = [];
     data
         .categories.getAll()
         .then((categories) => {
             categories.forEach((c) => {
                 c.products = data.products
-                    .getByCategoryId(c._id, {}, 3);
+                    .getByCategoryId(c._id, filterSearch, 3);
                 categoriesWithProducts.push(c);
             });
             Promise
