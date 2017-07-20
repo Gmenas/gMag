@@ -21,24 +21,11 @@ class ProductData extends BaseData {
         const min = priceRange[0];
         const max = priceRange[1];
         return this.get({
-            $and: [
-                { category: id },
-                { price: { $gt: min, $lt: max } },
-                {
-                    $or: [{
-                            title: {
-                                $regex: `${searchText}`,
-                                $options: '.*'
-                            }
-                        },
-                        {
-                            description: {
-                                $regex: `${searchText}`,
-                                $options: '.*'
-                            }
-                        },
-                    ],
-                },
+            price: { $gt: min, $lt: max },
+            categoryId: id,
+            $or: [
+                { title: { $regex: `${searchText}`, $options: '.*' } },
+                { description: { $regex: `${searchText}`, $options: '.*' } },
             ],
         }, { _id: -1 }, count);
     }
