@@ -1,12 +1,15 @@
 const init = (req, res, data) => {
+    const filterSearch = {
+        searchText: req.body.searchText,
+        priceRange: req.body.priceRange,
+    };
     data
-        .categories.getByUrl(req.params.categoryUrl.toLowerCase())
+        .categories.getByUrl(req.params.categoryUrl)
         .then((category) => {
             const categoryId = category._id;
             data
                 .products
-                .getByCategoryId(categoryId, req.body.searchText,
-                    req.body.priceRange)
+                .getByCategoryId(categoryId, filterSearch)
                 .then((products) => {
                     const context = {
                         title: `Browse ${category.title}`,

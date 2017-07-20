@@ -4,7 +4,8 @@ const init = (req, res, data) => {
         .categories.getAll()
         .then((categories) => {
             categories.forEach((c) => {
-                c.products = data.products.getByCategoryId(c._id, 3);
+                c.products = data.products
+                    .getByCategoryId(c._id, {}, 3);
                 categoriesWithProducts.push(c);
             });
             Promise

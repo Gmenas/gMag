@@ -10,21 +10,35 @@ class ProductData extends BaseData {
         return this.get({}, { _id: -1 }, count);
     }
 
-    getByCategoryId(id, searchText, pricerange, count) {
+    getByCategoryId(id, filterSearch, count) {
         count = count || 0;
-        searchText = searchText || '.*';
-        if (!pricerange) {
-            pricerange = '0,1000';
+        const searchText = filterSearch.searchText || '.*';
+        let priceRange = filterSearch.priceRange;
+        if (!priceRange) {
+            priceRange = '0,1000';
         }
-        pricerange = pricerange.split(',').map(Number);
-        const min = pricerange[0];
-        const max = pricerange[1];
+        priceRange = priceRange.split(',').map(Number);
+        const min = priceRange[0];
+        const max = priceRange[1];
         return this.get({
-            price: { $gt: min, $lt: max },
-            category: id,
-            $or: [
-                { title: { $regex: `${searchText}`, $options: '.*' } },
-                { description: { $regex: `${searchText}`, $options: '.*' } },
+            $and: [
+                { category: id },
+                { price: { $gt: min, $lt: max } },
+                {
+                    $or: [{
+                            title: {
+                                $regex: `${searchText}`,
+                                $options: '.*'
+                            }
+                        },
+                        {
+                            description: {
+                                $regex: `${searchText}`,
+                                $options: '.*'
+                            }
+                        },
+                    ],
+                },
             ],
         }, { _id: -1 }, count);
     }
