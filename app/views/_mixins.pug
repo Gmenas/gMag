@@ -1,3 +1,18 @@
+mixin search(action)
+    .col-sm-12
+        form(action=action method='GET')
+            #search.input-group
+                input.text-center.form-control(
+                    name='q'
+                    type='text',
+                    placeholder='Search'
+                    autofocus=''
+                    required=''
+                )
+                span.input-group-addon
+                    button(type='submit')
+                        span.glyphicon.glyphicon-search
+
 mixin productsList(products)
     each p in products
         .card.col-xs-12.col-sm-6.col-md-4.text-center.margin-bot-md.text-muted

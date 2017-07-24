@@ -2,18 +2,20 @@
 const fs = require('fs');
 const path = require('path');
 
-const init = (app, data) => {
-    app.use((req, res, next) => {
-        res.renderError = (msg) => {
-            const context = {
-                title: 'Error',
-                user: req.user,
-                errorMsg: msg,
-            };
-            return res.render('Error', context);
+const renderError = (req, res, next) => {
+    res.renderError = (msg) => {
+        const context = {
+            title: 'Error',
+            user: req.user,
+            errorMsg: msg,
         };
-        next();
-    });
+        return res.render('Error', context);
+    };
+    next();
+};
+
+const init = (app, data) => {
+    app.use(renderError);
 
     fs.readdirSync(__dirname)
         .filter((file) => file.includes('.router'))

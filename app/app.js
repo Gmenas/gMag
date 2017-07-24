@@ -1,14 +1,17 @@
+/* globals __dirname */
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 
 const authConfig = require('./auth');
-const router = require('./router');
+const routers = require('./routers');
 
 const init = (data, sessionSecret) => {
     const app = express();
 
     app.set('view engine', 'pug');
+    app.set('views', path.join(__dirname, 'views'));
 
     app.use(express.static('public'));
     app.use('/libs', express.static('node_modules'));
@@ -19,7 +22,7 @@ const init = (data, sessionSecret) => {
 
     authConfig.init(app, data, sessionSecret);
 
-    router.init(app, data);
+    routers.init(app, data);
 
     return Promise.resolve(app);
 };

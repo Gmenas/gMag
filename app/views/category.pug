@@ -1,0 +1,29 @@
+extends _head
+block content
+    .container
+        h1.text-center.margin-bot-md #{category.title}
+        .row
+            +search('/browse/' + category.title)
+        .row.margin-bot-md
+            .col-xs-1.col-xs-offset-2
+                b $ #{slider.min}
+            .col-xs-6
+                label(for = "priceRange")
+                input#price-range(
+                    name='p',
+                    type='text',
+                    data-provide='slider'
+                    data-slider-min=slider.min,
+                    data-slider-max=slider.max,
+                    data-slider-step=slider.step,
+                    data-slider-value='[' + filter.price.min + ',' + filter.price.max + ']'
+                    style='width: 100%'
+                )
+            .col-xs-1
+                b $ #{slider.max}
+    .row
+        +productsList(products)
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/bootstrap-slider.min.js')
+    script(src='/scripts/query-object.min.js')
+    script(src='/scripts/slider.js')

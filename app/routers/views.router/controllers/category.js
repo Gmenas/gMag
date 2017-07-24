@@ -1,15 +1,22 @@
 const init = (req, res, data) => {
-    const filterSearch = {
-        searchText: req.body.searchText,
-        priceRange: req.body.priceRange,
+    const filter = data.products.makeValidFilter({
+        textStr: req.query.q,
+        priceArr: req.query.p,
+    });
+
+    const sliderConfig = {
+        min: 0,
+        max: 5000,
+        step: 50,
     };
+
     data
         .categories.getByUrl(req.params.categoryUrl)
         .then((category) => {
             const categoryId = category._id;
             data
                 .products
-                .getByCategoryId(categoryId, filterSearch)
+                .getByQueryFilter(categoryId, filter)
                 .then((products) => {
                     const context = {
                         title: `Browse ${category.title}`,
@@ -17,9 +24,11 @@ const init = (req, res, data) => {
                         flash: req.flash(),
                         category: category,
                         products: products,
+                        filter: filter,
+                        slider: sliderConfig,
                     };
 
-                    return res.render('browse-category', context);
+                    return res.render('category', context);
                 });
         })
         .catch((msg) => res.renderError(msg));

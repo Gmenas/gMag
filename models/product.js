@@ -19,7 +19,7 @@ class Product {
             errors.push('Price must be more than zero.');
         }
 
-        if (product.price > 10000) {
+        if (product.price > 5000) {
             errors.push('We don\'t sell such expensive products.');
         }
 

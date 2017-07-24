@@ -10,31 +10,46 @@ class ProductData extends BaseData {
         return this.get({}, { _id: -1 }, count);
     }
 
-    getByCategoryId(id, filterSearch, count) {
+    getByCategoryId(id, count) {
         count = count || 0;
-        const searchText = filterSearch.searchText || '.*';
-        if (searchText !== '.*') {
-            count = 0;
-        }
-        let priceRange = filterSearch.priceRange;
-        if (!priceRange) {
-            priceRange = '0,1000';
-        }
-        priceRange = priceRange.split(',').map(Number);
-        const min = priceRange[0];
-        const max = priceRange[1];
-        return this.get({
-            price: { $gt: min, $lt: max },
-            categoryId: id,
-            $or: [
-                { title: { $regex: `${searchText}`, $options: '.*' } },
-                { description: { $regex: `${searchText}`, $options: '.*' } },
-            ],
-        }, { _id: -1 }, count);
+        count = count || 0;
+        return this.get({ categoryId: id }, { _id: -1 }, count);
     }
+
     getBySellerId(id, count) {
         count = count || 0;
         return this.get({ sellerId: id }, { _id: -1 }, count);
+    }
+
+    getByQueryFilter(categoryId, filter, count) {
+        return this.get(
+            {
+                categoryId: categoryId,
+                price: {
+                    $gte: filter.price.min,
+                    $lte: filter.price.max,
+                },
+                $or: [
+                    { title: new RegExp(filter.text, 'i') },
+                    { description: new RegExp(filter.text, 'i') },
+                ],
+            },
+            { _id: -1 },
+            count
+        );
+    }
+
+    makeValidFilter(f) {
+        f = f || {};
+        f.textStr = f.textStr || '.*';
+        f.priceArr = f.priceArr || [];
+        return {
+            text: f.textStr,
+            price: {
+                min: Number(f.priceArr[0]) || 0,
+                max: Number(f.priceArr[1]) || 10000,
+            },
+        };
     }
 }
 

@@ -20,9 +20,9 @@ class User {
             errors.push('Email must be valid.');
         }
 
-        if (!/^.{8,40}$/.test(user.password)) {
+        if (!/^.{6,30}$/.test(user.password)) {
             errors.push(
-                'Password must be between 8 and 40 characters.'
+                'Password must be between 6 and 30 characters.'
             );
         }
 

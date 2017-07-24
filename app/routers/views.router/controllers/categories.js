@@ -1,14 +1,16 @@
 const init = (req, res, data) => {
-    const filterSearch = {
-        searchText: req.body.searchText,
-    };
+    const filter = data.products.makeValidFilter({
+        textStr: req.query.q,
+        priceArr: req.query.p,
+    });
     const categoriesWithProducts = [];
+
     data
         .categories.getAll()
         .then((categories) => {
             categories.forEach((c) => {
                 c.products = data.products
-                    .getByCategoryId(c._id, filterSearch, 3);
+                    .getByQueryFilter(c._id, filter, 3);
                 categoriesWithProducts.push(c);
             });
             Promise
@@ -23,7 +25,7 @@ const init = (req, res, data) => {
                         flash: req.flash(),
                         categories: categoriesWithProducts,
                     };
-                    return res.render('browse-categories', context);
+                    return res.render('categories', context);
                 });
         });
 };
