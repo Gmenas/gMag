@@ -1,4 +1,4 @@
-const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
+const { ensureLoggedIn } = require('connect-ensure-login');
 
 const init = (app, data) => {
     app.get('/', (req, res) =>
