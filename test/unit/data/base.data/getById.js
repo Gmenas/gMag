@@ -35,6 +35,16 @@ describe('BaseData.getById()', () => {
     });
 
     describe('with invalid ObjectId', () => {
+        it('expect to reject promise', (done) => {
+            sut.getById('not valid')
+                .then(() => {
+                    done(new Error('promise should be rejected'));
+                })
+                .catch(() => {
+                    done();
+                });
+        });
+
         it('expect to reject promise with correct msg', (done) => {
             sut.getById('not valid')
                 .then(() => {
@@ -53,6 +63,9 @@ describe('BaseData.getById()', () => {
                 .then((i) => {
                     expect(i._id).to.deep.equal(1);
                     done();
+                })
+                .catch((e) => {
+                    done(new Error(e));
                 });
         });
     });
