@@ -16,20 +16,27 @@ class BaseData {
             model = this._modelClass.toDbModel(model);
         }
 
-        return this._collection
-            .findOne(this._modelClass.equals(model))
-            .then((exists) => {
-                if (exists) {
-                    return Promise.reject(
-                        `${this._modelClass.name} already exists.`
-                    );
-                }
+        if (this._modelClass.equals) {
+            return this._collection
+                .findOne(this._modelClass.equals(model))
+                .then((exists) => {
+                    if (exists) {
+                        return Promise.reject(
+                            `${this._modelClass.name} already exists.`
+                        );
+                    }
 
-                return this._collection.insert(model)
-                    .then((insertInfo) => {
-                        const inserted = insertInfo.ops[0];
-                        return Promise.resolve(inserted);
-                    });
+                    return this._insert(model);
+                });
+        }
+        return this._insert(model);
+    }
+
+    _insert(model) {
+        return this._collection.insert(model)
+            .then((insertInfo) => {
+                const inserted = insertInfo.ops[0];
+                return Promise.resolve(inserted);
             });
     }
 

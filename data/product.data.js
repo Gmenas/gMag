@@ -1,4 +1,4 @@
-const BaseData = require('./_base.data');
+const BaseData = require('./base.data');
 const Product = require('../models/product');
 
 class ProductData extends BaseData {

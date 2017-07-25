@@ -1,11 +1,10 @@
 const { expect } = require('chai');
-const sinon = require('sinon');
 
-const BaseData = require('../../../../data/_base.data');
+const BaseData = require('../../../../data/base.data');
 
 describe('BaseData.getById()', () => {
+    let items;
     const ModelClass = class { };
-    let items = [];
     const toArray = () => {
         return Promise.resolve(items);
     };

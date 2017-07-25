@@ -1,4 +1,4 @@
-const BaseData = require('./_base.data');
+const BaseData = require('./base.data');
 const User = require('./../models/user');
 const CryptoJS = require('crypto-js');
 

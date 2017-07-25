@@ -28,7 +28,7 @@ const init = (app, data) => {
     );
 
     app.get('/register', (req, res) =>
-        require('./controllers/product').init(req, res)
+        require('./controllers/register').init(req, res)
     );
 
     app.get('/user/:username', (req, res) =>
