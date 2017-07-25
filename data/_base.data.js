@@ -1,4 +1,4 @@
-const ObjectId = require('mongodb').ObjectID;
+const { ObjectId } = require('mongodb');
 
 class BaseData {
     constructor(db, modelClass, collectionName) {
@@ -52,10 +52,8 @@ class BaseData {
             return Promise.reject(`Invalid ${this._modelClass.name} id.`);
         }
 
-        const result = this._collection
+        return this._collection
             .findOne({ _id: new ObjectId(id) });
-
-        return Promise.resolve(result);
     }
 }
 
