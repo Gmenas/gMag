@@ -1,4 +1,4 @@
-const init = (req, res, data) => {
+function init(req, res, data) {
     if (!req.user) {
         return res.renderError(
             'You must be logged in to add a product.'
@@ -27,6 +27,6 @@ const init = (req, res, data) => {
             req.flash('error', errors);
             return res.redirect('/sell');
         });
-};
+}
 
 module.exports = { init };

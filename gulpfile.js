@@ -44,7 +44,9 @@ gulp.task('test:unit', () => {
 //         .then((data) => require('./app').init(data, config.sessionSecret))
 //         .then((app) => {
 //             app.listen(config.port,
-//                 () => console.log(`Server running at port ${config.port}...`));
+//                 () => console.log(
+//                     `Server running at port ${config.port}...`)
+//             );
 //         });
 // });
 
@@ -67,7 +69,6 @@ gulp.task('test:unit', () => {
 //             gulp.start('server-stop');
 //         });
 // });
-
 
 gulp.task('test', gulpsync.sync([
     'pre-test',

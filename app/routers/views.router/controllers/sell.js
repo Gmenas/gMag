@@ -1,4 +1,4 @@
-const init = (req, res, data) => {
+function init(req, res, data) {
     data
         .categories.getAll()
         .then((categories) => {
@@ -10,6 +10,6 @@ const init = (req, res, data) => {
             };
             return res.render('sell', context);
         });
-};
+}
 
 module.exports = { init };

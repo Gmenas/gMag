@@ -1,4 +1,4 @@
-const init = (req, res, data) => {
+function init(req, res, data) {
     Promise.all([
         data.categories.getAll(),
         data.products.getRecent(3),
@@ -13,6 +13,6 @@ const init = (req, res, data) => {
             };
             return res.render('home', context);
         });
-};
+}
 
 module.exports = { init };

@@ -3,7 +3,7 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-const init = (app, data, sessionSecret) => {
+function init(app, data, sessionSecret) {
     passport.use(new LocalStrategy((username, password, done) => {
         data.users.getUserByCredentials(username, password)
             .then((user) => {
@@ -41,6 +41,6 @@ const init = (app, data, sessionSecret) => {
             })
             .catch(done);
     });
-};
+}
 
 module.exports = { init };

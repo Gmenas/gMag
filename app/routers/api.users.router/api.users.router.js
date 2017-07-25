@@ -1,6 +1,6 @@
 const passport = require('passport');
 
-const init = (app, data) => {
+function init(app, data) {
     app.post('/login', passport.authenticate('local', {
             successReturnToOrRedirect: '/',
             failureRedirect: '/login',
@@ -16,6 +16,6 @@ const init = (app, data) => {
         req.logout();
         res.redirect('/');
     });
-};
+}
 
 module.exports = { init };

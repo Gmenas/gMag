@@ -1,4 +1,4 @@
-const init = (req, res, data) => {
+function init(req, res, data) {
     const formData = {
         username: req.body.username,
         email: req.body.email,
@@ -19,6 +19,6 @@ const init = (req, res, data) => {
             req.flash('error', errors);
             res.redirect('/register');
         });
-};
+}
 
 module.exports = { init };

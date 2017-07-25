@@ -1,4 +1,4 @@
-const init = (req, res, data) => {
+function init(req, res, data) {
     const filter = data.products.makeValidFilter({
         textStr: req.query.q,
         priceArr: req.query.p,
@@ -28,6 +28,6 @@ const init = (req, res, data) => {
                     return res.render('categories', context);
                 });
         });
-};
+}
 
 module.exports = { init };

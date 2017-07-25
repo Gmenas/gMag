@@ -7,7 +7,7 @@ const flash = require('connect-flash');
 const authConfig = require('./auth');
 const routers = require('./routers');
 
-const init = (data, sessionSecret) => {
+function init(data, sessionSecret) {
     const app = express();
 
     app.set('view engine', 'pug');
@@ -25,6 +25,6 @@ const init = (data, sessionSecret) => {
     routers.init(app, data);
 
     return Promise.resolve(app);
-};
+}
 
 module.exports = { init };

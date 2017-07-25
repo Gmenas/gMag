@@ -1,4 +1,4 @@
-const init = (req, res) => {
+function init(req, res) {
     const context = {
         title: 'Register',
         user: req.user,
@@ -6,6 +6,6 @@ const init = (req, res) => {
     };
 
     return res.render('register', context);
-};
+}
 
 module.exports = { init };

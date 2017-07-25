@@ -1,4 +1,4 @@
-const init = (req, res, data) => {
+function init(req, res, data) {
     data
         .products.getById(req.params.id)
         .then((product) => {
@@ -17,6 +17,6 @@ const init = (req, res, data) => {
                 });
         })
         .catch((msg) => res.renderError(msg, res));
-};
+}
 
 module.exports = { init };

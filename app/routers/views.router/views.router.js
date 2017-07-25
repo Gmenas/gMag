@@ -1,6 +1,6 @@
 const { ensureLoggedIn } = require('connect-ensure-login');
 
-const init = (app, data) => {
+function init(app, data) {
     app.get('/', (req, res) =>
         require('./controllers/home').init(req, res, data)
     );
@@ -34,6 +34,6 @@ const init = (app, data) => {
     app.get('/user/:username', (req, res) =>
         require('./controllers/user').init(req, res, data)
     );
-};
+}
 
 module.exports = { init };

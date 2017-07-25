@@ -1,4 +1,4 @@
-const init = (req, res, data) => {
+function init(req, res, data) {
     data
         .users.getByUsername(req.params.username)
         .then((user) => {
@@ -21,6 +21,6 @@ const init = (req, res, data) => {
         .catch((err) => {
             return res.renderError(err);
         });
-};
+}
 
 module.exports = { init };

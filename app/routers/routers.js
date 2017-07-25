@@ -14,7 +14,7 @@ const renderError = (req, res, next) => {
     next();
 };
 
-const init = (app, data) => {
+function init(app, data) {
     app.use(renderError);
 
     fs.readdirSync(__dirname)
@@ -30,6 +30,6 @@ const init = (app, data) => {
             `Page '${req.url.slice(1)}' not found.`
         );
     });
-};
+}
 
 module.exports = { init };
