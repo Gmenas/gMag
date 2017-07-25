@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 const { expect } = require('chai');
 const sinon = require('sinon');
 
@@ -7,19 +8,7 @@ describe('BaseData.create()', () => {
     let sut;
     let items;
     const ModelClass = class { };
-    const findOne = () => {
-        return Promise.resolve(items[0] || null);
-    };
-    const insert = (i) => {
-        items.push(i);
-        return Promise.resolve({
-            ops: [i],
-        });
-    };
-    const collection = {
-        findOne,
-        insert,
-    };
+    const collection = {};
     const db = {
         collection: () => {
             return collection;
@@ -66,6 +55,12 @@ describe('BaseData.create()', () => {
             ModelClass.validate = (model) => {
                 return [];
             };
+            collection.insert = (i) => {
+                items.push(i);
+                return Promise.resolve({
+                    ops: [i],
+                });
+            };
         });
 
         describe('and with toDbModel()', () => {
@@ -73,14 +68,68 @@ describe('BaseData.create()', () => {
                 ModelClass.toDbModel = sinon.spy();
             });
 
-            it('expect toDbModel() to be called with model', () => {
+            it('expect toDbModel() to be called with model', (done) => {
                 const model = {};
                 sut.create(model)
                     .then(() => {
-                        return expect(
+                        expect(
                             ModelClass.toDbModel.calledWith(model)
                         ).to.be.true;
-                    });
+                        done();
+                    })
+                    .catch(done);
+            });
+
+            afterEach(() => {
+                delete ModelClass.toDbModel;
+            });
+        });
+
+        describe('and with equals()', () => {
+            beforeEach(() => {
+                ModelClass.equals = sinon.spy();
+            });
+
+            describe('if no item exists', () => {
+                beforeEach(() => {
+                    collection.findOne = () => {
+                        return Promise.resolve(null);
+                    };
+                });
+
+                it('expect equals() to be called with model', (done) => {
+                    const model = {};
+                    sut.create(model)
+                        .then(() => {
+                            expect(
+                                ModelClass.equals.calledWith(model)
+                            ).to.be.true;
+                            done();
+                        })
+                        .catch(done);
+                });
+            });
+
+            describe('if item exists', () => {
+                beforeEach(() => {
+                    collection.findOne = () => {
+                        return Promise.resolve(true);
+                    };
+                });
+
+                it('expect promise to be rejected', (done) => {
+                    sut.create({})
+                        .then(() => {
+                            done(new Error('Promise should be rejected'));
+                        })
+                        .catch(() => {
+                            done();
+                        });
+                });
+            });
+
+            afterEach(() => {
+                delete ModelClass.equals;
             });
         });
     });
