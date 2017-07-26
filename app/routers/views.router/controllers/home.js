@@ -1,5 +1,5 @@
 function init(req, res, data) {
-    Promise.all([
+    return Promise.all([
         data.categories.getAll(),
         data.products.getRecent(3),
     ])
