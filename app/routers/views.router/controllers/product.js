@@ -1,5 +1,5 @@
 function init(req, res, data) {
-    data
+    return data
         .products.getById(req.params.id)
         .then((product) => {
             data.
@@ -16,7 +16,7 @@ function init(req, res, data) {
                     return res.render('product', context);
                 });
         })
-        .catch((msg) => res.renderError(msg, res));
+        .catch((msg) => res.renderError(msg));
 }
 
 module.exports = { init };

@@ -5,7 +5,9 @@ function init(req, res) {
         flash: req.flash(),
     };
 
-    return res.render('login', context);
+    return Promise.resolve(
+        res.render('login', context)
+    );
 }
 
 module.exports = { init };

@@ -2,26 +2,18 @@
 const { expect } = require('chai');
 
 // eslint-disable-next-line max-len
-const sellController = require('./../../../../../../app/routers/views.router/controllers/sell');
+const loginController = require('./../../../../../../app/routers/views.router/controllers/login');
 const reqResMock = require('./../../req.res.mock');
 
-describe('sellController.init()', () => {
+describe('loginController.init()', () => {
     let sut;
     let req;
     let res;
-    const categories = [1, 2];
     const user = 'user';
     const flash = () => 'flash';
-    const data = {
-        categories: {
-            getAll: () => {
-                return Promise.resolve(categories);
-            },
-        },
-    };
 
     beforeEach(() => {
-        sut = sellController;
+        sut = loginController;
         req = reqResMock.getReqMock({
             flash,
             user,
@@ -30,9 +22,9 @@ describe('sellController.init()', () => {
     });
 
     it('expect to render correct view', (done) => {
-        sut.init(req, res, data)
+        sut.init(req, res)
             .then(() => {
-                expect(res.viewName).to.equal('sell');
+                expect(res.viewName).to.equal('login');
                 done();
             })
             .catch(done);
@@ -40,13 +32,12 @@ describe('sellController.init()', () => {
 
     it('expect to pass correct context', (done) => {
         const context = {
-            title: 'Sell',
+            title: 'Login',
             user: user,
             flash: flash(),
-            categories: categories,
         };
 
-        sut.init(req, res, data)
+        sut.init(req, res)
             .then(() => {
                 expect(res.context).to.deep.equal(context);
                 done();

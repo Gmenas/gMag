@@ -2,37 +2,51 @@
 const { expect } = require('chai');
 
 // eslint-disable-next-line max-len
-const sellController = require('./../../../../../../app/routers/views.router/controllers/sell');
+const productController = require('./../../../../../../app/routers/views.router/controllers/product');
 const reqResMock = require('./../../req.res.mock');
 
-describe('sellController.init()', () => {
+describe('productController.init()', () => {
     let sut;
     let req;
     let res;
-    const categories = [1, 2];
-    const user = 'user';
+    const seller = 'seller';
+    const product = {
+        title: 'product',
+        seller: seller,
+        sellerId: 0,
+    };
+    const reqUser = 'user';
     const flash = () => 'flash';
     const data = {
-        categories: {
-            getAll: () => {
-                return Promise.resolve(categories);
+        users: {
+            getById: () => {
+                return Promise.resolve(seller);
+            },
+        },
+        products: {
+            getById: () => {
+                return Promise.resolve(product);
             },
         },
     };
 
     beforeEach(() => {
-        sut = sellController;
+        sut = productController;
         req = reqResMock.getReqMock({
-            flash,
-            user,
+            flash: flash,
+            user: reqUser,
+            params: {
+                id: 0,
+            },
         });
         res = reqResMock.getResMock();
+        res.renderError = () => { };
     });
 
     it('expect to render correct view', (done) => {
         sut.init(req, res, data)
             .then(() => {
-                expect(res.viewName).to.equal('sell');
+                expect(res.viewName).to.equal('product');
                 done();
             })
             .catch(done);
@@ -40,10 +54,10 @@ describe('sellController.init()', () => {
 
     it('expect to pass correct context', (done) => {
         const context = {
-            title: 'Sell',
-            user: user,
+            title: `Details for ${product.title}`,
+            user: reqUser,
             flash: flash(),
-            categories: categories,
+            product: product,
         };
 
         sut.init(req, res, data)
