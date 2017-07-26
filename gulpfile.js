@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const mocha = require('gulp-mocha');
 const istanbul = require('gulp-istanbul');
-const gulpsync = require('gulp-sync')(gulp);
 
 gulp.task('pre-test', () => {
     return gulp.src([
@@ -23,7 +22,9 @@ gulp.task('test:unit', ['pre-test'], () => {
         './tests/integration/**/*.js',
     ])
         .pipe(mocha())
-        .pipe(istanbul.writeReports());
+        .pipe(istanbul.writeReports({
+             dir: './tests/coverage',
+        }));
 });
 
 // // for virtual server config
@@ -56,16 +57,8 @@ gulp.task('test:unit', ['pre-test'], () => {
 
 // gulp.task('test:browser', ['server-start'], () => {
 //     return gulp.src('./test/browser/**/*.js')
-//         .pipe(mocha({
-//             reporter: 'nyan',
-//             timeout: 10000,
-//         }))
+//         .pipe(mocha())
 //         .once('end', () => {
 //             gulp.start('server-stop');
 //         });
 // });
-
-gulp.task('test', gulpsync.sync([
-    'test:unit',
-    // 'test:browser',
-]));
