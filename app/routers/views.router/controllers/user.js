@@ -1,5 +1,5 @@
 function init(req, res, data) {
-    data
+    return data
         .users.getByUsername(req.params.username)
         .then((user) => {
             if (!user) {
