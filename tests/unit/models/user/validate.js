@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 const { expect } = require('chai');
 
-const User = require('./../../../../../models/user');
+const User = require('./../../../../models/user');
 
 describe('User.validate()', () => {
     const sut = User;

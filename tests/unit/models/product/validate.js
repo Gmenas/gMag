@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 const { expect } = require('chai');
 
-const Product = require('./../../../../../models/product');
+const Product = require('./../../../../models/product');
 
 describe('Product.validate()', () => {
     const sut = Product;

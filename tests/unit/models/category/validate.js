@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 const { expect } = require('chai');
 
-const Category = require('./../../../../../models/category');
+const Category = require('./../../../../models/category');
 
 describe('Category.validate()', () => {
     const sut = Category;

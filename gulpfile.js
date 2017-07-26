@@ -17,19 +17,14 @@ gulp.task('pre-test', () => {
         .pipe(istanbul.hookRequire());
 });
 
-gulp.task('test:unit', () => {
-    return gulp.src('./test/unit/**/*.js')
+gulp.task('test:unit', ['pre-test'], () => {
+    return gulp.src([
+        './tests/unit/**/*.js',
+        './tests/integration/**/*.js',
+    ])
         .pipe(mocha())
         .pipe(istanbul.writeReports());
 });
-
-// gulp.task('test:integration', () => {
-//     return gulp.src('./test/integration/**/*.js')
-//         .pipe(mocha({
-//             reporter: 'nyan',
-//         }))
-//         .pipe(istanbul.writeReports());
-// });
 
 // // for virtual server config
 // const config = {
@@ -71,8 +66,6 @@ gulp.task('test:unit', () => {
 // });
 
 gulp.task('test', gulpsync.sync([
-    'pre-test',
     'test:unit',
-    // 'test:integration',
     // 'test:browser',
 ]));
