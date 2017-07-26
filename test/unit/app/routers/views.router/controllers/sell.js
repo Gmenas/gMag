@@ -2,7 +2,7 @@
 const { expect } = require('chai');
 
 // eslint-disable-next-line max-len
-const homeController = require('./../../../../../../app/routers/views.router/controllers/home');
+const homeController = require('./../../../../../../app/routers/views.router/controllers/sell');
 const reqResMock = require('./../../req.res.mock');
 
 describe('homeController.init()', () => {
@@ -10,18 +10,12 @@ describe('homeController.init()', () => {
     let req;
     let res;
     const categories = [1, 2];
-    const products = [3, 4];
     const user = 'user';
     const flash = () => 'flash';
     const data = {
         categories: {
             getAll: () => {
                 return Promise.resolve(categories);
-            },
-        },
-        products: {
-            getRecent: () => {
-                return Promise.resolve(products);
             },
         },
     };
@@ -38,7 +32,7 @@ describe('homeController.init()', () => {
     it('expect to render correct view', (done) => {
         sut.init(req, res, data)
             .then(() => {
-                expect(res.viewName).to.equal('home');
+                expect(res.viewName).to.equal('sell');
                 done();
             })
             .catch(done);
@@ -46,11 +40,10 @@ describe('homeController.init()', () => {
 
     it('expect to pass correct context', (done) => {
         const context = {
-            title: 'Home',
+            title: 'Sell',
             user: user,
             flash: flash(),
             categories: categories,
-            recent: products,
         };
 
         sut.init(req, res, data)

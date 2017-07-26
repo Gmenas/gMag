@@ -1,5 +1,5 @@
 function init(req, res, data) {
-    data
+    return data
         .categories.getAll()
         .then((categories) => {
             const context = {
