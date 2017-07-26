@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const renderError = (req, res, next) => {
+function _renderError(req, res, next) {
     res.renderError = (msg) => {
         const context = {
             title: 'Error',
@@ -12,10 +12,10 @@ const renderError = (req, res, next) => {
         return res.render('Error', context);
     };
     next();
-};
+}
 
 function init(app, data) {
-    app.use(renderError);
+    app.use(_renderError);
 
     fs.readdirSync(__dirname)
         .filter((file) => file.includes('.router'))
