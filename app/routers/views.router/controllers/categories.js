@@ -5,7 +5,7 @@ function init(req, res, data) {
     });
     const categoriesWithProducts = [];
 
-    data
+    return data
         .categories.getAll()
         .then((categories) => {
             categories.forEach((c) => {
@@ -13,7 +13,7 @@ function init(req, res, data) {
                     .getByQueryFilter(c._id, filter, 3);
                 categoriesWithProducts.push(c);
             });
-            Promise
+            return Promise
                 .all(categories.map((x) => x.products))
                 .then((groupedProducts) => {
                     groupedProducts.forEach((x, i) => {

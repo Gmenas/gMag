@@ -10,7 +10,7 @@ function init(req, res, data) {
         step: 50,
     };
 
-    data
+    return data
         .categories.getByUrl(req.params.categoryUrl)
         .then((category) => {
             const categoryId = category._id;
