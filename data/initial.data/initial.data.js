@@ -1,18 +1,22 @@
-/* globals __dirname */
 const fs = require('fs');
-const path = require('path');
 
-function init(data) {
-    const file = fs.readFileSync(path.join(__dirname, 'data.json'), 'utf8');
+function init(data, initialDataFile) {
+    const file = fs.readFileSync(initialDataFile, 'utf8');
     const initialData = JSON.parse(file);
+    const toBeCreated = [];
 
-    Object.keys(initialData).forEach((collection) => {
-        initialData[collection].forEach((i) => {
-            data[collection].create(i).catch(() => {});
+    return new Promise((resolve, reject) => {
+        Object.keys(initialData).forEach((collection) => {
+            initialData[collection].forEach((i) => {
+                toBeCreated.push(data[collection].create(i));
+            });
         });
+        Promise.all(toBeCreated.map((p) => p.catch((e) => e)))
+            .then((created) => {
+                resolve(data);
+            })
+            .catch(reject);
     });
-
-    return Promise.resolve(data);
 }
 
 module.exports = { init };
