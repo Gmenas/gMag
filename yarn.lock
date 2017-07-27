@@ -1839,6 +1839,10 @@ mocha@^3.0.0, mocha@^3.4.2:
     mkdirp "0.5.1"
     supports-color "3.1.2"
 
+mock-fs@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/mock-fs/-/mock-fs-4.4.1.tgz#f285fa025b42a4031faf75b66f632b21e7056683"
+
 mongodb-core@2.1.14:
   version "2.1.14"
   resolved "https://registry.yarnpkg.com/mongodb-core/-/mongodb-core-2.1.14.tgz#13cba2764226b5be3d18992af0c963ce5ea0f0fd"

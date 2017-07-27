@@ -25,6 +25,7 @@
         "gulp-mocha": "3.0.1",
         "gulp-sync": "^0.1.4",
         "mocha": "^3.4.2",
+        "mock-fs": "^4.4.1",
         "selenium-webdriver": "^3.5.0",
         "sinon": "^2.3.8",
         "supertest": "^3.0.0"

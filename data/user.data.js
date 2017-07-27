@@ -8,9 +8,6 @@ class UserData extends BaseData {
     }
 
     getByUsername(username) {
-        if (typeof username !== 'string') {
-            return Promise.reject(`Invalid username.`);
-        }
         const result = this._collection
             .findOne({ username: username });
         return Promise.resolve(result);
