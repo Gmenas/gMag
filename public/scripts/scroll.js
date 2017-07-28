@@ -1,8 +1,12 @@
 $(function() {
     var skip = 9;
 
-    $(window).scroll(function() {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    $(window).on('scroll', function() {
+        var windowHeight = $(window).outerHeight();
+        var scrollTop = $(window).scrollTop();
+        var documentHeight = $(window).innerHeight();
+
+        if ((windowHeight + scrollTop) === documentHeight) {
             var categoryUrl = window.location.pathname.split('/')[2];
             var query = $.query.get();
 
@@ -12,7 +16,7 @@ $(function() {
                 p: query.p,
                 skip: skip,
             }, function(products) {
-                $('.row.scroll').append(products)
+                $('.row.scroll').append(products);
                 skip += skip;
             });
         }

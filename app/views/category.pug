@@ -5,10 +5,9 @@ block content
         .row
             +search('/browse/' + category.url)
         .row.margin-bot-md
-            .col-xs-1.col-xs-offset-2
+            .col-xs-2.text-right
                 b $ #{slider.min}
-            .col-xs-6
-                label(for = "priceRange")
+            .col-xs-8
                 input#price-range(
                     name='p',
                     type='text',
@@ -19,7 +18,7 @@ block content
                     data-slider-value='[' + filter.price.min + ',' + filter.price.max + ']'
                     style='width: 100%'
                 )
-            .col-xs-1
+            .col-xs-2.text-left
                 b $ #{slider.max}
     .row.scroll
         +productsList(products)
