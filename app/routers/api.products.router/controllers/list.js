@@ -13,7 +13,7 @@ function init(req, res, data) {
             const categoryId = category._id;
             data
                 .products
-                .getByQueryFilter(categoryId, filter, skip, count)
+                .getByQueryFilter(categoryId, filter, count, skip)
                 .then((products) => {
                     const context = {
                         products: products,

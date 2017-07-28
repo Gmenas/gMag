@@ -6,31 +6,29 @@ describe('BaseData.get()', () => {
     let sut;
     const ModelClass = class { };
     const items = ['item'];
-    const toArray = () => {
-        return Promise.resolve(items);
+    const findRes = new class {
+        sort() {
+            return this;
+        }
+        skip() {
+            return this;
+        }
+        limit() {
+            return this;
+        }
+        toArray() {
+            return Promise.resolve(items);
+        }
     };
-    const limit = () => {
-        return { toArray };
-    };
-    const sort = () => {
-        return { limit };
-    };
-    const find = () => {
-        return { sort };
-    };
-    const collection = { find };
-    const db = {
-        collection: () => {
-            return collection;
-        },
-    };
+    const collection = { find: () => findRes };
+    const db = { collection: () => collection };
 
     beforeEach(() => {
         sut = new BaseData(db, ModelClass, '');
     });
 
     it('expect to call find, sort and limit with no error', (done) => {
-        sut.get(1, 1, 1)
+        sut.get(1, 1, 1, 1)
             .then((arr) => {
                 done();
             })

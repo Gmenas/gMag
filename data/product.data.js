@@ -21,7 +21,7 @@ class ProductData extends BaseData {
         return this.get({ sellerId: id }, { _id: -1 }, count);
     }
 
-    getByQueryFilter(categoryId, filter, skip, count) {
+    getByQueryFilter(categoryId, filter, count, skip) {
         return this.get(
             {
                 categoryId: categoryId,

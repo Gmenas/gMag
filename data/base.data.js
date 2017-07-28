@@ -40,11 +40,11 @@ class BaseData {
             });
     }
 
-    get(filter, sort, skip, limit) {
+    get(filter, sort, limit, skip) {
         filter = filter || {};
         sort = sort || {};
-        skip = skip || 0;
         limit = limit || 9;
+        skip = skip || 0;
 
         const result = this._collection
             .find(filter)
