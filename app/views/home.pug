@@ -12,9 +12,9 @@ block content
                 h1.margin-bot-lg Welcome to <b>gMag</b>!
                 .row
                     .container
-                        a.btn.btn-primary.btn-lg.col-xs-12.col-md-5.margin-bot-md(href='/browse')
+                        a#browse.btn.btn-primary.btn-lg.col-xs-12.col-md-5.margin-bot-md(href='/browse')
                             | Browse all categories
-                        a.btn.btn-primary.btn-lg.col-xs-12.col-md-5.col-md-offset-2(href='/sell')
+                        a#sell.btn.btn-primary.btn-lg.col-xs-12.col-md-5.col-md-offset-2(href='/sell')
                             | Sell something
             .row
                 +productsList(recent)

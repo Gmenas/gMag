@@ -4,23 +4,23 @@ block content
         .col-sm-6.col-sm-offset-3
             form#contact_form.form-signin.text-center(method='POST')
                 h2.form-signin-heading.margin-bot-md Register
-                input#inputUsername.form-control.margin-bot-md(
+                input#input-username.form-control.margin-bot-md(
                     name='username',
                     type='text',
                     placeholder='Username',
                     required='',
                     autofocus=''
                 )
-                input#inputEmail.form-control.margin-bot-md(
+                input#input-email.form-control.margin-bot-md(
                     name='email',
                     type='email',
                     placeholder='E-mail',
                     required=''
                 )
-                input#inputPassword.form-control.margin-bot-md(
+                input#input-password.form-control.margin-bot-md(
                     name='password',
                     type='password',
                     placeholder='Password',
                     required=''
                 )
-                button.btn.btn-lg.btn-primary.btn-block(type='submit') Register
+                button#input-register.btn.btn-lg.btn-primary.btn-block(type='submit') Register
