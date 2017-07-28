@@ -29,17 +29,17 @@ html(lang='en')
                     ul.nav.navbar-nav.navbar-right
                         if !user
                             li
-                                a(href='/register')
+                                a#register(href='/register')
                                     | Register &nbsp;
                             li
-                                a(href='/login')
+                                a#login(href='/login')
                                     | Login &nbsp;
                                     span.glyphicon.glyphicon-log-in(aria-hidden='true')
                         else
                             li
                                 a#username(href='/user/' + user.username) #{user.username}
                             li
-                                a(href='/logout')
+                                a#logout(href='/logout')
                                     | Logout &nbsp;
                                     span.glyphicon.glyphicon-log-out(aria-hidden='true')
     .container
