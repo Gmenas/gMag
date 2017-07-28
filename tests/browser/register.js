@@ -74,7 +74,7 @@ describe('Register', () => {
                 register(validUser)
                     .then(() => ui.getText('.alert-danger'))
                     .then((text) => {
-                        expect(text).to.match(/exists/);
+                        expect(text).to.contain('exists');
                         done();
                     });
             });
