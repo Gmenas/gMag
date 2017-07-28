@@ -1,13 +1,12 @@
-let skip = 9;
-$(window).scroll(function () {
+var skip = 9;
 
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+$(window).scroll(function() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        var url = $('form').attr('action').split('/')[2]
 
-    const url = $('form').attr('action').split('/')[2]
-
-    $.get('products', { skip: skip.toString(), categoryUrl: url }, function (products) {
-      $('.row.scroll').append(products)
-      skip = $('.text-muted').length;
-    })
-  }
+        $.get('products', { skip: skip.toString(), categoryUrl: url }, function(products) {
+            $('.row.scroll').append(products)
+            skip = $('.text-muted').length;
+        })
+    }
 });

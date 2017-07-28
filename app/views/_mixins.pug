@@ -21,7 +21,7 @@ mixin productsList(products)
                 h3.col-xs-9.text-left.padding-none
                     a(href='/product/' + p._id) #{p.title}
                 h3.col-xs-3.text-right.padding-none $#{p.price}
-            p(st).text-justify #{p.description}
+            p.text-justify #{p.description}
 
 mixin flash(flash)
     if flash
