@@ -11,5 +11,5 @@ if not exist %~dp0bin\chromedriver.exe (
 if not %passed% == true (
     pause
 ) else (
-    java -jar %~dp0\bin\selenium-standalone.jar
+    java -jar %~dp0bin\selenium-standalone.jar
 )
