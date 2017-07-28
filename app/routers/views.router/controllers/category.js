@@ -16,7 +16,7 @@ function init(req, res, data) {
             const categoryId = category._id;
             data
                 .products
-                .getByQueryFilter(categoryId, filter)
+                .getByQueryFilter(categoryId, filter, 9)
                 .then((products) => {
                     const context = {
                         title: `Browse ${category.title}`,

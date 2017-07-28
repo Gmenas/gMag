@@ -21,23 +21,19 @@ class ProductData extends BaseData {
         return this.get({ sellerId: id }, { _id: -1 }, count);
     }
 
-    getByQueryFilter(categoryId, filter, count, skip) {
-        return this.get(
-            {
-                categoryId: categoryId,
-                price: {
-                    $gte: filter.price.min,
-                    $lte: filter.price.max,
-                },
-                $or: [
-                    { title: new RegExp(filter.text, 'i') },
-                    { description: new RegExp(filter.text, 'i') },
-                ],
+    getByQueryFilter(categoryId, qFilter, count, skip) {
+        const filter = {
+            categoryId: categoryId,
+            price: {
+                $gte: qFilter.price.min,
+                $lte: qFilter.price.max,
             },
-            { _id: -1 },
-            skip,
-            count
-        );
+            $or: [
+                { title: new RegExp(qFilter.text, 'i') },
+                { description: new RegExp(qFilter.text, 'i') },
+            ],
+        };
+        return this.get(filter, { _id: -1 }, count, skip);
     }
 
     makeValidFilter(f) {

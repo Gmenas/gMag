@@ -43,7 +43,7 @@ class BaseData {
     get(filter, sort, limit, skip) {
         filter = filter || {};
         sort = sort || {};
-        limit = limit || 9;
+        limit = limit || 0;
         skip = skip || 0;
 
         const result = this._collection
