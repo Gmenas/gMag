@@ -1,0 +1,8 @@
+each p in products  
+    .card.col-xs-12.col-sm-6.col-md-4.text-center.margin-bot-md.text-muted
+        img(src='/example.svg', alt='Product image')
+        .row.margin-none
+            h3.col-xs-9.text-left.padding-none
+                a(href='/product/' + p._id) #{p.title}
+            h3.col-xs-3.text-right.padding-none $#{p.price}
+        p(st).text-justify #{p.description}

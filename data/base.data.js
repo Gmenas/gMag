@@ -40,14 +40,16 @@ class BaseData {
             });
     }
 
-    get(filter, sort, limit) {
+    get(filter, sort, skip, limit) {
         filter = filter || {};
         sort = sort || {};
-        limit = limit || 0;
+        skip = skip || 0;
+        limit = limit || 9;
 
         const result = this._collection
             .find(filter)
             .sort(sort)
+            .skip(skip)
             .limit(limit)
             .toArray();
 
