@@ -11,7 +11,7 @@ class CategoryData extends BaseData {
     }
 
     getByUrl(url) {
-        return this.get({ url: url.toLowerCase() })
+        return this.get({ url: url })
             .then((result) => {
                 if (result.length === 0) {
                     return Promise.reject('Category does not exist.');

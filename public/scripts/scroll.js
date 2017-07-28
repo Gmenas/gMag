@@ -1,14 +1,20 @@
 $(function() {
-    var skip = 10;
+    var skip = 9;
 
     $(window).scroll(function() {
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            var url = $('form').attr('action').split('/')[2]
+            var categoryUrl = window.location.pathname.split('/')[2];
+            var query = $.query.get();
 
-            $.get('/api/products', { categoryUrl: url, skip: skip.toString() }, function(products) {
+            $.get('/api/products', {
+                categoryUrl: categoryUrl,
+                q: query.q,
+                p: query.p,
+                skip: skip,
+            }, function(products) {
                 $('.row.scroll').append(products)
                 skip += skip;
-            })
+            });
         }
     });
 });

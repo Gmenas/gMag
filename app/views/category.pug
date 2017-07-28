@@ -3,7 +3,7 @@ block content
     .container
         h1.text-center.margin-bot-md #{category.title}
         .row
-            +search('/browse/' + category.title)
+            +search('/browse/' + category.url)
         .row.margin-bot-md
             .col-xs-1.col-xs-offset-2
                 b $ #{slider.min}

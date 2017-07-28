@@ -1,15 +1,14 @@
-function init(req, res, data, asd) {
+function init(req, res, data) {
     const filter = data.products.makeValidFilter({
-        textStr: '.*',
-        priceArr: [],
+        textStr: req.query.q,
+        priceArr: req.query.p,
     });
 
-    const url = req.query.categoryUrl;
     const skip = Number(req.query.skip);
     const count = 9;
 
     data
-        .categories.getByUrl(url)
+        .categories.getByUrl(req.query.categoryUrl)
         .then((category) => {
             const categoryId = category._id;
             data
@@ -20,9 +19,10 @@ function init(req, res, data, asd) {
                         products: products,
                     };
 
-                    return res.render('scroll', context);
+                    return res.render('partial/scroll', context);
                 });
         })
         .catch((msg) => res.renderError(msg));
 }
+
 module.exports = { init };

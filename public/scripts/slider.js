@@ -1,5 +1,6 @@
 $(function() {
     var timeOut;
+
     $('#price-range').on('change', function(el) {
         clearTimeout(timeOut);
         timeOut = setTimeout(function() {
