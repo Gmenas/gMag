@@ -62,3 +62,6 @@ typings/
 
 # OS
 desktop.ini
+
+# Selenium standalone
+selenium_server/bin

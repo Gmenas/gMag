@@ -2,7 +2,7 @@ const gulp = require('gulp');
 const mocha = require('gulp-mocha');
 const istanbul = require('gulp-istanbul');
 
-gulp.task('pre-test', () => {
+gulp.task('pre-test:app', () => {
     return gulp.src([
         './app/**/*.js',
         './config/**/*.js',
@@ -16,49 +16,28 @@ gulp.task('pre-test', () => {
         .pipe(istanbul.hookRequire());
 });
 
-gulp.task('test', ['pre-test'], () => {
+gulp.task('test:app', ['pre-test:app'], () => {
     return gulp.src([
         './tests/unit/**/*.js',
         './tests/integration/**/*.js',
     ])
         .pipe(mocha())
         .pipe(istanbul.writeReports({
-             dir: './tests/coverage',
+            dir: './tests/coverage',
         }));
 });
 
-// // for virtual server config
-// const config = {
-//     connectionStr: 'mongodb://localhost/gmag-test',
-//     port: 3002,
-// };
-// gulp.task('server-start', () => {
-//     return Promise.resolve()
-//         .then(() => require('./db').init(config.connectionStr))
-//         .then((db) => require('./data').init(db))
-//         .then((data) => require('./data/initial.data').init(data))
-//         .then((data) => require('./app').init(data, config.sessionSecret))
-//         .then((app) => {
-//             app.listen(config.port,
-//                 () => console.log(
-//                     `Server running at port ${config.port}...`)
-//             );
-//         });
-// });
-
-// // remove virtual db
-// const { MongoClient } = require('mongodb');
-// gulp.task('server-stop', () => {
-//     return MongoClient.connect(config.connectionStr)
-//         .then((db) => {
-//             return db.dropDatabase();
-//         });
-// });
-
-// gulp.task('test:browser', ['server-start'], () => {
-//     return gulp.src('./test/browser/**/*.js')
-//         .pipe(mocha())
-//         .once('end', () => {
-//             gulp.start('server-stop');
-//         });
-// });
+gulp.task('test:browser', () => {
+    const testServer = require('./tests/browser/utils/test.server');
+    return testServer.start()
+        .then(() => {
+            return gulp.src('./tests/browser/**/*.js')
+                .pipe(mocha({
+                    slow: 10000,
+                    timeout: 10000,
+                }))
+                .once('end', () => {
+                    testServer.stop();
+                });
+        });
+});
