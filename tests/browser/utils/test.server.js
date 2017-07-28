@@ -10,6 +10,7 @@ function start() {
         ))
         .then((db) => {
             testDb = db;
+            testDb.dropDatabase();
             return require('../../../data').init(db);
         })
         .then((data) => require('../../../data/initial.data').init(

@@ -37,7 +37,7 @@ html(lang='en')
                                     span.glyphicon.glyphicon-log-in(aria-hidden='true')
                         else
                             li
-                                a(href='/user/' + user.username) #{user.username}
+                                a#username(href='/user/' + user.username) #{user.username}
                             li
                                 a(href='/logout')
                                     | Logout &nbsp;
