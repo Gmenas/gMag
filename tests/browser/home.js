@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 const { expect } = require('chai');
-const { setupDriver } = require('./utils/setup.driver');
+const webDriver = require('./utils/web.driver');
 const ui = require('./utils/ui.ext');
 
 describe('Home', () => {
@@ -15,7 +15,7 @@ describe('Home', () => {
     };
 
     before(() => {
-        driver = setupDriver('chrome');
+        driver = webDriver.get();
         ui.setDriver(driver);
     });
 
@@ -66,9 +66,5 @@ describe('Home', () => {
                 expect(href).to.include('/login');
                 done();
             });
-    });
-
-    after(() => {
-        driver.quit();
     });
 });

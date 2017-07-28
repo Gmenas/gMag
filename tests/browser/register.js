@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 const { expect } = require('chai');
-const { setupDriver } = require('./utils/setup.driver');
+const webDriver = require('./utils/web.driver');
 const ui = require('./utils/ui.ext');
 
 describe('Register', () => {
@@ -19,7 +19,7 @@ describe('Register', () => {
     };
 
     before(() => {
-        driver = setupDriver('chrome');
+        driver = webDriver.get();
         ui.setDriver(driver);
     });
 

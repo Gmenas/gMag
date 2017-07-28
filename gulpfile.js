@@ -29,15 +29,21 @@ gulp.task('test:app', ['pre-test:app'], () => {
 
 gulp.task('test:browser', () => {
     const testServer = require('./tests/browser/utils/test.server');
-    return testServer.start()
+    const webDriver = require('./tests/browser/utils/web.driver');
+
+    return Promise.all([
+        testServer.start(),
+        webDriver.setup('chrome'),
+    ])
         .then(() => {
             return gulp.src('./tests/browser/**/*.js')
                 .pipe(mocha({
-                    slow: 10000,
-                    timeout: 10000,
+                    slow: 5000,
+                    timeout: 7500,
                 }))
                 .once('end', () => {
                     testServer.stop();
+                    webDriver.quit();
                 });
         });
 });
