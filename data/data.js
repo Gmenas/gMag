@@ -7,8 +7,9 @@ function init({ db, gfs }) {
     return Promise.resolve({
         categories: new CategoryData(db),
         products: new ProductData(db),
-        users: new UserData(db),
         session: new SessionData(db),
+        users: new UserData(db),
+        maxUploadSize: 3145728, // 3MB
         gfs: gfs,
     });
 }
