@@ -9,7 +9,6 @@ function init({ db, gfs }) {
         products: new ProductData(db),
         session: new SessionData(db),
         users: new UserData(db),
-        maxUploadSize: 3145728, // 3MB
         gfs: gfs,
     });
 }

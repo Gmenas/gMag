@@ -5,13 +5,7 @@ function init(req, res, data) {
         );
     }
 
-    return require('./uploader').init(data)(req, res, (err) => {
-        const acceptedFiles = [
-            'image/gif',
-            'image/png',
-            'image/jpeg',
-            'image/bmp',
-        ];
+    return require('./image.uploader').init(data)(req, res, (err) => {
         const photo = req.file;
         const product = {
             title: req.body.title,
@@ -23,14 +17,7 @@ function init(req, res, data) {
         };
 
         return new Promise((resolve, reject) => {
-            if (err) {
-                return reject('File too large');
-            }
-            if (photo && acceptedFiles.indexOf(photo.mimetype) < 0) {
-                data.gfs.remove({ _id: product.photoId });
-                return reject('Invalid image!');
-            }
-            return resolve();
+            return err ? reject(err.message) : resolve();
         })
             .then(() => data.categories.getByUrl(product.categoryUrl))
             .then((category) => {
