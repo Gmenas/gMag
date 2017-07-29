@@ -8,7 +8,7 @@ function start() {
         .then(() => require('../../../db')
             .init(config.connectionStr))
         .then((db) => {
-            testDb = db;
+            testDb = db.db;
             testDb.dropDatabase();
             return require('../../../data').init(db);
         })
