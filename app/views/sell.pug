@@ -2,7 +2,11 @@ extends _head
 block content
     .row
         .col-sm-6.col-sm-offset-3
-            form.form-signin.text-center(method='POST', action='/api/products')
+            form.form-signin.text-center(
+                method='POST',
+                action='/api/products',
+                enctype='multipart/form-data'
+            )
                 h2.form-signin-heading.margin-bot-md Sell something
                 input.form-control.margin-bot-md(
                     name='title',
@@ -33,7 +37,7 @@ block content
                 .row.margin-none.margin-bot-md
                     h4.col-xs-7.text-left.padding-none Upload photo
                     input.col-xs-5(
-                        name='file',
+                        name='photo',
                         type='file'
                     )
                 button.btn.btn-lg.btn-primary.btn-block(type='submit') Publish
