@@ -12,23 +12,27 @@ function init(req, res, data) {
         );
     }
 
+    const photo = req.file;
     const product = {
         title: req.body.title,
         description: req.body.description,
         price: Number(Number(req.body.price).toFixed(2)),
         categoryUrl: req.body.categoryUrl,
         sellerId: req.user._id,
-        fileId: req.file.grid._id || null,
+        photoId: photo ? photo.grid._id : null,
     };
 
-    return data
-        .categories.getByUrl(product.categoryUrl)
+    return new Promise((resolve, reject) => {
+        if (photo && acceptedFiles.indexOf(photo.mimetype) < 0) {
+            data.gfs.remove({ _id: product.photoId });
+            return reject('Invalid image!');
+        }
+        return resolve();
+    })
+        .then(() => data.categories.getByUrl(product.categoryUrl))
         .then((category) => {
             product.categoryId = category._id;
-            if (!req.file.mimetype.find(acceptedFiles)) {
-                data.gfs.remove({ _id: product.fileId });
-                return Promise.reject('Invalid image.');
-            }
+
 
             return Promise.resolve(data.products.create(product));
         })

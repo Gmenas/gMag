@@ -32,7 +32,8 @@ class Product {
             typeof product.description === 'string' &&
             typeof product.price === 'number' &&
             typeof product.categoryId === 'object' &&
-            typeof product.sellerId === 'object';
+            typeof product.sellerId === 'object' &&
+            typeof product.photoId === 'object';
     }
 
     static toDbModel(product) {
@@ -42,6 +43,7 @@ class Product {
             price: product.price,
             categoryId: product.categoryId,
             sellerId: product.sellerId,
+            photoId: product.photoId,
         };
     }
 

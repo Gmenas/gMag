@@ -2,7 +2,11 @@ extends _head
 block content
     .row
         .col-md-8.col-md-offset-2.col-xs-12.col-sm-12
-            img(src="/example.svg", style='width: 100%')
+            img(
+                src='/uploads/' + (product.photoId || 'no-image.svg'),
+                alt='Product photo'
+                style='width: 100%'
+            )
             .row
                 h1.col-xs-9.text-left #{product.title}
                 h1.col-xs-3.text-right.text-muted $#{product.price}

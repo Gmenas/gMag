@@ -1,0 +1,9 @@
+<svg width="400" height="320" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" preserveAspectRatio="none">
+    <defs>
+        <style type="text/css">
+            text {fill:#aaa;font-weight:bold;font-family:sans-serif;font-size:25pt}
+        </style>
+    </defs>
+    <rect width="400" height="320" fill="#EEEEEE"></rect>
+    <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle">No image</text>
+</svg>

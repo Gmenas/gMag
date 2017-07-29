@@ -1,5 +1,5 @@
 $(function() {
-    var skip = 9;
+    var skip = currSkip = 9;
 
     $(window).on('scroll', function() {
         var windowHeight = $(window).outerHeight();
@@ -14,10 +14,10 @@ $(function() {
                 categoryUrl: categoryUrl,
                 q: query.q,
                 p: query.p,
-                skip: skip,
+                skip: currSkip,
             }, function(products) {
                 $('.row.scroll').append(products);
-                skip += skip;
+                currSkip += skip;
             });
         }
     });
