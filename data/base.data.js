@@ -1,3 +1,4 @@
+/* eslint-disable new-cap */
 const { ObjectId } = require('mongodb');
 
 class BaseData {
@@ -62,7 +63,7 @@ class BaseData {
         }
 
         return this._collection
-            .findOne({ _id: new ObjectId(id) });
+            .findOne({ _id: ObjectId(id) });
     }
 }
 

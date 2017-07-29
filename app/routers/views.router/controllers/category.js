@@ -1,22 +1,25 @@
+const priceConfig = {
+    min: 0,
+    max: 5000,
+    step: 50,
+};
+
 function init(req, res, data) {
-    const filter = data.products.makeValidFilter({
-        textStr: req.query.q,
-        priceArr: req.query.p,
-    });
-
-    const sliderConfig = {
-        min: 0,
-        max: 5000,
-        step: 50,
-    };
-
     return data
         .categories.getByUrl(req.params.categoryUrl)
         .then((category) => {
-            const categoryId = category._id;
-            data
+            const filter = {
+                text: req.query.q,
+                price: {
+                    min: req.query.pmin || priceConfig.min,
+                    max: req.query.pmax || priceConfig.max,
+                },
+                categoryId: category._id,
+            };
+
+            return data
                 .products
-                .getByQueryFilter(categoryId, filter, 9)
+                .getByQueryFilter(filter, 9)
                 .then((products) => {
                     const context = {
                         title: `Browse ${category.title}`,
@@ -25,9 +28,8 @@ function init(req, res, data) {
                         category: category,
                         products: products,
                         filter: filter,
-                        slider: sliderConfig,
+                        slider: priceConfig,
                     };
-
                     return res.render('category', context);
                 });
         })

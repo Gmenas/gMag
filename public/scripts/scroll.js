@@ -7,15 +7,10 @@ $(function() {
         var documentHeight = $(window).innerHeight();
 
         if ((windowHeight + scrollTop) === documentHeight) {
-            var categoryUrl = window.location.pathname.split('/')[2];
-            var query = $.query.get();
+            var filter = window.filter;
+            filter.skip = currSkip;
 
-            $.get('/api/products', {
-                categoryUrl: categoryUrl,
-                q: query.q,
-                p: query.p,
-                skip: currSkip,
-            }, function(products) {
+            $.get('/api/products', filter, function(products) {
                 $('.row.scroll').append(products);
                 currSkip += skip;
             });

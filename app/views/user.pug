@@ -2,7 +2,10 @@ extends _head
 block content
     .row.text-center.margin-bot-md
         h1 #{userProfile.username}
-    .row.text-center.margin-bot-md
+    .row.text-muted.text-center.margin-bot-md
         h2 Products by <b>#{userProfile.username}</b>
-    .row
+    .row.scroll
         +productsList(userProducts)
+
+    script window.filter = !{JSON.stringify(filter)}
+    script(src='/scripts/scroll.js')

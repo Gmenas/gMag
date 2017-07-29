@@ -5,8 +5,11 @@ $(function() {
         clearTimeout(timeOut);
         timeOut = setTimeout(function() {
             var val = el.value.newValue;
-            var q = $.query.set('p', val).toString();
-            location.search = q;
+            var query = $.query
+                .set('pmin', val[0])
+                .set('pmax', val[1])
+                .toString();
+            location.search = query;
         }, 700);
     });
 });

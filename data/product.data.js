@@ -1,3 +1,6 @@
+/* eslint-disable new-cap */
+const { ObjectId } = require('mongodb');
+
 const BaseData = require('./base.data');
 const Product = require('../models/product');
 
@@ -21,32 +24,37 @@ class ProductData extends BaseData {
         return this.get({ sellerId: id }, { _id: -1 }, count);
     }
 
-    getByQueryFilter(categoryId, qFilter, count, skip) {
-        const filter = {
-            categoryId: categoryId,
-            price: {
-                $gte: qFilter.price.min,
-                $lte: qFilter.price.max,
-            },
-            $or: [
-                { title: new RegExp(qFilter.text, 'i') },
-                { description: new RegExp(qFilter.text, 'i') },
-            ],
-        };
+    getByQueryFilter(filter, count, skip) {
+        filter = this._makeValidFilter(filter);
         return this.get(filter, { _id: -1 }, count, skip);
     }
 
-    makeValidFilter(f) {
-        f = f || {};
-        f.textStr = f.textStr || '.*';
-        f.priceArr = f.priceArr || [];
-        return {
-            text: f.textStr,
-            price: {
-                min: Number(f.priceArr[0]) || 0,
-                max: Number(f.priceArr[1]) || 10000,
-            },
-        };
+    _makeValidFilter(f) {
+        const filter = {};
+
+        if (!f) {
+            return filter;
+        }
+        if (f.text) {
+            filter.$or = [
+                { title: new RegExp(f.text, 'i') },
+                { description: new RegExp(f.text, 'i') },
+            ];
+        }
+        if (f.price) {
+            filter.price = {
+                $gte: Number(f.price.min),
+                $lte: Number(f.price.max),
+            };
+        }
+        if (f.categoryId) {
+            filter.categoryId = ObjectId(f.categoryId);
+        }
+        if (f.sellerId) {
+            filter.sellerId = ObjectId(f.sellerId);
+        }
+
+        return filter;
     }
 }
 

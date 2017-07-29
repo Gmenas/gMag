@@ -6,7 +6,7 @@ function init(req, res, data) {
                 return Promise.reject('User does not exist');
             }
             return data
-                .products.getBySellerId(user._id)
+                .products.getBySellerId(user._id, 9)
                 .then((products) => {
                     const context = {
                         title: user.username,
@@ -14,6 +14,7 @@ function init(req, res, data) {
                         flash: req.flash(),
                         userProfile: user,
                         userProducts: products,
+                        filter: { sellerId: user._id },
                     };
                     return res.render('user', context);
                 });
