@@ -30,6 +30,11 @@ function init(app, data) {
             `Page '${req.url.slice(1)}' not found.`
         );
     });
+
+    app.use((err, req, res, next) => {
+        console.error(err.stack);
+        res.renderError('Internal server error!');
+    });
 }
 
 module.exports = { init };

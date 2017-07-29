@@ -5,14 +5,14 @@ const maxFileSize = 5242880; // 5MB
 
 function init(data) {
     const storage = multerGfs({ gfs: data.gfs });
-
     const multerUpload = multer({
         storage: storage,
         limits: {
             fileSize: maxFileSize,
         },
     });
-    return multerUpload;
+
+    return multerUpload.single('photo');
 }
 
 module.exports = { init };
