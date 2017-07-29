@@ -22,8 +22,9 @@ describe('Product.validate()', () => {
                 title: 'valid',
                 description: 'valid',
                 price: 100,
-                categoryId: {},
-                sellerId: {},
+                categoryId: null,
+                sellerId: null,
+                photoId: null,
             };
         });
 

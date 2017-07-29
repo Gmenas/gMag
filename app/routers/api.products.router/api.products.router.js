@@ -1,6 +1,8 @@
+const multerUpload = require('./controllers/multer.upload');
+
 function init(app, data) {
     app.post('/api/products',
-        data.multerUpload.single('photo'),
+        multerUpload.init(data).single('photo'),
         (req, res) =>
             require('./controllers/add').init(req, res, data)
     );

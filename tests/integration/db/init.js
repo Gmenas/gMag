@@ -9,7 +9,7 @@ describe('db.init()', () => {
 
     it('expect to return promise with collection fn', (done) => {
         sut.init(connectionStr)
-            .then((db) => {
+            .then(({ db }) => {
                 expect(db.collection).to.be.a('function');
                 db.close();
                 done();
