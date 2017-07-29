@@ -14,10 +14,6 @@ body {
 
 
 /* bootstrap extensions */
-.hidden {
-    display: none;
-}
-
 .padding-none {
     padding: 0;
 }

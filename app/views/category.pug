@@ -2,9 +2,9 @@ extends _base
 block content
     .container
         h1.text-center.margin-bot-md #{category.title}
-        .row
+        .row.margin-bot-sm
             +search('/browse/' + category.url)
-        .row.margin-bot-md
+        .row.margin-bot-sm
             .col-xs-2.text-right
                 b $ #{slider.min}
             .col-xs-8
@@ -20,6 +20,8 @@ block content
                 )
             .col-xs-2.text-left
                 b $ #{slider.max}
+        #clear-filter.hidden.row.margin-bot-md.text-center
+            a(href='#') Clear filter
     .row.scroll
         +productsList(products)
 

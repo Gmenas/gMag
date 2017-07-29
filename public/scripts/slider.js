@@ -1,6 +1,17 @@
 $(function() {
-    var timeOut;
+    var isEmptyQuery = $.isEmptyObject($.query.keys);
+    var $clearFilter = $('#clear-filter');
 
+    if (!isEmptyQuery) {
+        $clearFilter.removeClass('hidden');
+    }
+
+    $clearFilter.on('click', function(e) {
+        e.preventDefault();
+        location = location.pathname;
+    });
+
+    var timeOut;
     $('#price-range').on('change', function(el) {
         clearTimeout(timeOut);
         timeOut = setTimeout(function() {
