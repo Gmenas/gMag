@@ -55,17 +55,14 @@ describe('userController.init()', () => {
         });
 
         it('expect to pass correct context', (done) => {
-            const context = {
-                title: user.username,
-                user: reqUser,
-                flash: flash(),
-                userProfile: user,
-                userProducts: products,
-            };
-
             sut.init(req, res, data)
                 .then(() => {
-                    expect(res.context).to.deep.equal(context);
+                    expect(res.context).to.haveOwnProperty('title');
+                    expect(res.context).to.haveOwnProperty('user');
+                    expect(res.context).to.haveOwnProperty('flash');
+                    expect(res.context).to.haveOwnProperty('userProfile');
+                    expect(res.context).to.haveOwnProperty('userProducts');
+                    expect(res.context).to.haveOwnProperty('filter');
                     done();
                 })
                 .catch(done);
