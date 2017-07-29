@@ -1,4 +1,4 @@
-extends _head
+extends _base
 block content
     .row.text-center.margin-bot-md
         h1 #{userProfile.username}
@@ -7,5 +7,6 @@ block content
     .row.scroll
         +productsList(userProducts)
 
+block scripts
     script window.filter = !{JSON.stringify(filter)}
     script(src='/scripts/scroll.js')

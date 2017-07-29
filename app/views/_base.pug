@@ -43,6 +43,7 @@ html(lang='en')
                                 a#logout(href='/logout')
                                     | Logout &nbsp;
                                     span.glyphicon.glyphicon-log-out(aria-hidden='true')
-    .container
-        +flash(flash)
-        block content
+        main.container
+            +flash(flash)
+            block content
+        block scripts
