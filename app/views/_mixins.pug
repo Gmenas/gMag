@@ -17,11 +17,9 @@ mixin productsList(products)
     each p in products
         .card.col-xs-12.col-sm-6.col-md-4.text-center.margin-bot-md.text-muted
             a(href='/product/' + p._id)
-                .img-container
-                    img(
-                        src='/uploads/' + (p.photoId || 'no-image.svg'),
-                        alt='Product photo'
-                    )
+                .img-container(
+                    style='background-image:url(/uploads/' + (p.photoId || 'no-image.svg') + ')'
+                )
             .row.margin-none
                 h3.col-xs-9.text-left.padding-none
                     a(href='/product/' + p._id) #{p.title}
