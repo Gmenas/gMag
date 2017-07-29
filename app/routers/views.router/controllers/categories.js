@@ -1,16 +1,16 @@
 function init(req, res, data) {
-    const filter = data.products.makeValidFilter({
-        textStr: req.query.q,
-        priceArr: req.query.p,
-    });
     const categoriesWithProducts = [];
 
     return data
         .categories.getAll()
         .then((categories) => {
+            const filter = {
+                text: req.query.q,
+            };
+
             categories.forEach((c) => {
-                c.products = data.products
-                    .getByQueryFilter(c._id, filter, 3);
+                filter.categoryId = c._id;
+                c.products = data.products.getByQueryFilter(filter, 3);
                 categoriesWithProducts.push(c);
             });
             return Promise
