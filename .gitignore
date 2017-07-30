@@ -65,3 +65,6 @@ desktop.ini
 
 # Selenium standalone
 bin/
+
+# AWS setup
+config/production.config.json
