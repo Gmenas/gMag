@@ -9,7 +9,7 @@ function _renderError(req, res, next) {
             user: req.user,
             errorMsg: msg,
         };
-        return res.render('Error', context);
+        return res.render('error', context);
     };
     next();
 }
