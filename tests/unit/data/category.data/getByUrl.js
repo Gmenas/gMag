@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 const { expect } = require('chai');
 const sinon = require('sinon');
+const utils = require('../utils');
 
 const CategoryData = require('../../../../data/category.data');
 
@@ -16,7 +17,7 @@ describe('CategoryData.getByUrl()', () => {
         beforeEach(() => {
             sut = new CategoryData(db, ModelClass, '');
             category = 1;
-            sut.get = sinon.spy(() => {
+            utils.getSuperInstance(sut).get = sinon.spy(() => {
                 return Promise.resolve([category]);
             });
         });
@@ -38,7 +39,7 @@ describe('CategoryData.getByUrl()', () => {
     describe('when category does not exist', () => {
         beforeEach(() => {
             sut = new CategoryData(db, ModelClass, '');
-            sut.get = sinon.spy(() => {
+            utils.getSuperInstance(sut).get = sinon.spy(() => {
                 return Promise.resolve([]);
             });
         });

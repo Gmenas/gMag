@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 const { expect } = require('chai');
 const sinon = require('sinon');
+const utils = require('../utils');
 
 const ProductData = require('../../../../data/product.data');
 
@@ -13,7 +14,7 @@ describe('ProductData.getByCategoryId()', () => {
 
     beforeEach(() => {
         sut = new ProductData(db, ModelClass, '');
-        sut.get = sinon.spy();
+        utils.getSuperInstance(sut).get = sinon.spy();
     });
 
     it('expect to call BaseData.get() with correct args', () => {

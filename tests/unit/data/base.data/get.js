@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const dbMock = require('../utils/db.mock');
+const utils = require('../utils');
 
 const BaseData = require('../../../../data/base.data');
 
@@ -7,7 +7,7 @@ describe('BaseData.get()', () => {
     let sut;
     const ModelClass = class { };
     const items = ['item'];
-    const db = dbMock.getDbMock(items);
+    const db = utils.getDbMock(items);
 
     beforeEach(() => {
         sut = new BaseData(db, ModelClass, '');

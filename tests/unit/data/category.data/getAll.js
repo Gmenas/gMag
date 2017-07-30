@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 const { expect } = require('chai');
-const dbMock = require('../utils/db.mock');
+const utils = require('../utils');
 
 const CategoryData = require('../../../../data/category.data');
 
@@ -8,7 +8,7 @@ describe('CategoryData.getAll()', () => {
     let sut;
     const ModelClass = class { };
     const items = [1, 2, 3];
-    const db = dbMock.getDbMock(items);
+    const db = utils.getDbMock(items);
 
     beforeEach(() => {
         sut = new CategoryData(db, ModelClass, '');
