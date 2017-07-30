@@ -9,9 +9,9 @@ class User {
             return errors;
         }
 
-        if (!/^[a-zA-Z0-9_\.]{4,25}$/.test(user.username)) {
+        if (!/^[a-zA-Z0-9_\.]{4,30}$/.test(user.username)) {
             errors.push(
-                'Username must be between 4 and 25 characters ' +
+                'Username must be between 4 and 30 characters ' +
                 'and consist of [a-zA-Z0-9_\.]'
             );
         }

@@ -11,10 +11,13 @@ block content
                     required='',
                     autofocus=''
                 )
-                input#inputPassword.form-control.margin-bot-md(
+                input#inputPassword.form-control.margin-bot-sm(
                     name='password',
                     type='password',
                     placeholder='Password',
                     required=''
                 )
+                .margin-bot-sm
+                    a(href='/register')
+                        | Dont have an account? Register here
                 button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in

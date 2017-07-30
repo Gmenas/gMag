@@ -1,6 +1,6 @@
 extends _base
 block content
-    .row
+    .product-detials.row
         .col-md-8.col-md-offset-2.col-xs-12.col-sm-12
             img(
                 src='/uploads/' + (product.photoId || 'no-image.svg'),
@@ -10,8 +10,8 @@ block content
             .row
                 h1.col-sm-9.text-left #{product.title}
                 h1.col-sm-3.text-right.text-muted $#{product.price}
-            h3.text-left
+            h3.text-left.margin-bot-md
                 | Seller:&nbsp;
                 a(href='/user/' + product.seller.username)
                     | #{product.seller.username}
-            h4.text-justify #{product.description}
+            h4.text-muted.text-justify #{product.description}

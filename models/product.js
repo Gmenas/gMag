@@ -11,7 +11,7 @@ class Product {
             errors.push('Title must be between 3 and 50 characters.');
         }
 
-        if (!/^.{5,10000}$/.test(product.description)) {
+        if (!/^.{5,10000}$/m.test(product.description)) {
             errors.push('Description must be between 5 and 10000 characters.');
         }
 

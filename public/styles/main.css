@@ -63,7 +63,11 @@ body {
     white-space: nowrap;
 }
 
-h3.col-xs-9{
+.product-detials h4 {
+    white-space: pre;
+}
+
+h3.col-xs-9 {
     overflow: hidden;
     text-overflow: ellipsis;
 }

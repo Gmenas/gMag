@@ -17,10 +17,13 @@ block content
                     placeholder='E-mail',
                     required=''
                 )
-                input#input-password.form-control.margin-bot-md(
+                input#input-password.form-control.margin-bot-sm(
                     name='password',
                     type='password',
                     placeholder='Password',
                     required=''
                 )
+                .margin-bot-sm
+                    a(href='/login')
+                        | Already have an account? Login here
                 button#input-register.btn.btn-lg.btn-primary.btn-block(type='submit') Register
