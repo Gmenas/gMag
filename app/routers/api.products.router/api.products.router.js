@@ -4,7 +4,7 @@ function init(app, data) {
     );
 
     app.get('/api/products', (req, res) =>
-        require('./controllers/list').init(req, res, data)
+        require('./controllers/get').init(req, res, data)
     );
 }
 

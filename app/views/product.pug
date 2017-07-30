@@ -8,10 +8,22 @@ block content
                 style='width: 100%'
             )
             .row
-                h1.col-sm-9.text-left #{product.title}
-                h1.col-sm-3.text-right.text-muted $#{product.price}
-            h3.text-left.margin-bot-md
-                | Seller:&nbsp;
-                a(href='/user/' + product.seller.username)
-                    | #{product.seller.username}
-            h4.text-muted.text-justify #{product.description}
+                h1.col-xs-12.text-left #{product.title}
+            .row
+                h1.col-xs-12.text-muted $#{product.price}
+            .row
+                .col-xs-12
+                    h3.text-left
+                        | Seller:&nbsp;
+                        a(href='/user/' + product.seller.username)
+                            | #{product.seller.username}
+            .row
+                .col-xs-12
+                    #contact-seller.btn.btn-primary.btn-lg Show Email
+                    h3#email.hidden
+            h3 Description:
+            p.text-muted.text-justify #{product.description}
+
+block scripts
+    script window.seller = !{JSON.stringify(product.seller)};
+    script(src='/scripts/product.js')

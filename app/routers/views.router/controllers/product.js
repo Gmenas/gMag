@@ -5,7 +5,8 @@ function init(req, res, data) {
             data.
                 users.getById(product.sellerId)
                 .then((user) => {
-                    product.seller = user;
+                    product.seller = {};
+                    product.seller.username = user.username;
 
                     const context = {
                         title: `Details for ${product.title}`,

@@ -59,6 +59,7 @@ typings/
 
 # IDEs
 .vscode
+jsconfig.json
 
 # OS
 desktop.ini
