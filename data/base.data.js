@@ -33,6 +33,14 @@ class BaseData {
         return this._insert(model);
     }
 
+    tryCreate(model) {
+        return new Promise((res, rej) => {
+            return this.create(model)
+                .then(() => res(true))
+                .catch(() => res(false));
+        });
+    }
+
     _insert(model) {
         return this._collection.insert(model)
             .then((insertInfo) => {
