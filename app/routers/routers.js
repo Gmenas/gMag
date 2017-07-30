@@ -26,14 +26,18 @@ function init(app, data) {
 
 
     app.use((req, res) => {
-        res.renderError(
+        res
+            .status(404)
+            .renderError(
             `Page '${req.url.slice(1)}' not found.`
-        );
+            );
     });
 
     app.use((err, req, res, next) => {
         console.error(err.stack);
-        res.renderError('Internal server error!');
+        res
+            .status(500)
+            .renderError('Internal server error.');
     });
 }
 

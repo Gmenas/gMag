@@ -16,7 +16,7 @@ describe('initial.data.init()', () => {
     });
     const data = {
         categories: {
-            create: sinon.spy((x) => {
+            tryCreate: sinon.spy((x) => {
                 return Promise.resolve(x);
             }),
         },
@@ -29,10 +29,10 @@ describe('initial.data.init()', () => {
         sut = initialData;
     });
 
-    it('expect to call data.categories.create() for each category', (done) => {
+    it('expect to call data.categories.tryCreate() for each', (done) => {
         sut.init(data, fakeFilePath)
             .then(() => {
-                expect(data.categories.create.callCount).to.equal(2);
+                expect(data.categories.tryCreate.callCount).to.equal(2);
                 done();
             })
             .catch(done);

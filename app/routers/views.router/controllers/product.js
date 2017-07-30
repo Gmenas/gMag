@@ -2,17 +2,31 @@ function init(req, res, data) {
     return data
         .products.getById(req.params.id)
         .then((product) => {
-            data.
+            if (!product) {
+                return Promise.reject('Product not found.');
+            }
+
+            return data.
                 users.getById(product.sellerId)
                 .then((user) => {
-                    product.seller = {};
-                    product.seller.username = user.username;
+                    product.seller = user;
+                    let isViewers = false;
+                    if (req.user) {
+                        isViewers = product.seller._id.equals(req.user._id);
+                    }
 
                     const context = {
                         title: `Details for ${product.title}`,
                         user: req.user,
                         flash: req.flash(),
                         product: product,
+                        isViewers: isViewers,
+                        windowCtx: {
+                            product: {
+                                _id: product._id,
+                                sellerId: product.seller._id,
+                            },
+                        },
                     };
                     return res.render('product', context);
                 });

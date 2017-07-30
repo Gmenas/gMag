@@ -18,8 +18,7 @@ class BaseData {
         }
 
         if (this._modelClass.equals) {
-            return this._collection
-                .findOne(this._modelClass.equals(model))
+            return this.getOne(this._modelClass.equals(model))
                 .then((exists) => {
                     if (exists) {
                         return Promise.reject(
@@ -51,28 +50,38 @@ class BaseData {
 
     get(filter, sort, limit, skip) {
         filter = filter || {};
+        filter.isDeleted = { $ne: true };
+
         sort = sort || {};
         limit = limit || 0;
         skip = skip || 0;
 
-        const result = this._collection
+        return this._collection
             .find(filter)
             .sort(sort)
             .skip(skip)
             .limit(limit)
             .toArray();
+    }
 
-        return result;
+    getOne(filter) {
+        filter = filter || {};
+        filter.isDeleted = { $ne: true };
+        return this._collection.findOne(filter);
     }
 
     getById(id) {
         if (!ObjectId.isValid(id)) {
             return Promise.reject(`Invalid ${this._modelClass.name} id.`);
         }
+        return this.getOne({ _id: ObjectId(id) });
+    }
 
-        return this._collection
-            .findOne({ _id: ObjectId(id) });
+    deleteOne(filter) {
+        filter = filter || {};
+        return this._collection.update(filter, { $set: { isDeleted: true } });
     }
 }
 
 module.exports = BaseData;
+

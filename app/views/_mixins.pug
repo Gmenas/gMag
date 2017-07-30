@@ -47,3 +47,6 @@ mixin _alert(type, message)
             data-dismiss='alert',
             aria-label='close'
         ) &times;
+
+mixin attachToWindow(ctx)
+    script window.ctx = !{JSON.stringify(ctx)}

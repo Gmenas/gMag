@@ -8,8 +8,7 @@ class UserData extends BaseData {
     }
 
     getByUsername(username) {
-        const result = this._collection
-            .findOne({ username: username });
+        const result = super.getOne({ username: username });
         return Promise.resolve(result);
     }
 

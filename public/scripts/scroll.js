@@ -1,4 +1,5 @@
 $(function() {
+    var filter = window.ctx.filter;
     var skip = currSkip = 9;
 
     $(window).on('scroll', function() {
@@ -7,7 +8,6 @@ $(function() {
         var documentHeight = $(window).innerHeight();
 
         if ((windowHeight + scrollTop) === documentHeight) {
-            var filter = window.filter;
             filter.skip = currSkip;
 
             $.get('/api/products', filter, function(products) {

@@ -1,29 +1,32 @@
 extends _base
 block content
     .product-detials.row
-        .col-md-8.col-md-offset-2.col-xs-12.col-sm-12
+        .col-sm-8.col-sm-offset-2.col-xs-12
             img(
                 src='/uploads/' + (product.photoId || 'no-image.svg'),
                 alt='Product photo'
                 style='width: 100%'
             )
             .row
-                h1.col-xs-12.text-left #{product.title}
+                h2.col-xs-12.text-left #{product.title}
             .row
-                h1.col-xs-12.text-muted $#{product.price}
+                h3.col-xs-12.text-muted $#{product.price}
             .row
                 .col-xs-12
                     h3.text-left
                         | Seller:&nbsp;
                         a(href='/user/' + product.seller.username)
                             | #{product.seller.username}
-            .row
+            .row.margin-bot-md
                 .col-xs-12
-                    #contact-seller.btn.btn-primary.btn-lg Show Email
-                    h3#email.hidden
-            h3 Description:
+                    if user
+                        if isViewers
+                            #delete.btn.btn-danger.btn-md Delete
+                        else
+                            #contact-seller.btn.btn-primary.btn-md Show Email
+                            h4#email.hidden
             p.text-muted.text-justify #{product.description}
 
 block scripts
-    script window.seller = !{JSON.stringify(product.seller)};
+    +attachToWindow(windowCtx)
     script(src='/scripts/product.js')

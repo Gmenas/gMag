@@ -9,7 +9,7 @@ function init(req, res, data) {
         .users.create(formData)
         .then((user) => {
             req.flash('info',
-                'Succesfully registered!'
+                'Succesfully registered.'
             );
             req.login(user, (err) => {
                 res.redirect('/');

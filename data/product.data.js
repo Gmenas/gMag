@@ -11,22 +11,22 @@ class ProductData extends BaseData {
 
     getRecent(count) {
         count = count || 0;
-        return this.get({}, { _id: -1 }, count);
+        return super.get({}, { _id: -1 }, count);
     }
 
     getByCategoryId(id, count) {
         count = count || 0;
-        return this.get({ categoryId: id }, { _id: -1 }, count);
+        return super.get({ categoryId: id }, { _id: -1 }, count);
     }
 
     getBySellerId(id, count) {
         count = count || 0;
-        return this.get({ sellerId: id }, { _id: -1 }, count);
+        return super.get({ sellerId: id }, { _id: -1 }, count);
     }
 
     getByQueryFilter(filter, count, skip) {
         filter = this._makeValidFilter(filter);
-        return this.get(filter, { _id: -1 }, count, skip);
+        return super.get(filter, { _id: -1 }, count, skip);
     }
 
     _makeValidFilter(f) {
@@ -55,6 +55,16 @@ class ProductData extends BaseData {
         }
 
         return filter;
+    }
+
+    deleteOne(filter, gfs) {
+        super.getOne(filter)
+            .then((product) => {
+                if (product.photoId) {
+                    gfs.remove({ _id: product.photoId });
+                }
+            });
+        return super.deleteOne(filter);
     }
 }
 

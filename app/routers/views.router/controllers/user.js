@@ -5,6 +5,11 @@ function init(req, res, data) {
             if (!user) {
                 return Promise.reject('User does not exist');
             }
+
+            const windowCtx = {
+                filter: { sellerId: user._id },
+            };
+
             return data
                 .products.getBySellerId(user._id, 9)
                 .then((products) => {
@@ -14,7 +19,7 @@ function init(req, res, data) {
                         flash: req.flash(),
                         userProfile: user,
                         userProducts: products,
-                        filter: { sellerId: user._id },
+                        windowCtx: windowCtx,
                     };
                     return res.render('user', context);
                 });

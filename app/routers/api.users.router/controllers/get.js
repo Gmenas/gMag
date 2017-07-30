@@ -1,13 +1,10 @@
 function init(req, res, data) {
     if (!req.user) {
-        return res
-            .send({
-                error: 'You must log in to see this.',
-            });
+        return res.status(403).send('Forbidden!');
     }
 
     return data
-        .users.getByUsername(req.query.username)
+        .users.getById(req.query.id)
         .then((user) => {
             const userToSend = {};
 

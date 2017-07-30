@@ -8,5 +8,5 @@ block content
         +productsList(userProducts)
 
 block scripts
-    script window.filter = !{JSON.stringify(filter)}
+    +attachToWindow(windowCtx)
     script(src='/scripts/scroll.js')

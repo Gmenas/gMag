@@ -18,7 +18,7 @@ function init(data) {
         },
         fileFilter: (req, file, cb) => {
             if (acceptedFiles.indexOf(file.mimetype) < 0) {
-                return cb(Error('Invalid image type!'));
+                return cb(Error('Invalid image type.'));
             }
             return cb(null, true);
         },

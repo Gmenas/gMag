@@ -7,11 +7,11 @@ class CategoryData extends BaseData {
     }
 
     getAll() {
-        return this.get({}, { _id: 1 });
+        return super.get({}, { _id: 1 });
     }
 
     getByUrl(url) {
-        return this.get({ url: url })
+        return super.get({ url: url })
             .then((result) => {
                 if (result.length === 0) {
                     return Promise.reject('Category does not exist.');

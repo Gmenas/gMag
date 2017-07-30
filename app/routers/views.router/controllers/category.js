@@ -27,8 +27,9 @@ function init(req, res, data) {
                         flash: req.flash(),
                         category: category,
                         products: products,
-                        filter: filter,
                         slider: priceConfig,
+                        filter: filter,
+                        windowCtx: { filter },
                     };
                     return res.render('category', context);
                 });
