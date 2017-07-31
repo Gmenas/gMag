@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions */
+
 const { expect } = require('chai');
 const sinon = require('sinon');
 const utils = require('../utils');
@@ -29,7 +29,7 @@ describe('CategoryData.getByUrl()', () => {
 
         it('expect to call BaseData.get() with correct args', () => {
             sut.getByUrl('test');
-            expect(sut.get.calledWith({ url: 'test' })).to.be.true;
+            expect(sut.get.calledWith({ url: 'test' })).to.equal(true);
         });
 
         it('expect to resolve promise with category', (done) => {

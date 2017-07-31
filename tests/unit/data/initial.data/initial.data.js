@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions */
+
 const fsMock = require('mock-fs');
 const { expect } = require('chai');
 const sinon = require('sinon');

@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-expressions */
+
 const { expect } = require('chai');
 const webDriver = require('./utils/web.driver');
 const ui = require('./utils/ui.ext');
 
-describe('Register', () => {
+describe('Sell', () => {
     let driver;
     const appUrl = 'http://localhost:3000/sell';
     const selectors = {

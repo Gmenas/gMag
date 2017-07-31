@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions */
+
 const { expect } = require('chai');
 
 // eslint-disable-next-line max-len

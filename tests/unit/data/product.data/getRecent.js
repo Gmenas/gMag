@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions */
+
 const { expect } = require('chai');
 const sinon = require('sinon');
 const utils = require('../utils');
@@ -21,12 +21,12 @@ describe('ProductData.getRecent()', () => {
 
     it('expect to call BaseData.get() with correct args', () => {
         sut.getRecent(3);
-        expect(sut.get.calledWith({}, { _id: -1 }, 3)).to.be.true;
+        expect(sut.get.calledWith({}, { _id: -1 }, 3)).to.equal(true);
     });
 
     it('expect to call BaseData.get() with count 0 when not specified', () => {
         sut.getRecent();
-        expect(sut.get.calledWith({}, { _id: -1 }, 0)).to.be.true;
+        expect(sut.get.calledWith({}, { _id: -1 }, 0)).to.equal(true);
     });
 
     afterEach(() => {

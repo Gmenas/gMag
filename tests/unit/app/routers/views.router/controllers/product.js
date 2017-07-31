@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions */
+
 const { expect } = require('chai');
 const sinon = require('sinon');
 
@@ -34,6 +34,9 @@ describe('productController.init()', () => {
             getById: () => {
                 return Promise.resolve(product);
             },
+            isFavouritedBy: () => {
+                return true;
+            },
         },
     };
 
@@ -53,7 +56,7 @@ describe('productController.init()', () => {
     it('expect to render correct view', (done) => {
         sut.init(req, res, data)
             .then(() => {
-                expect(res.renderError.called).to.be.false;
+                expect(res.renderError.called).to.equal(false);
                 expect(res.viewName).to.equal('product');
                 done();
             })
@@ -69,6 +72,7 @@ describe('productController.init()', () => {
                     'flash',
                     'product',
                     'isViewers',
+                    'isFavouritedByViewer',
                     'windowCtx',
                 ]);
                 done();

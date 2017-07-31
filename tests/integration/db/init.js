@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions */
+
 const { expect } = require('chai');
 
 const Db = require('./../../../db');

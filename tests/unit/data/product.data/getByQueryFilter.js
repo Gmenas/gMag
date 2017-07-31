@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions */
+
 const { expect } = require('chai');
 const sinon = require('sinon');
 const utils = require('../utils');
@@ -26,14 +26,14 @@ describe('ProductData.getByQueryFilter()', () => {
         sut.getByQueryFilter(filter, 1, 2);
         expect(sut._makeValidFilter.calledWith(
             filter
-        )).to.be.true;
+        )).to.equal(true);
     });
 
     it('expect to call BaseData.get() with correct argument', () => {
         sut.getByQueryFilter(filter, 1, 2);
         expect(sut.get.calledWith(
             filter, { _id: -1 }, 1, 2
-        )).to.be.true;
+        )).to.equal(true);
     });
 
     afterEach(() => {

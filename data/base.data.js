@@ -1,4 +1,3 @@
-/* eslint-disable new-cap */
 const { ObjectId } = require('mongodb');
 
 class BaseData {
@@ -74,6 +73,7 @@ class BaseData {
         if (!ObjectId.isValid(id)) {
             return Promise.reject(`Invalid ${this._modelClass.name} id.`);
         }
+        // eslint-disable-next-line new-cap
         return this.getOne({ _id: ObjectId(id) });
     }
 

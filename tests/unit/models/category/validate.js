@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions */
+
 const { expect } = require('chai');
 
 const Category = require('./../../../../models/category');
@@ -28,8 +28,8 @@ describe('Category.validate()', () => {
         it('expect to return empty array', () => {
             const result = sut.validate({ title: 'valid' });
 
-            expect(result).to.be.an('array')
-                .and.to.be.empty;
+            expect(result).to.be.an('array');
+            expect(result.length).to.equal(0);
         });
     });
 });

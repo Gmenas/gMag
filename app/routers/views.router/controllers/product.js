@@ -11,13 +11,10 @@ function init(req, res, data) {
                 .then((user) => {
                     product.seller = user;
                     let isViewers = false;
+                    let isFavByViewer = false;
                     if (req.user) {
                         isViewers = product.seller._id
                             .equals(req.user._id);
-                    }
-
-                    let isFavByViewer = false;
-                    if (req.user) {
                         isFavByViewer = data.products
                             .isFavouritedBy(product, req.user._id);
                     }

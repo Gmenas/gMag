@@ -12,7 +12,7 @@
         "start": "node server.js",
         "test:app": "gulp test:app",
         "test:browser": "gulp test:browser",
-        "test": "eslint --fix . && npm run test:app && npm run test:browser"
+        "test": "eslint . && npm run test:app && npm run test:browser"
     },
     "dependencies": {
         "body-parser": "^1.17.2",

@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions */
+
 const { expect } = require('chai');
 const sinon = require('sinon');
 
@@ -32,7 +32,7 @@ describe('getImageController.init()', () => {
     it('expect to call data.gfs.exist', (done) => {
         sut.init(req, res, data)
             .then(() => {
-                expect(data.gfs.exist.called).to.be.true;
+                expect(data.gfs.exist.called).to.equal(true);
                 done();
             })
             .catch(done);

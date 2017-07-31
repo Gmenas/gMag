@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions */
+
 const { expect } = require('chai');
 const sinon = require('sinon');
 const utils = require('../utils');
@@ -23,14 +23,14 @@ describe('ProductData.getByCategoryId()', () => {
         sut.getByCategoryId(42, 3);
         expect(sut.get.calledWith(
             { categoryId: 42 }, { _id: -1 }, 3
-        )).to.be.true;
+        )).to.equal(true);
     });
 
     it('expect to call BaseData.get() with count 0 when not specified', () => {
         sut.getByCategoryId(42);
         expect(sut.get.calledWith(
             { categoryId: 42 }, { _id: -1 }, 0
-        )).to.be.true;
+        )).to.equal(true);
     });
 
     afterEach(() => {

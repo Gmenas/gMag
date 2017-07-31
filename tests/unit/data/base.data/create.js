@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions */
+
 const { expect } = require('chai');
 const sinon = require('sinon');
 
@@ -74,7 +74,7 @@ describe('BaseData.create()', () => {
                     .then(() => {
                         expect(
                             ModelClass.toDbModel.calledWith(model)
-                        ).to.be.true;
+                        ).to.equal(true);
                         done();
                     })
                     .catch(done);
@@ -103,7 +103,7 @@ describe('BaseData.create()', () => {
                         .then(() => {
                             expect(
                                 ModelClass.equals.calledWith(model)
-                            ).to.be.true;
+                            ).to.equal(true);
                             done();
                         })
                         .catch(done);
