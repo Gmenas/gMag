@@ -16,9 +16,13 @@ block content
                     | Your favourites
     .tab-content
         #products.tab-pane.fade.in.active
-            .row
+            .row.scroll-products
                 +productsList(userProducts)
         if (isViewers)
             #favs.tab-pane.fade
-                .row
+                .row.scroll-favs
                     +productsList(userFavourites)
+
+block scripts
+    +attachToWindow(windowCtx)
+    script(src='/scripts/user.js')

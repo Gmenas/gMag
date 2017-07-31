@@ -1,6 +1,7 @@
 $(function() {
     var filter = window.ctx.filter;
-    var skip = currSkip = 9;
+    var skipStep = 9;
+    var skip = skipStep;
 
     $(window).on('scroll', function() {
         var windowHeight = $(window).outerHeight();
@@ -8,11 +9,11 @@ $(function() {
         var documentHeight = $(window).innerHeight();
 
         if ((windowHeight + scrollTop) === documentHeight) {
-            filter.skip = currSkip;
+            filter.skip = skip;
 
             $.get('/api/products', filter, function(products) {
                 $('.row.scroll').append(products);
-                currSkip += skip;
+                skip += skipStep;
             });
         }
     });

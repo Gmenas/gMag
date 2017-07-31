@@ -8,7 +8,7 @@ $(function() {
 
     $clearFilter.on('click', function(e) {
         e.preventDefault();
-        location = location.pathname;
+        window.location = location.pathname;
     });
 
     var timeOut;

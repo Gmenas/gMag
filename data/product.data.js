@@ -53,6 +53,9 @@ class ProductData extends BaseData {
         if (f.sellerId) {
             filter.sellerId = ObjectId(f.sellerId);
         }
+        if (f.favouritedBy) {
+            filter.favouritedBy = ObjectId(f.favouritedBy);
+        }
 
         return filter;
     }
@@ -85,8 +88,9 @@ class ProductData extends BaseData {
         });
     }
 
-    getFavouritedByUser(userId) {
-        return super.get({ favouritedBy: Object(userId) });
+    getFavouritedByUser(userId, count) {
+        count = count || 0;
+        return super.get({ favouritedBy: Object(userId) }, {}, count);
     }
 
     isFavouritedBy(product, userId) {

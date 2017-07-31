@@ -32,6 +32,7 @@ function init(req, res, data) {
                         windowCtx: {
                             product: {
                                 _id: product._id,
+                                title: product.title,
                                 sellerId: product.seller._id,
                             },
                         },

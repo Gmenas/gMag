@@ -1,9 +1,9 @@
 $(function() {
     var sellerId = window.ctx.product.sellerId;
     var productId = window.ctx.product._id;
+    var title = window.ctx.product.title;
 
     $('#contact-seller').on('click', function() {
-        var user;
         $.getJSON('/api/users', { id: sellerId })
             .done(function(user) {
                 var $link = $('<a>');
@@ -20,7 +20,8 @@ $(function() {
     });
 
     $('#delete').on('click', function() {
-        if (!confirm('Are you sure?')) {
+        var confirmed = confirm('Are you sure you want to delete "'+title+'" ?');
+        if (!confirmed) {
             return;
         }
 
