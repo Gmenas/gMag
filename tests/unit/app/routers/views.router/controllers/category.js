@@ -64,6 +64,7 @@ describe('categoryController.init()', () => {
                     'products',
                     'filter',
                     'slider',
+                    'windowCtx',
                 ]);
                 done();
             })

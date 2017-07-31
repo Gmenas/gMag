@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-expressions */
 const { expect } = require('chai');
+const sinon = require('sinon');
 
 // eslint-disable-next-line max-len
 const productController = require('./../../../../../../app/routers/views.router/controllers/product');
@@ -9,13 +10,19 @@ describe('productController.init()', () => {
     let sut;
     let req;
     let res;
-    const seller = 'seller';
+    const seller = {
+        _id: {
+            equals: () => {
+                return true;
+            },
+        },
+    };
     const product = {
         title: 'product',
         seller: seller,
         sellerId: 0,
     };
-    const reqUser = 'user';
+    const reqUser = { _id: 0 };
     const flash = () => 'flash';
     const data = {
         users: {
@@ -40,12 +47,13 @@ describe('productController.init()', () => {
             },
         });
         res = reqResMock.getResMock();
-        res.renderError = () => { };
+        res.renderError = sinon.spy();
     });
 
     it('expect to render correct view', (done) => {
         sut.init(req, res, data)
             .then(() => {
+                expect(res.renderError.called).to.be.false;
                 expect(res.viewName).to.equal('product');
                 done();
             })
@@ -62,7 +70,14 @@ describe('productController.init()', () => {
 
         sut.init(req, res, data)
             .then(() => {
-                expect(res.context).to.deep.equal(context);
+                expect(res.context).to.have.keys([
+                    'title',
+                    'user',
+                    'flash',
+                    'product',
+                    'isViewers',
+                    'windowCtx',
+                ]);
                 done();
             })
             .catch(done);
