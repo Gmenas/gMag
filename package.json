@@ -12,7 +12,7 @@
         "start": "node server.js",
         "test:app": "gulp test:app",
         "test:browser": "gulp test:browser",
-        "test": "npm run test:app && npm run test:browser"
+        "test": "eslint --fix . && npm run test:app && npm run test:browser"
     },
     "dependencies": {
         "body-parser": "^1.17.2",
@@ -39,7 +39,6 @@
         "eslint-config-google": "^0.9.1",
         "gulp-istanbul": "^1.1.2",
         "gulp-mocha": "3.0.1",
-        "gulp-sync": "^0.1.4",
         "mocha": "^3.4.2",
         "mock-fs": "^4.4.1",
         "selenium-webdriver": "^3.5.0",
