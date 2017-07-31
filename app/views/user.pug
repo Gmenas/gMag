@@ -3,7 +3,10 @@ block content
     .row.text-center.margin-bot-md
         h1 #{userProfile.username}
     .row.text-muted.text-center.margin-bot-md
-        h2 Products by <b>#{userProfile.username}</b>
+        if (isViewers)
+            h2 Your Products
+        else
+            h2 <b>#{userProfile.username}'s</b> products
     .row.scroll
         +productsList(userProducts)
 

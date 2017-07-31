@@ -6,9 +6,10 @@ function init(req, res, data) {
                 return Promise.reject('User does not exist');
             }
 
-            const windowCtx = {
-                filter: { sellerId: user._id },
-            };
+            let isViewers = false;
+            if (req.user) {
+                isViewers = user._id.equals(req.user._id);
+            }
 
             return data
                 .products.getBySellerId(user._id, 9)
@@ -19,7 +20,10 @@ function init(req, res, data) {
                         flash: req.flash(),
                         userProfile: user,
                         userProducts: products,
-                        windowCtx: windowCtx,
+                        isViewers: isViewers,
+                        windowCtx: {
+                            filter: { sellerId: user._id },
+                        },
                     };
                     return res.render('user', context);
                 });

@@ -2,10 +2,8 @@ extends _base
 block content
     .product-detials.row
         .col-sm-8.col-sm-offset-2.col-xs-12
-            img(
-                src='/uploads/' + (product.photoId || 'no-image.svg'),
-                alt='Product photo'
-                style='width: 100%'
+            .img-container(
+                style='background-image:url(/uploads/' + (product.photoId || 'no-image.svg') + ')'
             )
             .row
                 h2.col-xs-12.text-left #{product.title}
