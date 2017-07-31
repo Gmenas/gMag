@@ -11,7 +11,7 @@ function init(req, res, data) {
             }
 
             const userProductsPromise = data.products
-                .getBySellerId(user._id, 9);
+                .getBySellerId(user._id);
             const favouriteProductsPromise = isViewers ?
                 data.products.getFavouritedByUser(user._id) :
                 Promise.resolve(null);
@@ -29,9 +29,6 @@ function init(req, res, data) {
                         userProducts: userProducts,
                         userFavourites: userFavourites,
                         isViewers: isViewers,
-                        windowCtx: {
-                            filter: { sellerId: user._id },
-                        },
                     };
                     return res.render('user', context);
                 });

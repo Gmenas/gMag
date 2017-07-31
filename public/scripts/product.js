@@ -12,7 +12,7 @@ $(function() {
                 $link.html(user.email);
 
                 $('#contact-seller').remove();
-                $('#email').html($link).removeClass('hidden');
+                $('#email').removeClass('hidden').append($link);
             })
             .fail(function(err) {
                 alert(err.responseText);

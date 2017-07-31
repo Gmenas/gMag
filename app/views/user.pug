@@ -3,19 +3,22 @@ block content
     .row.text-center.margin-bot-md
         h1 #{userProfile.username}
 
-    if (isViewers)
-        .row.text-muted.text-center.margin-bot-md
-            h2 Your Favourites
-        .row
-            +productsList(userFavourites)
-    .row.text-muted.text-center.margin-bot-md
+    ul.nav.nav-tabs
+        li.active
+            a(data-toggle='tab', href='#products')
+                if (isViewers)
+                    | Your Products
+                else
+                    | #{userProfile.username}'s products
         if (isViewers)
-            h2 Your Products
-        else
-            h2 <b>#{userProfile.username}'s</b> products
-    .row.scroll
-        +productsList(userProducts)
-
-block scripts
-    +attachToWindow(windowCtx)
-    script(src='/scripts/scroll.js')
+            li
+                a(data-toggle='tab', href='#favs')
+                    | Your favourites
+    .tab-content
+        #products.tab-pane.fade.in.active
+            .row
+                +productsList(userProducts)
+        if (isViewers)
+            #favs.tab-pane.fade
+                .row
+                    +productsList(userFavourites)

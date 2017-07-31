@@ -12,7 +12,6 @@ body {
     padding: 70px 0;
 }
 
-
 /* bootstrap extensions */
 .padding-none {
     padding: 0;
@@ -33,7 +32,6 @@ body {
 .margin-bot-lg {
     margin-bottom: 45px;
 }
-
 
 /* custom styles */
 #search .input-group-addon {
@@ -78,10 +76,18 @@ body {
     background-repeat: no-repeat;
 }
 
+.product-detials .title .btn {
+    margin-bottom: 4px;
+}
+
 .product-detials p {
     font-size: 18px;
     white-space: pre-wrap;
     min-height: 250px;
     background: #eee;
     padding: 10px;
+}
+
+.tab-content {
+    padding-top: 10px;
 }
