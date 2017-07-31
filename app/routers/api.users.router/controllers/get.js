@@ -14,7 +14,8 @@ function init(req, res, data) {
             }
 
             res.send(userToSend);
-        });
+        })
+        .catch(res.renderError);
 }
 
 module.exports = { init };

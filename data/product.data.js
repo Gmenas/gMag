@@ -66,6 +66,34 @@ class ProductData extends BaseData {
             });
         return super.deleteOne(filter);
     }
+
+    favourite(filter, userId) {
+        return new Promise((resolve, reject) => {
+            super.getOne(filter).then((product) => {
+                if (!this.favouritedBy(product, userId)) {
+                    this._collection.update(filter, {
+                        $push: { favouritedBy: ObjectId(userId) },
+                    });
+                    return resolve({ favourited: true });
+                }
+
+                this._collection.update(filter, {
+                    $pull: { favouritedBy: ObjectId(userId) },
+                });
+                return resolve({ favourited: false });
+            });
+        });
+    }
+
+    favouritedBy(product, userId) {
+        if (product.favouritedBy) {
+            const foundId = product
+                .favouritedBy
+                .find((id) => id.equals(userId));
+            return !!foundId;
+        }
+        return false;
+    }
 }
 
 module.exports = ProductData;

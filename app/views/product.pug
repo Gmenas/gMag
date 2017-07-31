@@ -21,8 +21,15 @@ block content
                         if isViewers
                             #delete.btn.btn-danger.btn-md Delete
                         else
-                            #contact-seller.btn.btn-primary.btn-md Show Email
-                            h4#email.hidden
+                            .btn-toolbar
+                                #contact-seller.btn.btn-primary.btn-md Show Email
+                                h4#email.hidden
+                                #favourite.btn.btn-primary.btn-md
+                                    if (isFavouritedByViewer)
+                                        span.glyphicon.glyphicon-heart
+                                    else
+                                        span.glyphicon.glyphicon-heart-empty
+                                    | &nbsp;Favourite
             p.text-muted #{product.description}
 
 block scripts

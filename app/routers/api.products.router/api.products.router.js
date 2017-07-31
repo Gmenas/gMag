@@ -10,6 +10,10 @@ function init(app, data) {
     app.delete('/api/products', (req, res) =>
         require('./controllers/delete').init(req, res, data)
     );
+
+    app.patch('/api/products', (req, res) =>
+        require('./controllers/favourite').init(req, res, data)
+    );
 }
 
 module.exports = { init };

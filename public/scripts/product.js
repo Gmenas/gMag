@@ -27,8 +27,31 @@ $(function() {
         $.ajax('/api/products', {
             type: 'DELETE',
             data: { productId: productId },
-        }).done(function(data) {
-            window.location = '/';
-        });
+        })
+            .done(function(data) {
+                if (data.done) {
+                    window.location = '/';
+                }
+            });
+    });
+
+    $('#favourite').on('click', function() {
+        $.ajax('/api/products', {
+            type: 'PATCH',
+            data: { productId: productId },
+        })
+            .done(function(data) {
+                if (data.favourited) {
+                    $('#favourite span')
+                        .removeClass('glyphicon-heart-empty')
+                        .removeClass('glyphicon-heart')
+                        .addClass('glyphicon-heart');
+                } else {
+                    $('#favourite span')
+                        .removeClass('glyphicon-heart-empty')
+                        .removeClass('glyphicon-heart')
+                        .addClass('glyphicon-heart-empty');
+                }
+            });
     });
 });

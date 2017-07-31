@@ -11,7 +11,7 @@ function init(req, res, data) {
             };
             return res.render('partial/scroll', context);
         })
-        .catch((msg) => res.renderError(msg));
+        .catch(res.renderError);
 }
 
 module.exports = { init };

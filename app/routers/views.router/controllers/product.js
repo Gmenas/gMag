@@ -12,7 +12,14 @@ function init(req, res, data) {
                     product.seller = user;
                     let isViewers = false;
                     if (req.user) {
-                        isViewers = product.seller._id.equals(req.user._id);
+                        isViewers = product.seller._id
+                            .equals(req.user._id);
+                    }
+
+                    let isFavByViewer = false;
+                    if (req.user) {
+                        isFavByViewer = data.products
+                            .favouritedBy(product, req.user._id);
                     }
 
                     const context = {
@@ -21,6 +28,7 @@ function init(req, res, data) {
                         flash: req.flash(),
                         product: product,
                         isViewers: isViewers,
+                        isFavouritedByViewer: isFavByViewer,
                         windowCtx: {
                             product: {
                                 _id: product._id,

@@ -9,7 +9,9 @@ function _renderError(req, res, next) {
             user: req.user,
             errorMsg: msg,
         };
-        return res.render('error', context);
+        return res
+            .status(500)
+            .render('error', context);
     };
     next();
 }
@@ -26,18 +28,14 @@ function init(app, data) {
 
 
     app.use((req, res) => {
-        res
-            .status(404)
-            .renderError(
+        res.renderError(
             `Page '${req.url.slice(1)}' not found.`
             );
     });
 
     app.use((err, req, res, next) => {
         console.error(err.stack);
-        res
-            .status(500)
-            .renderError('Internal server error.');
+        res.renderError('Internal server error.');
     });
 }
 
