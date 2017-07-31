@@ -11,10 +11,14 @@ describe('userController.init()', () => {
     let req;
     let res;
     const user = {
-        username: 'user',
+        _id: {
+            equals: () => {
+                return true;
+            },
+        },
     };
     const products = [3, 4, 5];
-    const reqUser = 'requser';
+    const reqUser = { _id: 0 };
     const flash = () => 'flash';
     const data = {
         users: {},
@@ -63,6 +67,7 @@ describe('userController.init()', () => {
                         'flash',
                         'userProfile',
                         'userProducts',
+                        'isViewers',
                         'windowCtx',
                     ]);
                     done();
