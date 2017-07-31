@@ -75,6 +75,7 @@ module.exports = {
         driver = _driver;
     },
     waitFor,
+    waitForMany,
     getText,
     getTexts,
     getSelected,

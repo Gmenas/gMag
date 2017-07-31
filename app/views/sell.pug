@@ -35,9 +35,12 @@ block content
                     required=''
                 )
                 .row.margin-none.margin-bot-md
-                    h4.col-md-6.text-left.padding-none Upload photo (optional)
+                    h4.col-md-6.text-left.padding-none
+                        | Upload photo (optional)
                     input.col-md-6(
                         name='photo',
                         type='file'
                     )
-                button.btn.btn-lg.btn-primary.btn-block(type='submit') Publish
+                button.btn.btn-lg.btn-primary.btn-block(
+                    type='submit'
+                ) Publish

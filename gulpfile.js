@@ -32,14 +32,14 @@ gulp.task('test:app', ['pre-test:app'], () => {
 
 gulp.task('test:browser', () => {
     const testServer = require('./tests/utils/test.server');
-    const webDriver = require('./tests/browser/utils/web.driver');
+    const webDriver = require('./tests/browser/tests/utils/web.driver');
 
     return Promise.all([
         testServer.start(),
         webDriver.setup('chrome'),
     ])
         .then(() => {
-            return gulp.src('./tests/browser/**/*.js')
+            return gulp.src('./tests/browser/start.js')
                 .pipe(mocha({
                     slow: 5000,
                     timeout: 7500,

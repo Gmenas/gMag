@@ -80,8 +80,4 @@ describe('Register', () => {
             });
         });
     });
-
-    after(() => {
-        driver.quit();
-    });
 });
