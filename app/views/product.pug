@@ -24,7 +24,7 @@ block content
                 h4.col-xs-12 Seller:&nbsp;
                     a(href='/user/' + product.seller.username) #{product.seller.username}
             .row
-                if !isViewers
+                if user && !isViewers
                     h4.col-xs-12
                         #contact-seller.btn.btn-default Show seller details
                         #email.hidden Seller email:&nbsp;
