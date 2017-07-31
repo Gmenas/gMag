@@ -15,12 +15,12 @@ $(function() {
                 $('#email').removeClass('hidden').append($link);
             })
             .fail(function(err) {
-                alert(err.responseText);
+                window.bs.loginAlert('/login');
             });
     });
 
     $('#delete').on('click', function() {
-        var confirmed = confirm('Are you sure you want to delete "'+title+'" ?');
+        var confirmed = confirm('Are you sure you want to delete "' + title + '" ?');
         if (!confirmed) {
             return;
         }
@@ -53,6 +53,9 @@ $(function() {
                         .removeClass('glyphicon-heart')
                         .addClass('glyphicon-heart-empty');
                 }
+            })
+            .fail(function(err) {
+                window.bs.loginAlert('/login');
             });
     });
 });
