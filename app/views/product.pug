@@ -24,9 +24,10 @@ block content
                 h4.col-xs-12 Seller:&nbsp;
                     a(href='/user/' + product.seller.username) #{product.seller.username}
             .row
-                h4.col-xs-12
-                    #contact-seller.btn.btn-default Show seller details
-                    #email.hidden Seller email:&nbsp;
+                if !isViewers
+                    h4.col-xs-12
+                        #contact-seller.btn.btn-default Show seller details
+                        #email.hidden Seller email:&nbsp;
             .row.margin-bot-md
             p.text-muted #{product.description}
 
