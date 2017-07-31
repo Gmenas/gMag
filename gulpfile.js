@@ -21,14 +21,17 @@ gulp.task('test:app', ['pre-test:app'], () => {
         './tests/unit/**/*.js',
         './tests/integration/**/*.js',
     ])
-        .pipe(mocha())
+        .pipe(mocha({
+            slow: 2500,
+            timeout: 5000,
+        }))
         .pipe(istanbul.writeReports({
             dir: './tests/coverage',
         }));
 });
 
 gulp.task('test:browser', () => {
-    const testServer = require('./tests/browser/utils/test.server');
+    const testServer = require('./tests/utils/test.server');
     const webDriver = require('./tests/browser/utils/web.driver');
 
     return Promise.all([

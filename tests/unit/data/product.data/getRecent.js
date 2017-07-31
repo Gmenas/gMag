@@ -7,6 +7,7 @@ const ProductData = require('../../../../data/product.data');
 
 describe('ProductData.getRecent()', () => {
     let sut;
+    let get;
     const ModelClass = class { };
     const db = {
         collection: () => { },
@@ -14,7 +15,8 @@ describe('ProductData.getRecent()', () => {
 
     beforeEach(() => {
         sut = new ProductData(db, ModelClass, '');
-        utils.getSuperInstance(sut).get = sinon.spy();
+        get = utils.getSuper(sut).get;
+        utils.getSuper(sut).get = sinon.spy();
     });
 
     it('expect to call BaseData.get() with correct args', () => {
@@ -25,5 +27,9 @@ describe('ProductData.getRecent()', () => {
     it('expect to call BaseData.get() with count 0 when not specified', () => {
         sut.getRecent();
         expect(sut.get.calledWith({}, { _id: -1 }, 0)).to.be.true;
+    });
+
+    afterEach(() => {
+        utils.getSuper(sut).get = get;
     });
 });

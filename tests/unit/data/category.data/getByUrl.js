@@ -8,16 +8,21 @@ const CategoryData = require('../../../../data/category.data');
 describe('CategoryData.getByUrl()', () => {
     let sut;
     let category;
+    let get;
     const ModelClass = class { };
     const db = {
         collection: () => { },
     };
 
+    beforeEach(() => {
+        sut = new CategoryData(db, ModelClass, '');
+        get = utils.getSuper(sut).get;
+    });
+
     describe('when category exists', () => {
         beforeEach(() => {
-            sut = new CategoryData(db, ModelClass, '');
             category = 1;
-            utils.getSuperInstance(sut).get = sinon.spy(() => {
+            utils.getSuper(sut).get = sinon.spy(() => {
                 return Promise.resolve([category]);
             });
         });
@@ -38,8 +43,7 @@ describe('CategoryData.getByUrl()', () => {
 
     describe('when category does not exist', () => {
         beforeEach(() => {
-            sut = new CategoryData(db, ModelClass, '');
-            utils.getSuperInstance(sut).get = sinon.spy(() => {
+            utils.getSuper(sut).get = sinon.spy(() => {
                 return Promise.resolve([]);
             });
         });
@@ -54,5 +58,9 @@ describe('CategoryData.getByUrl()', () => {
                     done();
                 });
         });
+    });
+
+    afterEach(() => {
+        utils.getSuper(sut).get = get;
     });
 });

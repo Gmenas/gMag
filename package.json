@@ -1,6 +1,19 @@
 {
     "name": "g-mag",
     "version": "1.0.0",
+    "keywords": [],
+    "author": "markshark05, ogitaki, dimitartalanov",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/gmenas/gMag"
+    },
+    "scripts": {
+        "start": "node server.js",
+        "test:app": "gulp test:app",
+        "test:browser": "gulp test:browser",
+        "test": "npm run test:app && npm run test:browser"
+    },
     "dependencies": {
         "body-parser": "^1.17.2",
         "connect-ensure-login": "^0.1.1",

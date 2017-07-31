@@ -21,8 +21,8 @@ function getDbMock(items) {
     };
 }
 
-function getSuperInstance(instance) {
+function getSuper(instance) {
     return Object.getPrototypeOf(Object.getPrototypeOf(instance));
 }
 
-module.exports = { getDbMock, getSuperInstance };
+module.exports = { getDbMock, getSuper };

@@ -61,13 +61,6 @@ describe('productController.init()', () => {
     });
 
     it('expect to pass correct context', (done) => {
-        const context = {
-            title: `Details for ${product.title}`,
-            user: reqUser,
-            flash: flash(),
-            product: product,
-        };
-
         sut.init(req, res, data)
             .then(() => {
                 expect(res.context).to.have.keys([

@@ -1,12 +1,10 @@
 /* eslint-disable no-unused-expressions */
 const { expect } = require('chai');
-const sinon = require('sinon');
 
 const ProductData = require('../../../../data/product.data');
 
 describe('ProductData._makeValidFilter()', () => {
     let sut;
-    let filter;
     const ModelClass = class { };
     const db = {
         collection: () => { },

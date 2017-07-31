@@ -3,13 +3,16 @@ function init(req, res, data) {
         _id: req.params.id,
     };
 
-    data.gfs.exist(filter, (err, found) => {
-        if (err || !found) {
-            return res.renderError('Image does not exist');
-        }
-        return data.gfs
-            .createReadStream(filter)
-            .pipe(res);
+    return new Promise((resolve) => {
+        data.gfs.exist(filter, (err, found) => {
+            if (err || !found) {
+                return res.renderError('Image does not exist');
+            }
+            data.gfs
+                .createReadStream(filter)
+                .pipe(res);
+            return resolve();
+        });
     });
 }
 

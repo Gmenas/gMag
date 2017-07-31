@@ -8,6 +8,7 @@ const ProductData = require('../../../../data/product.data');
 describe('ProductData.getByQueryFilter()', () => {
     let sut;
     let filter;
+    let get;
     const ModelClass = class { };
     const db = {
         collection: () => { },
@@ -15,7 +16,8 @@ describe('ProductData.getByQueryFilter()', () => {
 
     beforeEach(() => {
         sut = new ProductData(db, ModelClass, '');
-        utils.getSuperInstance(sut).get = sinon.spy();
+        get = utils.getSuper(sut).get;
+        utils.getSuper(sut).get = sinon.spy();
         sut._makeValidFilter = sinon.spy((x) => x);
         filter = { test: 'test' };
     });
@@ -32,5 +34,9 @@ describe('ProductData.getByQueryFilter()', () => {
         expect(sut.get.calledWith(
             filter, { _id: -1 }, 1, 2
         )).to.be.true;
+    });
+
+    afterEach(() => {
+        utils.getSuper(sut).get = get;
     });
 });
