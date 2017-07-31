@@ -70,7 +70,7 @@ class ProductData extends BaseData {
     favourite(filter, userId) {
         return new Promise((resolve, reject) => {
             super.getOne(filter).then((product) => {
-                if (!this.favouritedBy(product, userId)) {
+                if (!this.isFavouritedBy(product, userId)) {
                     this._collection.update(filter, {
                         $push: { favouritedBy: ObjectId(userId) },
                     });
@@ -85,7 +85,11 @@ class ProductData extends BaseData {
         });
     }
 
-    favouritedBy(product, userId) {
+    getFavouritedByUser(userId) {
+        return super.get({ favouritedBy: Object(userId) });
+    }
+
+    isFavouritedBy(product, userId) {
         if (product.favouritedBy) {
             const foundId = product
                 .favouritedBy

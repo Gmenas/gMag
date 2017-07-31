@@ -19,7 +19,7 @@ function init(req, res, data) {
                     let isFavByViewer = false;
                     if (req.user) {
                         isFavByViewer = data.products
-                            .favouritedBy(product, req.user._id);
+                            .isFavouritedBy(product, req.user._id);
                     }
 
                     const context = {

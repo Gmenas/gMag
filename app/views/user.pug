@@ -2,6 +2,12 @@ extends _base
 block content
     .row.text-center.margin-bot-md
         h1 #{userProfile.username}
+
+    if (isViewers)
+        .row.text-muted.text-center.margin-bot-md
+            h2 Your Favourites
+        .row
+            +productsList(userFavourites)
     .row.text-muted.text-center.margin-bot-md
         if (isViewers)
             h2 Your Products

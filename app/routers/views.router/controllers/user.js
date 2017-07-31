@@ -5,21 +5,29 @@ function init(req, res, data) {
             if (!user) {
                 return Promise.reject('User does not exist');
             }
-
             let isViewers = false;
             if (req.user) {
                 isViewers = user._id.equals(req.user._id);
             }
 
-            return data
-                .products.getBySellerId(user._id, 9)
-                .then((products) => {
+            const userProductsPromise = data.products
+                .getBySellerId(user._id, 9);
+            const favouriteProductsPromise = isViewers ?
+                data.products.getFavouritedByUser(user._id) :
+                Promise.resolve(null);
+
+            return Promise.all([
+                userProductsPromise,
+                favouriteProductsPromise,
+            ])
+                .then(([userProducts, userFavourites]) => {
                     const context = {
                         title: user.username,
                         user: req.user,
                         flash: req.flash(),
                         userProfile: user,
-                        userProducts: products,
+                        userProducts: userProducts,
+                        userFavourites: userFavourites,
                         isViewers: isViewers,
                         windowCtx: {
                             filter: { sellerId: user._id },
