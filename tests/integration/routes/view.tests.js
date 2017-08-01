@@ -34,7 +34,7 @@ describe('View tests', () => {
         it('expect to return 200', (done) => {
             appPromise.then((app) => {
                 request(app)
-                    .get('/browse/laptops')
+                    .get('/browse/laptops-and-desktops')
                     .expect(200)
                     .end(done);
             });
