@@ -60,6 +60,10 @@ body {
     text-overflow: ellipsis;
 }
 
+.card {
+    height: 420px;
+}
+
 .card p {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -68,7 +72,7 @@ body {
 
 .product-detials .img-container {
     text-align: center;
-    background: #eee;
+    background: #fff;
     width: 100%;
     padding-bottom: 80%;
     background-size: contain;
